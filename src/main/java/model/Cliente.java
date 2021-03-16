@@ -2,6 +2,7 @@ package model;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name = "cliente")
@@ -45,6 +46,10 @@ public class Cliente {
     @Basic(optional = false)
     @Temporal(TemporalType.DATE)
     private Date fecha;
+
+    // Hay veces que queremos ir de este lado para la otra tabla entonces ponemos esta relación:
+    @OneToMany(mappedBy = "bolsaPunto") // a que atributo de la clase BolsaPunto hace referencia para mapear
+    private List<BolsaPunto> listaBolsa;
 
     public Cliente(){
 
