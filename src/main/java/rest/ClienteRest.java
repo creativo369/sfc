@@ -28,7 +28,7 @@ public class ClienteRest {
     @POST
     @Path("/")
     public Response crearCliente(Cliente c){
-        this.clienteDAO.agregar(c);
+        this.clienteDAO.nuevoCliente(c);
         return Response.ok().build();
     }
 }

@@ -34,7 +34,7 @@ Proyecto correspondiente al primer parcial de la asignatura de Programación Web
 
 - 
 
-#### **How to : **
+#### **How to :**
 
 **Crear base de datos, tablas y relaciones**
 

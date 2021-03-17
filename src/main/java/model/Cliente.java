@@ -34,7 +34,7 @@ public class Cliente {
     @Basic(optional = false)
     private String nacionalidad;
 
-    @Column(name = "email", length = 15 )
+    @Column(name = "email", length = 60 )
     @Basic(optional = false)
     private String email;
 
@@ -45,11 +45,11 @@ public class Cliente {
     @Column(name = "fecha_nacimiento")
     @Basic(optional = false)
     @Temporal(TemporalType.DATE)
-    private Date fecha;
+    private Date fecha_nacimiento;
 
-    // Hay veces que queremos ir de este lado para la otra tabla entonces ponemos esta relación:
-    @OneToMany(mappedBy = "bolsaPunto") // a que atributo de la clase BolsaPunto hace referencia para mapear
-    private List<BolsaPunto> listaBolsa;
+//    // Hay veces que queremos ir de este lado para la otra tabla entonces ponemos esta relación:
+//    @OneToMany(mappedBy = "bolsaPunto") // a que atributo de la clase BolsaPunto hace referencia para mapear
+//    private List<BolsaPunto> listaBolsa;
 
     public Cliente(){
 
@@ -120,19 +120,19 @@ public class Cliente {
     }
 
     public Date getFecha() {
-        return fecha;
+        return fecha_nacimiento;
     }
 
-    public void setFecha(Date fecha) {
-        this.fecha = fecha;
+    public void setFecha(Date fecha_nacimiento) {
+        this.fecha_nacimiento = fecha_nacimiento;
     }
 
-    public List<BolsaPunto> getListaBolsa() {
-        return listaBolsa;
-    }
-
-    public void setListaBolsa(List<BolsaPunto> listaBolsa) {
-        this.listaBolsa = listaBolsa;
-    }
+//    public List<BolsaPunto> getListaBolsa() {
+//        return listaBolsa;
+//    }
+//
+//    public void setListaBolsa(List<BolsaPunto> listaBolsa) {
+//        this.listaBolsa = listaBolsa;
+//    }
 
 }

@@ -18,9 +18,8 @@ public class ClienteDAO {
     private EntityManager em;  // Un objeto que nos permite administrar y manipular nuestras entidades y realiza el mapeo correspondiente en la base de datos
 
     @Inject
-
     // Por defecto el contenedor hace que esto sea transaccional: que si existiese un error no se comitee a la base de datos y se revierta la escritura
-    public void agregar(Cliente c){
+    public void nuevoCliente(Cliente c){
         //The persist operation can only be called within a transaction
         this.em.persist(c);
     }
