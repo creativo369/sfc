@@ -126,4 +126,13 @@ public class Cliente {
     public void setFecha(Date fecha) {
         this.fecha = fecha;
     }
+
+    public List<BolsaPunto> getListaBolsa() {
+        return listaBolsa;
+    }
+
+    public void setListaBolsa(List<BolsaPunto> listaBolsa) {
+        this.listaBolsa = listaBolsa;
+    }
+
 }

@@ -13,13 +13,13 @@ public class ConceptoPunto {
     @SequenceGenerator(name = "conceptoPuntoSec", sequenceName = "conceptoPunto_sec", allocationSize = 0)
     private Integer idConceptoPunto;
 
-    @Column(name = "descripcion", length = 250)
+    @Column(name = "descripcion_concepto", length = 200)
     @Basic(optional = false)
     private String descripcionConcepto;
 
-    @Column(name = "puntosRequeridos", length = 15)
+    @Column(name = "puntos_requeridos")
     @Basic(optional = false)
-    private String puntosRequeridos;
+    private Integer puntosRequeridos;
 
     public ConceptoPunto() {
     }
@@ -40,11 +40,11 @@ public class ConceptoPunto {
         this.descripcionConcepto = descripcionConcepto;
     }
 
-    public String getPuntosRequeridos() {
+    public Integer getPuntosRequeridos() {
         return puntosRequeridos;
     }
 
-    public void setPuntosRequeridos(String puntosRequeridos) {
+    public void setPuntosRequeridos(Integer puntosRequeridos) {
         this.puntosRequeridos = puntosRequeridos;
     }
 }

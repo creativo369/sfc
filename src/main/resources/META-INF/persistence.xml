@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="2.0" xmlns="http://java.sun.com/xml/ns/persistence"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd">
+    <!--        Unidad de persistencia que tendra todos los parametros de conexión que esta identificada con un nombre
+     ,luego este nombre que voy a utilizar para pedirle a JPA "Voy a trabajar con el gestor de persistencia llamado "name"-->
+
+    <persistence-unit name="sfcPU">
+        <!-- If you are running in a production environment, add a managed
+           data source, this example data source is just for development and testing! -->
+        <!-- The datasource is deployed as ${ds-deployment-location}, you
+           can find it in the source at postgres_local-ds.xml -->
+        <!--      <jta-data-source>java:jboss/datasources/prueba</jta-data-source>-->
+        <!--       Conexión de nuestro dataSource ( base de datos )  -->
+        <jta-data-source>java:/sfcDS</jta-data-source>
+
+        <!-- Registramos las clases modelos de java que vayamos creando -->
+        <class>model.Cliente</class>
+        <properties>
+            <property name="hibernate.id.new_generator_mappings" value="true"/>
+            <property name="hibernate.show_sql" value="true"/>
+            <property name="hibernate.dialect" value="org.hibernate.dialect.PostgreSQLDialect"/>
+<!--
+                Esquema de generación de las tablas a partir de las entidades
+                <property
+                name = "javax.persistence.shema-generation.database.action"
+                value= "drop-and-create"/>  si tenemos ya value = "none"
+-->
+        </properties>
+    </persistence-unit>
+</persistence>

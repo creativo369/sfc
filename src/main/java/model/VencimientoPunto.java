@@ -33,11 +33,11 @@ public class VencimientoPunto {
     }
 
     public Integer getIdvencimientoPunto() {
-        return IdvencimientoPunto;
+        return idvencimientoPunto;
     }
 
     public void setIdvencimientoPunto(Integer idvencimientoPunto) {
-        IdvencimientoPunto = idvencimientoPunto;
+        idvencimientoPunto = idvencimientoPunto;
     }
 
     public Date getFechaInicioValidez() {

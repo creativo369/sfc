@@ -1,11 +1,7 @@
 package model;
 
 import javax.persistence.*;
-
-id autogenerado, identificador del cliente, fecha de asignación de puntaje, fecha
-        de caducidad de puntaje, puntaje asignado, puntaje utilizado, saldo de puntos, monto de la
-        operación
-
+import java.util.Date;
 
 @Entity
 @Table(name = "bolsaPunto")
@@ -28,5 +24,97 @@ public class BolsaPunto {
     * */
     private Cliente cliente;
 
+    @Column(name = "fecha_asignacion_puntaje")
+    @Basic(optional = false)
+    @Temporal(TemporalType.DATE)
+    private Date fechaAsignacion;
+
+    @Column(name = "fecha_caducidad_puntaje")
+    @Basic(optional = false)
+    @Temporal(TemporalType.DATE)
+    private Date fechaCaducidad;
+
+    @Column(name = "puntaje_asignado")
+    @Basic(optional = false)
+    private Integer puntajeAsignado;
+
+    @Column(name = "puntaje_utilizado")
+    @Basic(optional = false)
+    private Integer puntajeUtilizado;
+
+    @Column(name = "saldo_puntos")
+    @Basic(optional = false)
+    private Integer saldo;
+
+    @Column(name = "monto_operacion")
+    @Basic(optional = false)
+    private Integer monto;
+
+    public BolsaPunto() {
+    }
+
+    public Integer getIdBolsaPunto() {
+        return idBolsaPunto;
+    }
+
+    public void setIdBolsaPunto(Integer idBolsaPunto) {
+        this.idBolsaPunto = idBolsaPunto;
+    }
+
+    public Cliente getCliente() {
+        return cliente;
+    }
+
+    public void setCliente(Cliente cliente) {
+        this.cliente = cliente;
+    }
+
+    public Date getFechaAsignacion() {
+        return fechaAsignacion;
+    }
+
+    public void setFechaAsignacion(Date fechaAsignacion) {
+        this.fechaAsignacion = fechaAsignacion;
+    }
+
+    public Date getFechaCaducidad() {
+        return fechaCaducidad;
+    }
+
+    public void setFechaCaducidad(Date fechaCaducidad) {
+        this.fechaCaducidad = fechaCaducidad;
+    }
+
+    public Integer getPuntajeAsignado() {
+        return puntajeAsignado;
+    }
+
+    public void setPuntajeAsignado(Integer puntajeAsignado) {
+        this.puntajeAsignado = puntajeAsignado;
+    }
+
+    public Integer getPuntajeUtilizado() {
+        return puntajeUtilizado;
+    }
+
+    public void setPuntajeUtilizado(Integer puntajeUtilizado) {
+        this.puntajeUtilizado = puntajeUtilizado;
+    }
+
+    public Integer getSaldo() {
+        return saldo;
+    }
+
+    public void setSaldo(Integer saldo) {
+        this.saldo = saldo;
+    }
+
+    public Integer getMonto() {
+        return monto;
+    }
+
+    public void setMonto(Integer monto) {
+        this.monto = monto;
+    }
 
 }

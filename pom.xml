@@ -12,6 +12,7 @@
     <properties>
         <maven.compiler.source>15</maven.compiler.source>
         <maven.compiler.target>15</maven.compiler.target>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
     <dependencies>
@@ -92,19 +93,20 @@
                     <version>1.1.0.Alpha1</version>
                 </plugin>
                 <!-- Aqui puse este plugin para solucionar problemas de compilación -->
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-compiler-plugin</artifactId>
-                    <version>3.8.1</version>
-                    <configuration>
-                        <!--						<release>7</release>-->
-                        <!--						<fork>true</fork>-->
-                        <!--						<executable>C:\Program Files\Java\jdk-15.0.1\bin\javac.exe</executable>-->
-                        <source>1.8</source>
-                        <target>1.8</target>
-                    </configuration>
-                </plugin>
+<!--                <plugin>-->
+<!--                    <groupId>org.apache.maven.plugins</groupId>-->
+<!--                    <artifactId>maven-compiler-plugin</artifactId>-->
+<!--                    <version>3.8.1</version>-->
+<!--                    <configuration>-->
+<!--                        <release>7</release>-->
+<!--                        <fork>true</fork>-->
+<!--                        <executable>C:\Program Files\Java\jdk-15.0.1\bin\javac.exe</executable>-->
+<!--                        <source>1.8</source>-->
+<!--                        <target>1.8</target>-->
+<!--                    </configuration>-->
+<!--                </plugin>-->
             </plugins>
         </pluginManagement>
     </build>
+
 </project>
