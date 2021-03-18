@@ -13,7 +13,7 @@ Proyecto correspondiente al primer parcial de la asignatura de Programación Web
 
 **Gestor de Proyecto:** Maven 3.x
 
-**Servidor de Aplicaciones:** Wildfly version-22.0.0. Final
+**Servidor de Aplicaciones:** Wildfly version-23.0.0. Final
 
 **SGBD:** PostgreSQL version-13 y PgAdmin 4 
 

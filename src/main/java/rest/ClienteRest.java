@@ -21,13 +21,13 @@ public class ClienteRest {
     // generar primero para obtener todas los clientes, consumiendo el metodo en ClienteDAO ( listarClientes<Cliente>)
     @GET
     @Path("/")
-    public Response listarClientes(){
-        return Response.ok(clienteDAO.listar()).build();
+    public Response listarC(){
+        return Response.ok(clienteDAO.listarClientes()).build();
     }
 
     @POST
     @Path("/")
-    public Response crearCliente(Cliente c){
+    public Response crearC(Cliente c){
         this.clienteDAO.nuevoCliente(c);
         return Response.ok().build();
     }

@@ -24,8 +24,9 @@ public class ClienteDAO {
         this.em.persist(c);
     }
 
-    public List<Cliente> listar(){
+    public List<Cliente> listarClientes(){
         Query q=this.em.createQuery( "select c from Cliente c");
-        return (List<Cliente>) q.getResultList();
+        List<Cliente> listadoClientes = (List<Cliente>) q.getResultList();
+        return  listadoClientes;
     }
 }

@@ -12,7 +12,7 @@ public class Cliente {
     @Basic(optional = false) // not null
     @GeneratedValue(generator = "clienteSec", strategy = GenerationType.SEQUENCE)
     @SequenceGenerator(name = "clienteSec", sequenceName = "cliente_sec", allocationSize = 0)
-    private Integer idPersona;
+    private Integer id_cliente;
 
     @Column(name = "nombre", length = 50)
     @Basic(optional = false)
@@ -55,12 +55,12 @@ public class Cliente {
 
     }
 
-    public Integer getIdPersona() {
-        return idPersona;
+    public Integer getId_cliente() {
+        return id_cliente;
     }
 
-    public void setIdPersona(Integer idPersona) {
-        this.idPersona = idPersona;
+    public void setId_cliente(Integer id_cliente) {
+        this.id_cliente = id_cliente;
     }
 
     public String getNombre() {
@@ -119,15 +119,16 @@ public class Cliente {
         this.telefono = telefono;
     }
 
-    public Date getFecha() {
+
+    public Date getFecha_nacimiento() {
         return fecha_nacimiento;
     }
 
-    public void setFecha(Date fecha_nacimiento) {
+    public void setFecha_nacimiento(Date fecha_nacimiento) {
         this.fecha_nacimiento = fecha_nacimiento;
     }
 
-//    public List<BolsaPunto> getListaBolsa() {
+    //    public List<BolsaPunto> getListaBolsa() {
 //        return listaBolsa;
 //    }
 //
