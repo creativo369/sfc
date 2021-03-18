@@ -11,7 +11,7 @@ Proyecto correspondiente al primer parcial de la asignatura de Programación Web
 
 **Lenguaje de Programación:** Java Enterprise Edition ( JEE ) 
 
-**Gestor de Proyecto:** Maven 3.x
+**Gestor de Proyecto:** Maven 3.0
 
 **Servidor de Aplicaciones:** Wildfly version-23.0.0. Final
 
@@ -50,7 +50,7 @@ Luego, para construir el proyecto solo se necesita ejecutar `mvn clean package`
 
 1. Para el despliegue de la aplicación en un contenedor bajar el Servidor Wildfly https://www.wildfly.org/downloads/
 
-2. Ir hasta el directorio `~/wildfly-22.0.0.Final/bin` y desde la línea de comandos  crearse un usuario administrador `add-user` y luego iniciar el servidor `standalone`.
+2. Ir hasta el directorio `~/wildfly-23.0.0.Final/bin` y desde la línea de comandos  crearse un usuario administrador `add-user` y luego iniciar el servidor `standalone`.
 
 3. Asegurarse de que en el archivo `standalone.xml` se encuentran los datos correctos para la conexión del `datasource`. 
 

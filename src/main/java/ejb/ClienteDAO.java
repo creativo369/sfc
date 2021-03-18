@@ -17,7 +17,7 @@ public class ClienteDAO {
     // The EntityManager.persist() operation is used to insert a new object into the database.
     private EntityManager em;  // Un objeto que nos permite administrar y manipular nuestras entidades y realiza el mapeo correspondiente en la base de datos
 
-    @Inject
+//    @Inject
     // Por defecto el contenedor hace que esto sea transaccional: que si existiese un error no se comitee a la base de datos y se revierta la escritura
     public void nuevoCliente(Cliente c){
         //The persist operation can only be called within a transaction
