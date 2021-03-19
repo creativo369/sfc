@@ -136,7 +136,6 @@ public class Cliente {
 //        this.listaBolsa = listaBolsa;
 //    }
     public void merge (Cliente c){
-        setNombre(c.nombre);
         setNumero_documento(c.numero_documento);
         setTipo_documento(c.tipo_documento);
         setNacionalidad(c.nacionalidad);

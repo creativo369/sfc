@@ -58,6 +58,7 @@ public class ClienteDAO {
      /*
            --- Update ---
     */
+    // Nose si hice lo correcto en actualizar pero es una idea interesante, simple y sencilla.
     public void actualizarCliente(Integer id_cliente, Cliente c){
         // Primero vemos si esta en la base de datos para poder actualizar
         Cliente cl = this.em.find(Cliente.class, id_cliente);
