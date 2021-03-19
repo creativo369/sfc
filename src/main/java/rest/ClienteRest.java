@@ -54,9 +54,9 @@ public class ClienteRest {
     */
     @PUT
     @Path("/{idCliente}")
-    public Response actualizarDatosCliente(@PathParam(value = "idCliente") Integer idCliente){
+    public Response actualizarDatosCliente(@PathParam(value="idCliente") Integer id, Cliente c){
         try {
-            clienteDAO.actualizarClientebyId(idCliente);
+            clienteDAO.actualizarCliente(id, c);
             return Response.ok().build();
         }catch (EntityNotFoundException e){
             return Response.serverError().build();

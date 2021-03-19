@@ -58,13 +58,15 @@ public class ClienteDAO {
      /*
            --- Update ---
     */
-    public void actualizarClientebyId(Integer id_cliente){
-        Cliente c = this.em.find(Cliente.class, id_cliente);
-        if (c == null) {
+    public void actualizarCliente(Integer id_cliente, Cliente c){
+        // Primero vemos si esta en la base de datos para poder actualizar
+        Cliente cl = this.em.find(Cliente.class, id_cliente);
+        if (  cl == null) {
             throw new EntityNotFoundException("No se puede encontrar al cliente con el ID " + id_cliente);
         }else{
-            c.setNombre("Anonymous");
-            this.em.merge(c);
+//            this.em.getTransaction().begin();
+            cl.merge(c);
+//            this.em.getTransaction().commit();
         }
     }
     /*
