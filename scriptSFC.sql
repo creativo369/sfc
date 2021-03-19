@@ -1,21 +1,29 @@
--- Tabla para el modulo de Administración de datos del cliente
-
+DROP DATABASE  sfc;
 CREATE DATABASE sfc owner  postgres;
 
+-- Tabla para el modulo de Administración de datos del cliente
 CREATE TABLE cliente
 (
     id_cliente       INTEGER                      NOT NULL,
     nombre           CHARACTER VARYING(50)        NOT NULL,
     apellido         CHARACTER VARYING(50)        NOT NULL,
     numero_documento CHARACTER VARYING(15) UNIQUE NOT NULL,
-    tipo_documento   CHARACTER VARYING(15)        NOT NULL,
+    tipo_documento   CHARACTER VARYING(80)        NOT NULL,
     nacionalidad     CHARACTER VARYING(15)        NOT NULL,
-    email            CHARACTER VARYING(15)        NOT NULL,
+    email            CHARACTER VARYING(60)        NOT NULL,
     telefono         CHARACTER VARYING(20)        NOT NULL,
     fecha_nacimiento DATE                         NOT NULL,
     CONSTRAINT pk_idcliente PRIMARY KEY (id_cliente)
 );
 CREATE SEQUENCE cliente_sec;
+
+INSERT INTO cliente(id_cliente, nombre, apellido, numero_documento, tipo_documento, nacionalidad, email, telefono, fecha_nacimiento)
+    VALUES(1,"Victor","Gonzalez","5528793","Cedula de Identidad Civil","Paraguaya","geekpy@hotmail.com","0976175870","1994-06-03");
+
+
+----------------------------------------------------------------------------------------------------------------------
+
+
 
 CREATE TABLE conceptoPunto
 (

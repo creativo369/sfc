@@ -26,7 +26,7 @@ public class Cliente {
     @Basic(optional = false)
     private String numero_documento;
 
-    @Column(name = "tipo_documento", length = 15)
+    @Column(name = "tipo_documento", length = 80)
     @Basic(optional = false)
     private String tipo_documento;
 
