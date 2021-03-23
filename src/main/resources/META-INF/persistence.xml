@@ -16,6 +16,8 @@
 
         <!-- Registramos las clases modelos de java que vayamos creando -->
         <class>model.Cliente</class>
+        <class>model.ConceptoPunto</class>
+        <class>model.ReglaPunto</class>
         <properties>
             <property name="hibernate.id.new_generator_mappings" value="true"/>
             <property name="hibernate.show_sql" value="true"/>

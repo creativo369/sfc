@@ -1,4 +1,5 @@
 package model;
+package model.VencimientoPunto;
 
 
 import javax.persistence.*;
@@ -26,6 +27,18 @@ public class ReglaPunto {
     @Column(name = "monto_equivalencia")
     @Basic(optional = false)
     private Integer monto_equivalencia;
+
+
+    // Monto de equivalencia de 1 punto
+    @OneToMany(fetch = FetchType.LAZY)
+    @Basic(optional = false)
+    @JoinColumn(name = "id_cliente", referencedColumnName = "id_cliente" )
+    /* 2 atributos
+        name : el atributo que esta en la tabla BolsaPunto que referencia a la tabla cliente.
+        referencedColumnName : al atributo o columna de la tabla cliente a la cual hace referencia.
+    * */
+    private VencimientoPunto idVencimiento;
+
 
     public ReglaPunto() {
     }
@@ -61,4 +74,19 @@ public class ReglaPunto {
     public void setMonto_equivalencia(Integer monto_equivalencia) {
         this.monto_equivalencia = monto_equivalencia;
     }
+
+    public Integer getIdVencimiento() {
+        return idVencimiento;
+    }
+
+    public void setIdVencimiento(Integer idVencimiento) {
+        this.idVencimiento = idVencimiento;
+    }
+    public void merge (ReglaPunto r){
+        setLimite_inferior(r.limite_inferior);
+        setLimite_superior(r.limite_superior);
+        setIdVencimiento(r.idVencimiento);
+        setMonto_equivalencia(r.monto_equivalencia);
+    }
+
 }

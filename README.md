@@ -30,11 +30,14 @@ Proyecto correspondiente al primer parcial de la asignatura de Programación Web
 - Alex Gómez
 - Victor Gonzalez 
 
-#### **Módulos del proyecto**
+#### **Módulos del Sistema:
 
+- Administración de datos del cliente.
+- Administración de conceptos de uso de puntos.
+- Administración de reglas de asignación de puntos.
 - 
 
-#### **How to :**
+#### ¿Cómo utilizar? 
 
 **Crear base de datos, tablas y relaciones**
 

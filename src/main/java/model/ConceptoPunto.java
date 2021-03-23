@@ -2,7 +2,6 @@ package model;
 
 import javax.persistence.*;
 
-
 @Entity
 @Table(name ="conceptoPunto")
 public class ConceptoPunto {
@@ -46,5 +45,10 @@ public class ConceptoPunto {
 
     public void setPuntosRequeridos(Integer puntosRequeridos) {
         this.puntosRequeridos = puntosRequeridos;
+    }
+
+    public void merge (ConceptoPunto p){
+        setDescripcionConcepto(p.descripcionConcepto);
+        setPuntosRequeridos(p.puntosRequeridos);
     }
 }
