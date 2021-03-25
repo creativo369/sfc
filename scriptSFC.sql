@@ -108,19 +108,23 @@ CREATE TABLE reglaPunto
     id_vencimiento     INTEGER NOT NULL,
     CONSTRAINT pk_reglaPunto PRIMARY KEY (id_reglaPunto),
     CONSTRAINT fk_id_vencimiento
-    FOREIGN KEY (id_vencimiento) REFERENCES vencimientoPunto(id_vencimiento) ON DELETE CASCADE;
+        FOREIGN KEY (id_vencimiento) REFERENCES vencimientoPunto(id_vencimientoPunto) ON DELETE CASCADE
     
 );
 CREATE SEQUENCE reglaPunto_sec;
 
-INSERT INTO reglaPunto(id_reglaPunto, limite_inferior, limite_superior, monto_equivalencia,)
-    VALUES(1,0,50000,1,);
+INSERT INTO reglaPunto(id_reglaPunto, limite_inferior, limite_superior, monto_equivalencia,id_vencimiento)
+    VALUES(1,0,50000,1,1);
 
-INSERT INTO reglaPunto(id_reglaPunto, limite_inferior, limite_superior, monto_equivalencia,)
-    VALUES(2,50001,100000,1,);
+INSERT INTO reglaPunto(id_reglaPunto, limite_inferior, limite_superior, monto_equivalencia,id_vencimiento)
+    VALUES(2,0,50000,1,2);
 
-INSERT INTO reglaPunto(id_reglaPunto, limite_inferior, limite_superior, monto_equivalencia,)
-    VALUES(3,100001,200000,1,);
+INSERT INTO reglaPunto(id_reglaPunto, limite_inferior, limite_superior, monto_equivalencia,id_vencimiento)
+	VALUES(3,50001,100000,1,3);
+
+INSERT INTO reglaPunto(id_reglaPunto, limite_inferior, limite_superior, monto_equivalencia,id_vencimiento)
+    VALUES(4,100001,200000,1,4);
+
 
 ----------------------------------------------------------------------------------------------------------------------
 
@@ -131,10 +135,26 @@ CREATE TABLE vencimientoPunto
     fechaInicioValidez  DATE    NOT NULL,
     fechaFinValidez     DATE    NOT NULL,
     duracionDiasPuntaje INTEGER NOT NULL,
-    CONSTRAINT pk_vencimientoPunto PRIMARY KEY (id_vencimientoPunto)
+    --idReglaPunto,
+    CONSTRAINT pk_vencimientoPunto PRIMARY KEY (id_vencimientoPunto)--,
+    /*CONSTRAINT fk_idReglaPunto 
+        FOREIGN KEY (idReglaPunto) REFERENCES reglaPunto(id_reglaPuntos) MATCH SIMPLE
+        ON UPDATE NO ACTION
+        ON DELETE NO ACTION*/
 );
 CREATE SEQUENCE vencimientoPunto_sec;
 
+INSERT INTO vencimientoPunto(id_vencimientoPunto, fechaInicioValidez, fechaFinValidez, duracionDiasPuntaje)--, idReglaPunto)
+    VALUES(1,'2021-03-17','2021-03-26',10);--,1);
+
+INSERT INTO vencimientoPunto(id_vencimientoPunto, fechaInicioValidez, fechaFinValidez, duracionDiasPuntaje)--, idReglaPunto)
+    VALUES(2,'2021-03-26','2021-03-29',4);--,4);
+
+INSERT INTO vencimientoPunto(id_vencimientoPunto, fechaInicioValidez, fechaFinValidez, duracionDiasPuntaje)--, idReglaPunto)
+    VALUES(3,'2021-03-18','2021-03-21',4);--,2);
+
+INSERT INTO vencimientoPunto(id_vencimientoPunto, fechaInicioValidez, fechaFinValidez, duracionDiasPuntaje)--, idReglaPunto)
+    VALUES(4,'2021-03-03','2021-03-07',5);--,3);
 
 ----------------------------------------------------------------------------------------------------------------------
 
@@ -151,8 +171,9 @@ CREATE TABLE bolsaPunto
     monto_operacion          INTEGER NOT NULL,
     CONSTRAINT pk_idbolsaPunto PRIMARY KEY (id_bolsaPunto),
     CONSTRAINT fk_idcliente FOREIGN KEY (id_cliente)
-        REFERENCES cliente (id_cliente)
-        ON DELETE CASCADE
+        REFERENCES cliente (id_cliente) MATCH SIMPLE
+        ON UPDATE NO ACTION
+        ON DELETE NO ACTION
 );
 CREATE SEQUENCE bolsaPunto_sec;
 

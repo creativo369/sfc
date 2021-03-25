@@ -1,7 +1,7 @@
 package rest;
 
-import ejb.ReglaPuntoDAO;
-import model.ReglaPunto;
+import ejb.VencimientoPuntoDAO;
+import model.VencimientoPunto;
 
 import javax.inject.Inject;
 import javax.persistence.EntityNotFoundException;
@@ -10,23 +10,23 @@ import javax.ws.rs.core.Response;
 
 // una api para exponer nuestra entidad
 
-@Path("regla")
+@Path("caducidad")
 @Consumes("application/json")
 @Produces("application/json")
 
 // Tenemos que exponer nuestra capa de servicios que proveemos de nuestra entidad cliente que seria el DAO del ejb de Cliente
-public class ReglaPuntoRest {
+public class VencimientoPuntoRest {
     @Inject
-    private ReglaPuntoDAO reglaDAO;
+    private VencimientoPuntoDAO caducidadDAO;
+
 
     /*
            --- Create ---
     */
     @POST
     @Path("/")
-    public Response crearRegla(ReglaPunto regla){
-
-        this.reglaDAO.nuevaRegla(regla);
+    public Response crearVencimiento(VencimientoPunto v){
+        this.caducidadDAO.nuevoVencimiento(v);
         return Response.ok().build();
     }
     /*
@@ -35,16 +35,16 @@ public class ReglaPuntoRest {
     // generar primero para obtener todas los clientes, consumiendo el metodo en ClienteDAO ( listarClientes<Cliente>)
     @GET
     @Path("/")
-    public Response listarRules(){
-        return Response.ok(reglaDAO.listarReglas()).build();
+    public Response listarVencimientos(){
+        return Response.ok(caducidadDAO.listarVencimientos()).build();
     }
 
     // No me cierra todavia si esta funcionando como tenia expectativa si no hay un cliente en la bd
     @GET
-    @Path("/{idconceptoRegla}")
-    public Response listarRegla(@PathParam(value="idconceptoRegla") Integer idconceptoRegla) {
+    @Path("/{idvencimientoPunto}")
+    public Response listarCaducidad(@PathParam(value="idvencimientoPunto") Integer idvencimientoPunto) {
         try {
-            return Response.ok(reglaDAO.obtenerReglabyId(idconceptoRegla)).build();
+            return Response.ok(caducidadDAO.obtenerVencimientobyId(idvencimientoPunto)).build();
         }catch (EntityNotFoundException e){
             return Response.serverError().build();
         }
@@ -53,10 +53,10 @@ public class ReglaPuntoRest {
            --- Update ---
     */
     @PUT
-    @Path("/{idconceptoRegla}")
-    public Response actualizarDatosPromo(@PathParam(value="idconceptoRegla") Integer id, ReglaPunto regla){ // regla es el objeto nuevo que viene para actualizar
-        try {                                                               // id es la el objeto que queremos actualizar
-            reglaDAO.actualizarRegla(id, regla);
+    @Path("/{idvencimientoPunto}")
+    public Response actualizarDatosVencimiento(@PathParam(value="idvencimientoPunto") Integer id, VencimientoPunto v){
+        try {
+            caducidadDAO.actualizarRegla(id, v);
             return Response.ok().build();
         }catch (EntityNotFoundException e){
             return Response.serverError().build();
@@ -66,10 +66,10 @@ public class ReglaPuntoRest {
            --- Delete ---
     */
     @DELETE
-    @Path("/{idconceptoRegla}")
-    public Response borrarPromo(@PathParam(value = "idconceptoRegla") Integer idconceptoRegla){
+    @Path("/{idvencimientoPunto}")
+    public Response borrarCaducidad(@PathParam(value = "idvencimientoPunto") Integer idvencimientoPunto){
         try{
-            reglaDAO.borrarReglaById(idconceptoRegla);
+            caducidadDAO.borrarCaducidadById(idvencimientoPunto);
             return Response.ok(null).build();
         }catch (EntityNotFoundException e){
             return Response.serverError().build();

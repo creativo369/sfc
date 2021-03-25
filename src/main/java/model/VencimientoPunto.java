@@ -5,7 +5,8 @@ import javax.persistence.*;
 import java.util.Date;
 
 @Entity
-@Table(name = "vecimientoPunto")
+@Table(name = "vencimientoPunto")
+
 public class VencimientoPunto {
 
     @Id
@@ -29,6 +30,15 @@ public class VencimientoPunto {
     @Basic(optional = false)
     private Integer duracionDiasPuntaje;
 
+//    @OneToOne(mappedBy = "Vencpunto")   // a que atributo de la clase ReglaPunto hace referencia para mapear
+////    @ManyToOne(fetch = FetchType.LAZY)
+////    @JoinColumn(name = "idReglaPunto", referencedColumnName = "id_reglaPunto" )
+////    /* 2 atributos
+////        name : el atributo que esta en la tabla VencimientoPunto que referencia a la tabla ReglaPunto.
+////        referencedColumnName : al atributo o columna de la tabla ReglaPunto a la cual hace referencia.
+////    * */
+//    private ReglaPunto reglaPunto;
+
     public VencimientoPunto() {
     }
 
@@ -41,7 +51,7 @@ public class VencimientoPunto {
     }
 
     public Date getFechaInicioValidez() {
-        return fechaInicioValidez;
+            return fechaInicioValidez;
     }
 
     public void setFechaInicioValidez(Date fechaInicioValidez) {
@@ -62,5 +72,21 @@ public class VencimientoPunto {
 
     public void setDuracionDiasPuntaje(Integer duracionDiasPuntaje) {
         this.duracionDiasPuntaje = duracionDiasPuntaje;
+    }
+
+/*
+    public ReglaPunto getReglaPunto() {
+        return reglaPunto;
+    }
+
+    public void setReglaPunto(ReglaPunto reglaPunto) {
+        this.reglaPunto = reglaPunto;
+    }
+*/
+
+    public void merge (VencimientoPunto v){
+        setFechaInicioValidez(v.getFechaInicioValidez());
+        setFechaFinValidez(v.getFechaFinValidez());
+        setDuracionDiasPuntaje(v.getDuracionDiasPuntaje());
     }
 }

@@ -18,6 +18,9 @@
         <class>model.Cliente</class>
         <class>model.ConceptoPunto</class>
         <class>model.ReglaPunto</class>
+        <class>model.VencimientoPunto</class>
+<!--        <class>model.UsoPunto</class>-->
+<!--        <class>model.BolsaPunto</class>-->
         <properties>
             <property name="hibernate.id.new_generator_mappings" value="true"/>
             <property name="hibernate.show_sql" value="true"/>

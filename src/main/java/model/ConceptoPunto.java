@@ -48,7 +48,7 @@ public class ConceptoPunto {
     }
 
     public void merge (ConceptoPunto p){
-        setDescripcionConcepto(p.descripcionConcepto);
-        setPuntosRequeridos(p.puntosRequeridos);
+        setDescripcionConcepto(p.getDescripcionConcepto());
+        setPuntosRequeridos(p.getPuntosRequeridos());
     }
 }
