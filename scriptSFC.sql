@@ -114,16 +114,16 @@ CREATE TABLE reglaPunto
 CREATE SEQUENCE reglaPunto_sec;
 
 INSERT INTO reglaPunto(id_reglaPunto, limite_inferior, limite_superior, monto_equivalencia,id_vencimiento)
-    VALUES(1,0,50000,1,1);
+    VALUES(1,0,50000,5000,1);
 
 INSERT INTO reglaPunto(id_reglaPunto, limite_inferior, limite_superior, monto_equivalencia,id_vencimiento)
-    VALUES(2,0,50000,1,2);
+    VALUES(2,0,50000,5000,2);
 
 INSERT INTO reglaPunto(id_reglaPunto, limite_inferior, limite_superior, monto_equivalencia,id_vencimiento)
-	VALUES(3,50001,100000,1,3);
+	VALUES(3,50001,100000,3000,3);
 
 INSERT INTO reglaPunto(id_reglaPunto, limite_inferior, limite_superior, monto_equivalencia,id_vencimiento)
-    VALUES(4,100001,200000,1,4);
+    VALUES(4,100001,200000,1000,4);
 
 
 ----------------------------------------------------------------------------------------------------------------------
@@ -158,11 +158,11 @@ INSERT INTO vencimientoPunto(id_vencimientoPunto, fechaInicioValidez, fechaFinVa
 
 ----------------------------------------------------------------------------------------------------------------------
 
-
 CREATE TABLE bolsaPunto
 (
     id_bolsaPunto            INTEGER NOT NULL,
     id_cliente               INTEGER NOT NULL,
+    puntos                   INTEGER NOT NULL,
     fecha_asignacion_puntaje DATE    NOT NULL,
     fecha_caducidad_puntaje  DATE    NOT NULL,
     puntaje_asignado         INTEGER NOT NULL,
@@ -170,6 +170,10 @@ CREATE TABLE bolsaPunto
     saldo_puntos             INTEGER NOT NULL,
     monto_operacion          INTEGER NOT NULL,
     CONSTRAINT pk_idbolsaPunto PRIMARY KEY (id_bolsaPunto),
+    CONSTRAINT fk_puntos       FOREIGN KEY (puntos)
+        REFERENCES reglaPunto (id_reglaPunto) 
+        ON UPDATE CASCADE 
+        ON DELETE CASCADE,
     CONSTRAINT fk_idcliente FOREIGN KEY (id_cliente)
         REFERENCES cliente (id_cliente) MATCH SIMPLE
         ON UPDATE NO ACTION
@@ -183,14 +187,29 @@ CREATE TABLE usoPunto
     id_cliente        INTEGER                NOT NULL,
     puntaje_utilizado INTEGER                NOT NULL,
     fecha_usoPunto    DATE                   NOT NULL,
-    concepto_uso      CHARACTER VARYING(200) NOT NULL,
+    concepto_uso      INTEGER				 NOT NULL,
     CONSTRAINT pk_idUsoPunto PRIMARY KEY (id_usoPunto),
-    CONSTRAINT fk_idcliente2 FOREIGN KEY (id_cliente)
+    CONSTRAINT fk_idcli FOREIGN KEY (id_cliente)
         REFERENCES cliente (id_cliente)
-        ON DELETE CASCADE
+        ON DELETE NO ACTION,
+    CONSTRAINT fk_conceptoUso FOREIGN KEY (concepto_uso) 
+    	REFERENCES conceptoPunto (id_conceptoPunto)
+    	ON DELETE NO ACTION
 );
 CREATE SEQUENCE usoPunto_sec;
 
+CREATE TABLE detUsoPunto
+(
+    id_detUsoPunto INTEGER NOT NULL,
+    id_usoPunto INTEGER NOT NULL, -- relación OneToOne 
+    id_bolsa_puntos INTEGER NOT NULL, -- relación OneToOne
+    puntaje_utilizado INTEGER NOT NULL,
+    CONSTRAINT pk_detUsoPuntos PRIMARY KEY (id_detUsoPunto),
+    CONSTRAINT fk_idusoPunto FOREIGN KEY (id_usoPunto) REFERENCES usoPunto (id_usoPunto) ON DELETE CASCADE,
+    CONSTRAINT fk_idbolsaPunto FOREIGN KEY (id_bolsa_puntos) REFERENCES bolsaPunto (id_bolsaPunto) ON DELETE CASCADE
+);
+
+CREATE SEQUENCE detUsopunto_sec;
 
 -- ANOTACIONES
 -- CHARACTER VARYING(n) == VARCHAR(n) | CHARACTER (n) == CHAR(n)
