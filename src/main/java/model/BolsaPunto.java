@@ -24,6 +24,10 @@ public class BolsaPunto {
     * */
     private Cliente cliente;
 
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "puntos", referencedColumnName = "id_reglaPunto")
+    private ReglaPunto puntos;
+
     @Column(name = "fecha_asignacion_puntaje")
     @Basic(optional = false)
     @Temporal(TemporalType.DATE)
@@ -81,10 +85,12 @@ public class BolsaPunto {
         return fechaCaducidad;
     }
 
-    public void setFechaCaducidad(Date fechaCaducidad) {
+   /* public void setFechaCaducidad(Date fechaCaducidad) {
         this.fechaCaducidad = fechaCaducidad;
-    }
-
+    }*/
+     public void setFechaCaducidad() {
+            this.fechaCaducidad = this.puntos.getVencpunto().getFechaFinValidez();
+        }
     public Integer getPuntajeAsignado() {
         return puntajeAsignado;
     }
@@ -117,6 +123,6 @@ public class BolsaPunto {
         this.monto = monto;
     }
 
-
+    /*TODO: hacer los calculos respectivos a monto, saldo, puntaje utilizado*/
 
 }

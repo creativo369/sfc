@@ -2,6 +2,7 @@ package model;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name = "usoPunto")
@@ -31,9 +32,13 @@ public class UsoPunto {
     @Temporal(TemporalType.DATE)
     private Date fecha;
 
-    @Column(name = "concepto_uso",length = 200)
+    /*@Column(name = "concepto_uso",length = 200)
     @Basic(optional = false)
     private String concepto_uso;
+*/
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "concepto_uso", referencedColumnName = "id_conceptoPunto" )
+    private ConceptoPunto conceptoUso;
 
     public UsoPunto() {
     }
@@ -70,11 +75,11 @@ public class UsoPunto {
         this.fecha = fecha;
     }
 
-    public String getConcepto_uso() {
-        return concepto_uso;
+    public ConceptoPunto getConceptoUso() {
+        return conceptoUso;
     }
 
-    public void setConcepto_uso(String concepto_uso) {
-        this.concepto_uso = concepto_uso;
+    public void setConceptoUso(ConceptoPunto conceptoUso) {
+        this.conceptoUso = conceptoUso;
     }
 }

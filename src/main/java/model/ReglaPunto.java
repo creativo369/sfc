@@ -36,6 +36,8 @@ public class ReglaPunto {
 //    private List<VencimientoPunto> listaVencimientoPunto;
     private VencimientoPunto Vencpunto;
 
+
+
     public ReglaPunto() {
     }
 
