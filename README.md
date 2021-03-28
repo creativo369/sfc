@@ -11,7 +11,7 @@ Proyecto correspondiente al primer parcial de la asignatura de Programación Web
 
 **Lenguaje de Programación:** Java Enterprise Edition ( JEE ) 
 
-**Gestor de Proyecto:** Maven 3.0
+**Gestor de Proyecto:** Maven 3.x
 
 **Servidor de Aplicaciones:** Wildfly version-23.0.0. Final
 
@@ -36,6 +36,9 @@ Proyecto correspondiente al primer parcial de la asignatura de Programación Web
 - Administración de conceptos de uso de puntos.
 - Administración de reglas de asignación de puntos.
 - Parametrización de vencimiento de puntos.
+- Bolsa de puntos. 
+- Uso de puntos.
+- Detalle de uso de puntos. 
 
 #### ¿Cómo utilizar? 
 

@@ -1,6 +1,7 @@
 package model;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name ="conceptoPunto")
@@ -19,6 +20,9 @@ public class ConceptoPunto {
     @Column(name = "puntos_requeridos")
     @Basic(optional = false)
     private Integer puntosRequeridos;
+
+//    @OneToOne(mappedBy = "conceptoUso") // a que atributo de la clase BolsaPunto hace referencia para mapear
+//    private UsoPunto UsoPunto;
 
     public ConceptoPunto() {
     }

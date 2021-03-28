@@ -47,9 +47,12 @@ public class Cliente {
     @Temporal(TemporalType.DATE)
     private Date fecha_nacimiento;
 
-    // Hay veces que queremos ir de este lado para la otra tabla entonces ponemos esta relación:
-    @OneToMany(mappedBy = "cliente") // a que atributo de la clase BolsaPunto hace referencia para mapear
-    private List<BolsaPunto> listaBolsa;
+//    // Hay veces que queremos ir de este lado para la otra tabla entonces ponemos esta relación:
+//    @OneToMany(mappedBy = "cliente") // a que atributo de la clase BolsaPunto hace referencia para mapear
+//    private List<BolsaPunto> listaBolsa;
+//
+//    @OneToMany(mappedBy = "cliente") // a que atributo de la clase BolsaPunto hace referencia para mapear
+//    private List<UsoPunto> listaUsoPunto;
 
     public Cliente() {
 
@@ -128,13 +131,21 @@ public class Cliente {
         this.fecha_nacimiento = fecha_nacimiento;
     }
 
-    public List<BolsaPunto> getListaBolsa() {
-        return listaBolsa;
-    }
-
-    public void setListaBolsa(List<BolsaPunto> listaBolsa) {
-        this.listaBolsa = listaBolsa;
-    }
+//    public List<BolsaPunto> getListaBolsa() {
+//        return listaBolsa;
+//    }
+//
+//    public void setListaBolsa(List<BolsaPunto> listaBolsa) {
+//        this.listaBolsa = listaBolsa;
+//    }
+//
+//    public List<UsoPunto> getListaUsoPunto() {
+//        return listaUsoPunto;
+//    }
+//
+//    public void setListaUsoPunto(List<UsoPunto> listaUsoPunto) {
+//        this.listaUsoPunto = listaUsoPunto;
+//    }
 
     public void merge(Cliente c) {
         setNumero_documento(c.getNumero_documento());

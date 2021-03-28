@@ -22,13 +22,13 @@ public class ReglaPuntoRest {
     /*
            --- Create ---
     */
-    @POST
-    @Path("/")
-    public Response crearRegla(ReglaPunto regla){
-
-        this.reglaDAO.nuevaRegla(regla);
-        return Response.ok().build();
-    }
+//    @POST
+//    @Path("/")
+//    public Response crearRegla(ReglaPunto regla){
+//
+//        this.reglaDAO.nuevaRegla(regla);
+//        return Response.ok().build();
+//    }
     /*
           --- Read ---
    */
