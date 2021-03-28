@@ -72,4 +72,25 @@ public class ClienteDAO {
                 this.em.remove(c);
             }
     }
+
+    /* Consulta de Clientes por parametro */
+
+    public Object obtenerClientesPorParametro(String nombre, String apellido, String fechaNacimiento) {
+        List<Cliente> clientes = null;
+        Query q = null;
+        if(nombre != null && !nombre.equals("")) {
+            q = this.em.createQuery("select p from Cliente p where p.nombre like :param");
+            q.setParameter("param", "%"+nombre+"%");
+        } else if(apellido != null && !apellido.equals("")) {
+            q = this.em.createQuery("select p from Cliente p where p.apellido like :param");
+            q.setParameter("param", "%"+apellido+"%");
+        } else if(fechaNacimiento != null && !fechaNacimiento.equals("")) {
+            q = this.em.createQuery("select p from Cliente p where to_char(p.fechaNacimiento, 'MM-dd') like :param");
+            q.setParameter("param", fechaNacimiento);
+        } else {
+            q = this.em.createQuery("select p from Cliente p");
+        }
+        clientes = (List<Cliente>) q.getResultList();
+        return clientes;
+    }
 }

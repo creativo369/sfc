@@ -19,8 +19,9 @@
         <class>model.ConceptoUsoPunto</class>
         <class>model.ReglaAsignacionPunto</class>
         <class>model.ParametrizacionVencimientoPunto</class>
-<!--        <class>model.UsoPunto</class>-->
-<!--        <class>model.BolsaPunto</class>-->
+        <class>model.UsoPunto</class>
+        <class>model.BolsaPunto</class>
+        <class>model.DetUsoPunto</class>
         <properties>
             <property name="hibernate.id.new_generator_mappings" value="true"/>
             <property name="hibernate.show_sql" value="true"/>
