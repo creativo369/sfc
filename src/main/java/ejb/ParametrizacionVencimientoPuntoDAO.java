@@ -2,7 +2,7 @@
 // ConceptoUsoPuntoDAO ( DAO: Data access Object )
 package ejb;
 
-import model.VencimientoPunto;
+import model.ParametrizacionVencimientoPunto;
 
 import javax.ejb.Stateless;
 import javax.ejb.TransactionAttribute;
@@ -14,7 +14,7 @@ import javax.persistence.Query;
 import java.util.List;
 
 @Stateless // No tiene estado, vamos a usar el ejb sin estado, es lo que se acostumbra.
-public class VencimientoPuntoDAO {
+public class ParametrizacionVencimientoPuntoDAO {
     @PersistenceContext(unitName = "sfcPU")
     // The EntityManager.persist() operation is used to insert a new object into the database.
     private EntityManager em;  // Un objeto que nos permite administrar y manipular nuestras entidades y realiza el mapeo correspondiente en la base de datos
@@ -26,32 +26,26 @@ public class VencimientoPuntoDAO {
            --- Create ---
     */
     @TransactionAttribute(TransactionAttributeType.REQUIRED)
-    public void nuevoVencimiento(VencimientoPunto vencimiento){
+    public void nuevoParametrizacionVencimientoPunto(ParametrizacionVencimientoPunto v){
         //The persist operation can only be called within a transaction
-        this.em.persist(vencimiento);
+        this.em.persist(v);
     }
     /*
           --- Read ---
    */
     @SuppressWarnings("unchecked")
-    public List<VencimientoPunto> listarVencimientos(){
-        Query q=this.em.createQuery( "select v from VencimientoPunto v");
-        List<VencimientoPunto> listadoVencimiento = (List<VencimientoPunto>) q.getResultList();
-        return  listadoVencimiento;
+    public List<ParametrizacionVencimientoPunto> listarParametrizacionVencimientoPunto(){
+        Query q=this.em.createQuery( "select v from ParametrizacionVencimientoPunto v");
+        List<ParametrizacionVencimientoPunto> listadoParametrizacionVencimientoPunto = (List<ParametrizacionVencimientoPunto>) q.getResultList();
+        return  listadoParametrizacionVencimientoPunto;
     }
 
-    /**
-     * Busca una entidad conceptoPunto basado en su id.
-     *
-     * @param id_vencimientoPunto
-     * @return ReglaAsignacionPunto.
-     * @throws EntityNotFoundException cuando la promo no se existe en nuestra base de datos.
-     */
-    public VencimientoPunto obtenerVencimientobyId(Integer id_vencimientoPunto) {
-        VencimientoPunto vencimiento = this.em.find(VencimientoPunto.class, id_vencimientoPunto);
+
+    public ParametrizacionVencimientoPunto obtenerParametrizacionVencimientoPuntoById(Integer id) {
+        ParametrizacionVencimientoPunto vencimiento = this.em.find(ParametrizacionVencimientoPunto.class, id);
         if (vencimiento == null) {
-            throw new EntityNotFoundException("No se encuentra la regla con el ID "
-                    + id_vencimientoPunto);
+            throw new EntityNotFoundException("No se encuentra la Parametrizacion de Vencimiento punto con el ID "
+                    + id);
         }
         return vencimiento;
     }
@@ -60,29 +54,26 @@ public class VencimientoPuntoDAO {
            --- Update ---
     */
     // Nose si hice lo correcto en actualizar pero es una idea interesante, simple y sencilla.
-    public void actualizarRegla(Integer id_vencimientoPunto, VencimientoPunto v){
+    public void actualizarParametrizacionVencimientoPuntoById(Integer id, ParametrizacionVencimientoPunto v){
         // Primero vemos si esta en la base de datos para poder actualizar
-        VencimientoPunto vencimiento = this.em.find(VencimientoPunto.class, id_vencimientoPunto);
+        ParametrizacionVencimientoPunto vencimiento = this.em.find(ParametrizacionVencimientoPunto.class, id);
         if (  vencimiento == null) {
-            throw new EntityNotFoundException("No se encuentra la regla con el ID " + id_vencimientoPunto);
+            throw new EntityNotFoundException("No se encuentra la Parametrizacion de Vencimiento punto con el ID " + id);
         }else{
-//            this.em.getTransaction().begin();
             vencimiento.merge(v);
-//            this.em.getTransaction().commit();
         }
     }
     /*
            --- Delete ---
     */
     // Por lo visto el delete ya hace que sea transacional y que deje consiste la base de datos y commite los nuevos cambios
-    public void borrarCaducidadById(Integer id_vencimientoPunto){
-//        this.em.getTransaction().begin();
-            VencimientoPunto vencimiento = this.em.find(VencimientoPunto.class, id_vencimientoPunto);
+    public void borrarParametrizacionVencimientoPuntoById(Integer id){
+            ParametrizacionVencimientoPunto vencimiento = this.em.find(ParametrizacionVencimientoPunto.class, id);
             if (vencimiento == null) {
-                throw new EntityNotFoundException("No se encuentra la regla con el ID " + id_vencimientoPunto);
+                throw new EntityNotFoundException("No se encuentra la Parametrizacion de Vencimiento punto con el ID " + id);
             }else{
                 this.em.remove(vencimiento);
             }
-//        this.em.getTransaction().commit();
+
     }
 }

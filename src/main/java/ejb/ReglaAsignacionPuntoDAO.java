@@ -73,4 +73,29 @@ public class ReglaAsignacionPuntoDAO {
                 this.em.remove(regla);
             }
     }
+
+    public int obtenerLimiteInferiorMenor(){
+        Query query = this.em.createQuery( "select r from ReglaAsignacionPunto r");
+        List<ReglaAsignacionPunto> listadoReglasAsignacion = (List<ReglaAsignacionPunto>) query.getResultList();
+        int menor = 999999999;
+        for (ReglaAsignacionPunto r : listadoReglasAsignacion) {
+            if (r.getLimiteInferior() < menor){
+                menor = r.getLimiteInferior();
+            }
+        }
+        return menor;
+    }
+
+    public int obtenerLimiteSuperiorMayor(){
+        Query query = this.em.createQuery( "select r from ReglaAsignacionPunto r");
+        List<ReglaAsignacionPunto> listadoReglasAsignacion = (List<ReglaAsignacionPunto>) query.getResultList();
+        int mayor = 0;
+        for (ReglaAsignacionPunto r : listadoReglasAsignacion) {
+            if (r.getLimiteInferior() > mayor){
+                mayor = r.getLimiteInferior();
+            }
+        }
+        return mayor;
+    }
+
 }

@@ -5,47 +5,44 @@ import javax.persistence.*;
 import java.util.Date;
 
 @Entity
-@Table(name = "vencimientoPunto")
+@Table(name = "parametrizacionVencimientoPunto")
 
-public class VencimientoPunto {
+public class ParametrizacionVencimientoPunto {
 
     @Id
-    @Column(name = "id_vencimientoPunto")
+    @Column(name = "id_parametrizacionVencimientoPunto")
     @Basic(optional = false) // not null
-    @GeneratedValue(generator = "vencimientoPuntoSec", strategy = GenerationType.SEQUENCE)
-    @SequenceGenerator(name = "vencimientoPuntoSec", sequenceName = "vencimientoPunto_sec", allocationSize = 0)
-    private Integer idvencimientoPunto;
+    @GeneratedValue(generator = "parametrizacionVencimientoPuntoSec", strategy = GenerationType.SEQUENCE)
+    @SequenceGenerator(name = "parametrizacionVencimientoPuntoSec", sequenceName = "parametrizacionVencimientoPunto_sec", allocationSize = 0)
+    private Integer idparametrizacionVencimientoPunto;
 
-    @Column(name = "fechaInicioValidez")
+    @Column(name = "fecha_inicio_validez")
     @Basic(optional = false)
     @Temporal(TemporalType.DATE)
     private Date fechaInicioValidez;
 
-    @Column(name = "fechaFinValidez")
+    @Column(name = "fecha_fin_Validez")
     @Basic(optional = false)
     @Temporal(TemporalType.DATE)
     private Date fechaFinValidez;
 
-    @Column(name = "duracionDiasPuntaje")
+    @Column(name = "duracion_diasPuntaje")
     @Basic(optional = false)
     private Integer duracionDiasPuntaje;
 
-//    @OneToOne(mappedBy = "Vencpunto")   // a que atributo de la clase ReglaAsignacionPunto hace referencia para mapear
-//    private ReglaAsignacionPunto reglaPunto;
-
-    public VencimientoPunto() {
+    public ParametrizacionVencimientoPunto() {
     }
 
-    public Integer getIdvencimientoPunto() {
-        return idvencimientoPunto;
+    public Integer getIdparametrizacionVencimientoPunto() {
+        return idparametrizacionVencimientoPunto;
     }
 
-    public void setIdvencimientoPunto(Integer idvencimientoPunto) {
-        idvencimientoPunto = idvencimientoPunto;
+    public void setIdparametrizacionVencimientoPunto(Integer idparametrizacionVencimientoPunto) {
+        this.idparametrizacionVencimientoPunto = idparametrizacionVencimientoPunto;
     }
 
     public Date getFechaInicioValidez() {
-            return fechaInicioValidez;
+        return fechaInicioValidez;
     }
 
     public void setFechaInicioValidez(Date fechaInicioValidez) {
@@ -68,15 +65,7 @@ public class VencimientoPunto {
         this.duracionDiasPuntaje = duracionDiasPuntaje;
     }
 
-//    public ReglaAsignacionPunto getReglaPunto() {
-//        return reglaPunto;
-//    }
-//
-//    public void setReglaPunto(ReglaAsignacionPunto reglaPunto) {
-//        this.reglaPunto = reglaPunto;
-//    }
-
-    public void merge (VencimientoPunto v){
+    public void merge (ParametrizacionVencimientoPunto v){
         setFechaInicioValidez(v.getFechaInicioValidez());
         setFechaFinValidez(v.getFechaFinValidez());
         setDuracionDiasPuntaje(v.getDuracionDiasPuntaje());

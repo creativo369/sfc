@@ -1,7 +1,7 @@
 package rest;
 
-import ejb.VencimientoPuntoDAO;
-import model.VencimientoPunto;
+import ejb.ParametrizacionVencimientoPuntoDAO;
+import model.ParametrizacionVencimientoPunto;
 
 import javax.inject.Inject;
 import javax.persistence.EntityNotFoundException;
@@ -10,14 +10,14 @@ import javax.ws.rs.core.Response;
 
 // una api para exponer nuestra entidad
 
-@Path("caducidad")
+@Path("parametrizacionVencimientoPunto")
 @Consumes("application/json")
 @Produces("application/json")
 
 // Tenemos que exponer nuestra capa de servicios que proveemos de nuestra entidad cliente que seria el DAO del ejb de Cliente
-public class VencimientoPuntoRest {
+public class ParametrizacionVencimientoPuntoRest {
     @Inject
-    private VencimientoPuntoDAO caducidadDAO;
+    private ParametrizacionVencimientoPuntoDAO vencimientoDAO;
 
 
     /*
@@ -25,8 +25,8 @@ public class VencimientoPuntoRest {
     */
     @POST
     @Path("/")
-    public Response crearVencimiento(VencimientoPunto v){
-        this.caducidadDAO.nuevoVencimiento(v);
+    public Response crearParametrizacionVencimientoPunto(ParametrizacionVencimientoPunto v){
+        this.vencimientoDAO.nuevoParametrizacionVencimientoPunto(v);
         return Response.ok().build();
     }
     /*
@@ -35,16 +35,16 @@ public class VencimientoPuntoRest {
     // generar primero para obtener todas los clientes, consumiendo el metodo en ClienteDAO ( listarClientes<Cliente>)
     @GET
     @Path("/")
-    public Response listarVencimientos(){
-        return Response.ok(caducidadDAO.listarVencimientos()).build();
+    public Response listarParametrizacionVencimientosPuntos(){
+        return Response.ok(vencimientoDAO.listarParametrizacionVencimientoPunto()).build();
     }
 
     // No me cierra todavia si esta funcionando como tenia expectativa si no hay un cliente en la bd
     @GET
-    @Path("/{idvencimientoPunto}")
-    public Response listarCaducidad(@PathParam(value="idvencimientoPunto") Integer idvencimientoPunto) {
+    @Path("/{idParametrizacionVencimientoPunto}")
+    public Response listarCaducidad(@PathParam(value="idParametrizacionVencimientoPunto") Integer id) {
         try {
-            return Response.ok(caducidadDAO.obtenerVencimientobyId(idvencimientoPunto)).build();
+            return Response.ok(vencimientoDAO.obtenerParametrizacionVencimientoPuntoById(id)).build();
         }catch (EntityNotFoundException e){
             return Response.serverError().build();
         }
@@ -53,10 +53,10 @@ public class VencimientoPuntoRest {
            --- Update ---
     */
     @PUT
-    @Path("/{idvencimientoPunto}")
-    public Response actualizarDatosVencimiento(@PathParam(value="idvencimientoPunto") Integer id, VencimientoPunto v){
+    @Path("/{idParametrizacionVencimientoPunto}")
+    public Response actualizarDatosVencimiento(@PathParam(value="idParametrizacionVencimientoPunto") Integer id, ParametrizacionVencimientoPunto v){
         try {
-            caducidadDAO.actualizarRegla(id, v);
+            vencimientoDAO.actualizarParametrizacionVencimientoPuntoById(id, v);
             return Response.ok().build();
         }catch (EntityNotFoundException e){
             return Response.serverError().build();
@@ -66,10 +66,10 @@ public class VencimientoPuntoRest {
            --- Delete ---
     */
     @DELETE
-    @Path("/{idvencimientoPunto}")
-    public Response borrarCaducidad(@PathParam(value = "idvencimientoPunto") Integer idvencimientoPunto){
+    @Path("/{idParametrizacionVencimientoPunto}")
+    public Response borrarParametrizacionVencimientoPunto(@PathParam(value = "idParametrizacionVencimientoPunto") Integer id){
         try{
-            caducidadDAO.borrarCaducidadById(idvencimientoPunto);
+            vencimientoDAO.borrarParametrizacionVencimientoPuntoById(id);
             return Response.ok(null).build();
         }catch (EntityNotFoundException e){
             return Response.serverError().build();
