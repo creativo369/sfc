@@ -30,8 +30,8 @@ public class VencimientoPunto {
     @Basic(optional = false)
     private Integer duracionDiasPuntaje;
 
-//    @OneToOne(mappedBy = "Vencpunto")   // a que atributo de la clase ReglaPunto hace referencia para mapear
-//    private ReglaPunto reglaPunto;
+//    @OneToOne(mappedBy = "Vencpunto")   // a que atributo de la clase ReglaAsignacionPunto hace referencia para mapear
+//    private ReglaAsignacionPunto reglaPunto;
 
     public VencimientoPunto() {
     }
@@ -68,11 +68,11 @@ public class VencimientoPunto {
         this.duracionDiasPuntaje = duracionDiasPuntaje;
     }
 
-//    public ReglaPunto getReglaPunto() {
+//    public ReglaAsignacionPunto getReglaPunto() {
 //        return reglaPunto;
 //    }
 //
-//    public void setReglaPunto(ReglaPunto reglaPunto) {
+//    public void setReglaPunto(ReglaAsignacionPunto reglaPunto) {
 //        this.reglaPunto = reglaPunto;
 //    }
 

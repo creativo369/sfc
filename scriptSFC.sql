@@ -33,7 +33,7 @@ INSERT INTO cliente(id_cliente, nombre, apellido, numero_documento, tipo_documen
     VALUES(5,'Marcelo','Britez','6357846','Cedula de Identidad Civil','Paraguaya','marcelitob@hotmail.com','0961425368','1990-09-23');
 
 INSERT INTO cliente(id_cliente, nombre, apellido, numero_documento, tipo_documento, nacionalidad, email, telefono, fecha_nacimiento)
-    VALUES(6,'Jorge','Jara','3658987','Cedula de Identidad Civil','Paraguaya','jorge1234@hotmail.com','0986582324','1992-07-24');
+    VALUES(6,'Jorge','Ferrari','3658987','Cedula de Identidad Civil','Paraguaya','jorge1234@hotmail.com','0986582324','1992-07-24');
 
 INSERT INTO cliente(id_cliente, nombre, apellido, numero_documento, tipo_documento, nacionalidad, email, telefono, fecha_nacimiento)
     VALUES(7,'Fatima','Lopez','4326538','Cedula de Identidad Civil','Paraguaya','falope@hotmail.com','0986741852','1997-04-25');
@@ -99,31 +99,24 @@ INSERT INTO conceptoPunto(id_conceptoPunto, descripcion_concepto, puntos_requeri
     50001 a 100000                  1 punto cada 3000
     100001 a 200000                 1 punto cada 1000
 */
-CREATE TABLE reglaPunto
+CREATE TABLE reglaAsignacionPunto
 (
-    id_reglaPunto      INTEGER NOT NULL,
+    id_reglaAsignacionPunto      INTEGER NOT NULL,
     limite_inferior    INTEGER NOT NULL,
     limite_superior    INTEGER NOT NULL,
     monto_equivalencia INTEGER NOT NULL,
-    --id_vencimiento     INTEGER NOT NULL,
-    CONSTRAINT pk_reglaPunto PRIMARY KEY (id_reglaPunto)--,
-    --CONSTRAINT fk_id_vencimiento
-      --  FOREIGN KEY (id_vencimiento) REFERENCES vencimientoPunto(id_vencimientoPunto) ON DELETE CASCADE
-    
+    CONSTRAINT pk_reglaAsignacionPunto PRIMARY KEY (id_reglaAsignacionPunto)        
 );
-CREATE SEQUENCE reglaPunto_sec;
+CREATE SEQUENCE reglaAsignacionPunto_sec;
 
-INSERT INTO reglaPunto(id_reglaPunto, limite_inferior, limite_superior, monto_equivalencia)--,id_vencimiento)
-    VALUES(1,0,50000,5000);--,1);
-/*
-INSERT INTO reglaPunto(id_reglaPunto, limite_inferior, limite_superior, monto_equivalencia,id_vencimiento)
-    VALUES(2,0,50000,5000,2);*/
+INSERT INTO reglaAsignacionPunto(id_reglaAsignacionPunto, limite_inferior, limite_superior, monto_equivalencia)
+    VALUES(1,0,50000,5000);
 
-INSERT INTO reglaPunto(id_reglaPunto, limite_inferior, limite_superior, monto_equivalencia)--,id_vencimiento)
-	VALUES(2,50001,100000,3000);--,3);
+INSERT INTO reglaAsignacionPunto(id_reglaAsignacionPunto, limite_inferior, limite_superior, monto_equivalencia)
+	VALUES(2,50001,100000,3000);
 
-INSERT INTO reglaPunto(id_reglaPunto, limite_inferior, limite_superior, monto_equivalencia)--,id_vencimiento)
-    VALUES(3,100001,200000,1000);--,4);
+INSERT INTO reglaAsignacionPunto(id_reglaAsignacionPunto, limite_inferior, limite_superior, monto_equivalencia)
+    VALUES(3,100001,200000,1000);
 
 
 ----------------------------------------------------------------------------------------------------------------------
@@ -201,8 +194,8 @@ CREATE SEQUENCE usoPunto_sec;
 CREATE TABLE detUsoPunto
 (
     id_detUsoPunto INTEGER NOT NULL,
-    id_usoPunto INTEGER NOT NULL, -- relación OneToOne 
-    id_bolsa_puntos INTEGER NOT NULL, -- relación OneToOne
+    id_usoPunto INTEGER NOT NULL, -- relaci? OneToOne 
+    id_bolsa_puntos INTEGER NOT NULL, -- relaci? OneToOne
     puntaje_utilizado INTEGER NOT NULL,
     CONSTRAINT pk_detUsoPuntos PRIMARY KEY (id_detUsoPunto),
     CONSTRAINT fk_idusoPunto FOREIGN KEY (id_usoPunto) REFERENCES usoPunto (id_usoPunto) ON DELETE CASCADE,

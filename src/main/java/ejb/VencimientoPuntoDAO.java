@@ -44,7 +44,7 @@ public class VencimientoPuntoDAO {
      * Busca una entidad conceptoPunto basado en su id.
      *
      * @param id_vencimientoPunto
-     * @return ReglaPunto.
+     * @return ReglaAsignacionPunto.
      * @throws EntityNotFoundException cuando la promo no se existe en nuestra base de datos.
      */
     public VencimientoPunto obtenerVencimientobyId(Integer id_vencimientoPunto) {

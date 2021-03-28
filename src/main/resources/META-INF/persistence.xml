@@ -17,7 +17,7 @@
         <!-- Registramos las clases modelos de java que vayamos creando -->
         <class>model.Cliente</class>
         <class>model.ConceptoPunto</class>
-        <class>model.ReglaPunto</class>
+        <class>model.ReglaAsignacionPunto</class>
         <class>model.VencimientoPunto</class>
 <!--        <class>model.UsoPunto</class>-->
 <!--        <class>model.BolsaPunto</class>-->
