@@ -76,4 +76,14 @@ public class ClienteRest {
         }
     }
 
+    /* 7) Consultas (GET) :
+           Este módulo contempla la consulta para el desarrollo de reportes.
+           consulta de clientes por: nombre (aproximación), apellido (aproximación),
+            cumpleaños
+     */
+    @GET
+    @Path("/consulta")
+    public Response consultaCliente(){
+        return Response.ok(clienteDAO.listarClientes()).build();
+    }
 }
