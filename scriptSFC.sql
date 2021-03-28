@@ -1,7 +1,7 @@
 DROP DATABASE  sfc;
 CREATE DATABASE sfc owner postgres;
 
--- Tabla para el modulo de Administraci贸n de datos del cliente
+-- Tabla para el modulo de Administraci髇 de datos del cliente
 CREATE TABLE cliente
 (
     id_cliente       INTEGER                      NOT NULL,
@@ -20,8 +20,7 @@ CREATE SEQUENCE cliente_sec;
 INSERT INTO cliente(id_cliente, nombre, apellido, numero_documento, tipo_documento, nacionalidad, email, telefono, fecha_nacimiento)
     VALUES(nextval('cliente_sec'),'Victor','Gonzalez','5528793','Cedula de Identidad Civil','Paraguaya','geekpy@hotmail.com','0976175870','1994-06-03');
 
-INSERT INTO cliente(id_cliente, nombre, apellido, numero_documento, tipo_documento, nacionalidad, email, telefono, fecha_nacimiento)
-    VALUES(nextval('cliente_sec'),'Juan','Gonzalez','4321258','C茅dula de Identidad Civil','Paraguaya','juancito8@hotmail.com','0983253941','1970-05-24');
+VALUES(nextval('cliente_sec'),'Juan','Gonzalez','4321258','C茅dula de Identidad Civil','Paraguaya','juancito8@hotmail.com','0983253941','1970-05-24');
 
 INSERT INTO cliente(id_cliente, nombre, apellido, numero_documento, tipo_documento, nacionalidad, email, telefono, fecha_nacimiento)
     VALUES(nextval('cliente_sec'),'Maria','Fleitas','1354789','Cedula de Identidad Civil','Paraguaya','marifle@hotmail.com','0976456955','1990-08-12');
@@ -49,7 +48,7 @@ INSERT INTO cliente(id_cliente, nombre, apellido, numero_documento, tipo_documen
 
 
 ----------------------------------------------------------------------------------------------------------------------
--- Tabla para el modulo de Administraci贸n de conceptos de uso de puntos
+-- Tabla para el modulo de Administraci髇 de conceptos de uso de puntos
 
 CREATE TABLE conceptoUsoPunto
 (
@@ -75,6 +74,7 @@ INSERT INTO conceptoUsoPunto(id_conceptoUsoPunto, descripcion_concepto, punto_re
 INSERT INTO conceptoUsoPunto(id_conceptoUsoPunto, descripcion_concepto, punto_requerido)
     VALUES(nextval('conceptoUsoPunto_sec'),'Descuentos en Abonos de TV cable',300);
 
+
 INSERT INTO conceptoUsoPunto(id_conceptoUsoPunto, descripcion_concepto, punto_requerido)
     VALUES(nextval('conceptoUsoPunto_sec'),'Descuento en Servicio T茅cnico',900);
 
@@ -92,9 +92,9 @@ INSERT INTO conceptoUsoPunto(id_conceptoUsoPunto, descripcion_concepto, punto_re
 
 
 ----------------------------------------------------------------------------------------------------------------------
--- Tabla para el modulo de Administraci贸n de reglas de asignaci贸n de puntos
+-- Tabla para el modulo de Administraci髇 de reglas de asignaci髇 de puntos
 /*
-    Cantidad de consumisi贸n al mes 
+    Cantidad de consumisi髇 al mes 
     0 a 50000                       1 punto cada 5000 
     50001 a 100000                  1 punto cada 3000
     100001 a 200000                 1 punto cada 1000
