@@ -1,6 +1,7 @@
 package rest;
 
 
+import ejb.BolsaPuntoDAO;
 import ejb.ClienteDAO;
 import ejb.ParametrizacionVencimientoPuntoDAO;
 import ejb.ReglaAsignacionPuntoDAO;
@@ -26,6 +27,9 @@ public class ServiciosREST {
 
     @Inject
     private ParametrizacionVencimientoPuntoDAO paramVencDAO;
+
+    @Inject
+    private BolsaPuntoDAO bolsaDAO;
 
     @POST
     @Path("/carga-de-puntos/{id_cliente}/{monto}")
@@ -55,7 +59,9 @@ public class ServiciosREST {
                 }
             }
 
-            respuesta.put("exito", "Puntos cargados exitosamente");
+            this.bolsaDAO.crearBolsa(bolsa);
+
+            respuesta.put("exito", "+" + puntos + " puntos cargados exitosamente");
             builder = Response.status(Response.Status.OK).entity(respuesta);
         }else {
             respuesta.put("error", "No existe regla de asignacion de punto para este monto");

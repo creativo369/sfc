@@ -72,6 +72,5 @@ public class ConceptoUsoPuntoDAO {
             }else{
                 this.em.remove(c);
             }
-
     }
 }
