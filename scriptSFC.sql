@@ -1,7 +1,7 @@
 DROP DATABASE  sfc;
 CREATE DATABASE sfc owner postgres;
 
--- Tabla para el modulo de Administraci贸n de datos del cliente
+-- Tabla para el modulo de Administraci髇 de datos del cliente
 CREATE TABLE cliente
 (
     id_cliente       INTEGER                      NOT NULL,
@@ -21,7 +21,7 @@ INSERT INTO cliente(id_cliente, nombre, apellido, numero_documento, tipo_documen
     VALUES(1,'Victor','Gonzalez','5528793','Cedula de Identidad Civil','Paraguaya','geekpy@hotmail.com','0976175870','1994-06-03');
 
 INSERT INTO cliente(id_cliente, nombre, apellido, numero_documento, tipo_documento, nacionalidad, email, telefono, fecha_nacimiento)
-    VALUES(2,'Juan','Gonzalez','4321258','C茅dula de Identidad Civil','Paraguaya','juancito8@hotmail.com','0983253941','1970-05-24');
+    VALUES(2,'Juan','Gonzalez','4321258','C閐ula de Identidad Civil','Paraguaya','juancito8@hotmail.com','0983253941','1970-05-24');
 
 INSERT INTO cliente(id_cliente, nombre, apellido, numero_documento, tipo_documento, nacionalidad, email, telefono, fecha_nacimiento)
     VALUES(3,'Maria','Fleitas','1354789','Cedula de Identidad Civil','Paraguaya','marifle@hotmail.com','0976456955','1990-08-12');
@@ -49,7 +49,7 @@ INSERT INTO cliente(id_cliente, nombre, apellido, numero_documento, tipo_documen
 
 
 ----------------------------------------------------------------------------------------------------------------------
--- Tabla para el modulo de Administraci贸n de conceptos de uso de puntos
+-- Tabla para el modulo de Administraci髇 de conceptos de uso de puntos
 
 CREATE TABLE conceptoPunto
 (
@@ -76,7 +76,7 @@ INSERT INTO conceptoPunto(id_conceptoPunto, descripcion_concepto, puntos_requeri
     VALUES(5,'Descuentos en Abonos de TV cable',300);
 
 INSERT INTO conceptoPunto(id_conceptoPunto, descripcion_concepto, puntos_requeridos)
-    VALUES(6,'Descuento en Servicio T茅cnico',900);
+    VALUES(6,'Descuento en Servicio T閏nico',900);
 
 INSERT INTO conceptoPunto(id_conceptoPunto, descripcion_concepto, puntos_requeridos)
     VALUES(7,'Pack de internet',15);
@@ -92,9 +92,9 @@ INSERT INTO conceptoPunto(id_conceptoPunto, descripcion_concepto, puntos_requeri
 
 
 ----------------------------------------------------------------------------------------------------------------------
--- Tabla para el modulo de Administraci贸n de reglas de asignaci贸n de puntos
+-- Tabla para el modulo de Administraci髇 de reglas de asignaci髇 de puntos
 /*
-    Cantidad de consumisi贸n al mes 
+    Cantidad de consumisi髇 al mes 
     0 a 50000                       1 punto cada 5000 
     50001 a 100000                  1 punto cada 3000
     100001 a 200000                 1 punto cada 1000
@@ -201,8 +201,8 @@ CREATE SEQUENCE usoPunto_sec;
 CREATE TABLE detUsoPunto
 (
     id_detUsoPunto INTEGER NOT NULL,
-    id_usoPunto INTEGER NOT NULL, -- relaci髇 OneToOne 
-    id_bolsa_puntos INTEGER NOT NULL, -- relaci髇 OneToOne
+    id_usoPunto INTEGER NOT NULL, -- relaci?n OneToOne 
+    id_bolsa_puntos INTEGER NOT NULL, -- relaci?n OneToOne
     puntaje_utilizado INTEGER NOT NULL,
     CONSTRAINT pk_detUsoPuntos PRIMARY KEY (id_detUsoPunto),
     CONSTRAINT fk_idusoPunto FOREIGN KEY (id_usoPunto) REFERENCES usoPunto (id_usoPunto) ON DELETE CASCADE,
