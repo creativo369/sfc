@@ -48,11 +48,11 @@ public class Cliente {
     private Date fechaNacimiento;
 
     // Hay veces que queremos ir de este lado para la otra tabla entonces ponemos esta relación:
-    @OneToMany(mappedBy = "cliente") // a que atributo de la clase BolsaPunto hace referencia para mapear
-    private List<BolsaPunto> listaBolsas;
+//    @OneToMany(mappedBy = "cliente") // a que atributo de la clase BolsaPunto hace referencia para mapear
+//    private List<BolsaPunto> listaBolsas;
 
-    @OneToMany(mappedBy = "cliente") // a que atributo de la clase BolsaPunto hace referencia para mapear
-    private List<UsoPunto> listaUsoPuntos;
+//    @OneToMany(mappedBy = "cliente") // a que atributo de la clase BolsaPunto hace referencia para mapear
+//    private List<UsoPunto> listaUsoPuntos;
 
     public Cliente() {
 
@@ -129,22 +129,22 @@ public class Cliente {
     public void setFechaNacimiento(Date fechaNacimiento) {
         this.fechaNacimiento = fechaNacimiento;
     }
-
-    public List<BolsaPunto> getListaBolsas() {
-        return listaBolsas;
-    }
-
-    public void setListaBolsas(List<BolsaPunto> listaBolsas) {
-        this.listaBolsas = listaBolsas;
-    }
-
-    public List<UsoPunto> getListaUsoPuntos() {
-        return listaUsoPuntos;
-    }
-
-    public void setListaUsoPuntos(List<UsoPunto> listaUsoPuntos) {
-        this.listaUsoPuntos = listaUsoPuntos;
-    }
+//
+//    public List<BolsaPunto> getListaBolsas() {
+//        return listaBolsas;
+//    }
+//
+//    public void setListaBolsas(List<BolsaPunto> listaBolsas) {
+//        this.listaBolsas = listaBolsas;
+//    }
+//
+//    public List<UsoPunto> getListaUsoPuntos() {
+//        return listaUsoPuntos;
+//    }
+//
+//    public void setListaUsoPuntos(List<UsoPunto> listaUsoPuntos) {
+//        this.listaUsoPuntos = listaUsoPuntos;
+//    }
 
     public void merge(Cliente c) {
         setNumeroDocumento(c.getNumeroDocumento());
