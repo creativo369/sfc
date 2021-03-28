@@ -13,7 +13,7 @@ CREATE TABLE cliente
     email            CHARACTER VARYING(60)        NOT NULL,
     telefono         CHARACTER VARYING(20)        NOT NULL,
     fecha_nacimiento DATE                         NOT NULL,
-    CONSTRAINT pk_idcliente PRIMARY KEY (id_cliente)
+    CONSTRAINT pk_cliente PRIMARY KEY (id_cliente)
 );
 CREATE SEQUENCE cliente_sec;
 
@@ -51,43 +51,43 @@ INSERT INTO cliente(id_cliente, nombre, apellido, numero_documento, tipo_documen
 ----------------------------------------------------------------------------------------------------------------------
 -- Tabla para el modulo de Administración de conceptos de uso de puntos
 
-CREATE TABLE conceptoPunto
+CREATE TABLE conceptoUsoPunto
 (
-    id_conceptoPunto     INTEGER                NOT NULL,
+    id_conceptoUsoPunto     INTEGER                NOT NULL,
     descripcion_concepto CHARACTER VARYING(200) NOT NULL,
-    puntos_requeridos    INTEGER                NOT NULL,
-    CONSTRAINT pk_conceptoPunto PRIMARY KEY (id_conceptoPunto)
+    punto_requerido    INTEGER                NOT NULL,
+    CONSTRAINT pk_conceptoUsoPunto PRIMARY KEY (id_conceptoUsoPunto)
 );
-CREATE SEQUENCE conceptoPunto_sec;
+CREATE SEQUENCE conceptoUsoPunto_sec;
 
-INSERT INTO conceptoPunto(id_conceptoPunto, descripcion_concepto, puntos_requeridos)
+INSERT INTO conceptoUsoPunto(id_conceptoUsoPunto, descripcion_concepto, punto_requerido)
     VALUES(1,'Saldo para Hablar',200);
 
-INSERT INTO conceptoPunto(id_conceptoPunto, descripcion_concepto, puntos_requeridos)
+INSERT INTO conceptoUsoPunto(id_conceptoUsoPunto, descripcion_concepto, punto_requerido)
     VALUES(2,'SMS gratis por 12 horas',80);
 
-INSERT INTO conceptoPunto(id_conceptoPunto, descripcion_concepto, puntos_requeridos)
+INSERT INTO conceptoUsoPunto(id_conceptoUsoPunto, descripcion_concepto, punto_requerido)
     VALUES(3,'Alquila 1 pelicula por 48 hrs.',100);
 
-INSERT INTO conceptoPunto(id_conceptoPunto, descripcion_concepto, puntos_requeridos)
+INSERT INTO conceptoUsoPunto(id_conceptoUsoPunto, descripcion_concepto, punto_requerido)
     VALUES(4,'Pack de internet',15);
 
-INSERT INTO conceptoPunto(id_conceptoPunto, descripcion_concepto, puntos_requeridos)
+INSERT INTO conceptoUsoPunto(id_conceptoUsoPunto, descripcion_concepto, punto_requerido)
     VALUES(5,'Descuentos en Abonos de TV cable',300);
 
-INSERT INTO conceptoPunto(id_conceptoPunto, descripcion_concepto, puntos_requeridos)
+INSERT INTO conceptoUsoPunto(id_conceptoUsoPunto, descripcion_concepto, punto_requerido)
     VALUES(6,'Descuento en Servicio Técnico',900);
 
-INSERT INTO conceptoPunto(id_conceptoPunto, descripcion_concepto, puntos_requeridos)
+INSERT INTO conceptoUsoPunto(id_conceptoUsoPunto, descripcion_concepto, punto_requerido)
     VALUES(7,'Pack de internet',15);
 
-INSERT INTO conceptoPunto(id_conceptoPunto, descripcion_concepto, puntos_requeridos)
+INSERT INTO conceptoUsoPunto(id_conceptoUsoPunto, descripcion_concepto, punto_requerido)
     VALUES(8,'Descuento en Equipos',1500);
 
-INSERT INTO conceptoPunto(id_conceptoPunto, descripcion_concepto, puntos_requeridos)
+INSERT INTO conceptoUsoPunto(id_conceptoUsoPunto, descripcion_concepto, punto_requerido)
     VALUES(9,'Vale de premio',30);
 
-INSERT INTO conceptoPunto(id_conceptoPunto, descripcion_concepto, puntos_requeridos)
+INSERT INTO conceptoUsoPunto(id_conceptoUsoPunto, descripcion_concepto, punto_requerido)
     VALUES(10,'Pack de redes sociales gratis por 1 semana',500);
 
 

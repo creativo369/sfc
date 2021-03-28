@@ -38,7 +38,7 @@ public class UsoPunto {
 */
 //    @OneToOne(cascade= CascadeType.ALL)
 //    @JoinColumn(name = "concepto_uso", referencedColumnName = "id_conceptoPunto" )
-//    private ConceptoPunto conceptoUso;
+//    private ConceptoUsoPunto conceptoUso;
 //
 //    @OneToOne(mappedBy ="usoPunto")
 //    private DetUsoPunto detUsoPunto;
@@ -78,11 +78,11 @@ public class UsoPunto {
         this.fecha = fecha;
     }
 
-//    public ConceptoPunto getConceptoUso() {
+//    public ConceptoUsoPunto getConceptoUso() {
 //        return conceptoUso;
 //    }
 //
-//    public void setConceptoUso(ConceptoPunto conceptoUso) {
+//    public void setConceptoUso(ConceptoUsoPunto conceptoUso) {
 //        this.conceptoUso = conceptoUso;
 //    }
 }
