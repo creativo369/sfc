@@ -56,7 +56,7 @@ public class BolsaPunto {
 //
 //    @OneToOne(cascade = CascadeType.ALL)
 //    @JoinColumn(name = "puntos", referencedColumnName = "id_reglaPunto")
-//    private ReglaPunto puntos;
+//    private ReglaAsignacionPunto puntos;
 
     public BolsaPunto() {
     }

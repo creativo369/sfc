@@ -1,5 +1,5 @@
-// Administrar la logica de negocio de la actividad de nuestra entidad ConceptoPunto
-// ConceptoPuntoDAO ( DAO: Data access Object )
+// Administrar la logica de negocio de la actividad de nuestra entidad ConceptoUsoPunto
+// ConceptoUsoPuntoDAO ( DAO: Data access Object )
 package ejb;
 
 import model.VencimientoPunto;
@@ -44,7 +44,7 @@ public class VencimientoPuntoDAO {
      * Busca una entidad conceptoPunto basado en su id.
      *
      * @param id_vencimientoPunto
-     * @return ReglaPunto.
+     * @return ReglaAsignacionPunto.
      * @throws EntityNotFoundException cuando la promo no se existe en nuestra base de datos.
      */
     public VencimientoPunto obtenerVencimientobyId(Integer id_vencimientoPunto) {

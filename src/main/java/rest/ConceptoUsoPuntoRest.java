@@ -1,7 +1,7 @@
 package rest;
 
-import ejb.ConceptoPuntoDAO;
-import model.ConceptoPunto;
+import ejb.ConceptoUsoPuntoDAO;
+import model.ConceptoUsoPunto;
 
 import javax.inject.Inject;
 import javax.persistence.EntityNotFoundException;
@@ -10,14 +10,14 @@ import javax.ws.rs.core.Response;
 
 // una api para exponer nuestra entidad
 
-@Path("promo")
+@Path("conceptoUsoPunto")
 @Consumes("application/json")
 @Produces("application/json")
 
 // Tenemos que exponer nuestra capa de servicios que proveemos de nuestra entidad cliente que seria el DAO del ejb de Cliente
-public class ConceptoPuntoRest {
+public class ConceptoUsoPuntoRest {
     @Inject
-    private ConceptoPuntoDAO promoDAO;
+    private ConceptoUsoPuntoDAO conceptoUsoPuntoDAO;
 
 
     /*
@@ -25,8 +25,8 @@ public class ConceptoPuntoRest {
     */
     @POST
     @Path("/")
-    public Response crearPromo(ConceptoPunto promo){
-        this.promoDAO.nuevaPromo(promo);
+    public Response crearConcepto(ConceptoUsoPunto concepto){
+        this.conceptoUsoPuntoDAO.nuevoConceptoUsoPunto(concepto);
         return Response.ok().build();
     }
     /*
@@ -35,16 +35,16 @@ public class ConceptoPuntoRest {
     // generar primero para obtener todas los clientes, consumiendo el metodo en ClienteDAO ( listarClientes<Cliente>)
     @GET
     @Path("/")
-    public Response listarPromos(){
-        return Response.ok(promoDAO.listarPromos()).build();
+    public Response listarConceptos(){
+        return Response.ok(conceptoUsoPuntoDAO.listarConceptosUsoPunto()).build();
     }
 
     // No me cierra todavia si esta funcionando como tenia expectativa si no hay un cliente en la bd
     @GET
-    @Path("/{idconceptoPuntos}")
-    public Response listarPromo(@PathParam(value="idconceptoPuntos") Integer idconceptoPuntos) {
+    @Path("/{idConceptoUsoPunto}")
+    public Response listarConceptoById(@PathParam(value="idConceptoUsoPunto") Integer id) {
         try {
-            return Response.ok(promoDAO.obtenerPromobyId(idconceptoPuntos)).build();
+            return Response.ok(conceptoUsoPuntoDAO.obtenerConceptoUsoPuntoById(id)).build();
         }catch (EntityNotFoundException e){
             return Response.serverError().build();
         }
@@ -53,10 +53,10 @@ public class ConceptoPuntoRest {
            --- Update ---
     */
     @PUT
-    @Path("/{idconceptoPuntos}")
-    public Response actualizarDatosPromo(@PathParam(value="idconceptoPuntos") Integer id, ConceptoPunto promo){
+    @Path("/{idConceptoUsoPunto}")
+    public Response actualizarDatosConceptoUsoPuntoById(@PathParam(value="idConceptoUsoPunto") Integer id, ConceptoUsoPunto c){
         try {
-            promoDAO.actualizarPromo(id, promo);
+            conceptoUsoPuntoDAO.actualizarConceptoUsoPuntoById(id, c);
             return Response.ok().build();
         }catch (EntityNotFoundException e){
             return Response.serverError().build();
@@ -66,10 +66,10 @@ public class ConceptoPuntoRest {
            --- Delete ---
     */
     @DELETE
-    @Path("/{idconceptoPuntos}")
-    public Response borrarPromo(@PathParam(value = "idconceptoPuntos") Integer idconceptoPuntos){
+    @Path("/{idConceptoUsoPunto}")
+    public Response borrarConceptoById(@PathParam(value = "idConceptoUsoPunto") Integer id){
         try{
-            promoDAO.borrarPromoById(idconceptoPuntos);
+            conceptoUsoPuntoDAO.borrarConceptoUsoPuntoById(id);
             return Response.ok(null).build();
         }catch (EntityNotFoundException e){
             return Response.serverError().build();

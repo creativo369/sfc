@@ -1,20 +1,18 @@
-// Administrar la logica de negocio de la actividad de nuestra entidad Cliente
-// ClienteDAO ( DAO: Data access Object )
+// Administrar la logica de negocio de la actividad de nuestra entidad ConceptoUsoPunto
+// ConceptoUsoPuntoDAO ( DAO: Data access Object )
 package ejb;
 
-import model.Cliente;
+import model.ConceptoUsoPunto;
 
 import javax.ejb.Stateless;
-import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityNotFoundException;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
-import javax.ws.rs.DELETE;
 import java.util.List;
 
 @Stateless // No tiene estado, vamos a usar el ejb sin estado, es lo que se acostumbra.
-public class ClienteDAO {
+public class ConceptoUsoPuntoDAO {
     @PersistenceContext(unitName = "sfcPU")
     // The EntityManager.persist() operation is used to insert a new object into the database.
     private EntityManager em;  // Un objeto que nos permite administrar y manipular nuestras entidades y realiza el mapeo correspondiente en la base de datos
@@ -25,7 +23,7 @@ public class ClienteDAO {
     /*
            --- Create ---
     */
-    public void nuevoCliente(Cliente c){
+    public void nuevoConceptoUsoPunto(ConceptoUsoPunto c){
         //The persist operation can only be called within a transaction
         this.em.persist(c);
     }
@@ -33,16 +31,17 @@ public class ClienteDAO {
           --- Read ---
    */
     @SuppressWarnings("unchecked")
-    public List<Cliente> listarClientes(){
-        Query q=this.em.createQuery( "select c from Cliente c");
-        List<Cliente> listadoClientes = (List<Cliente>) q.getResultList();
-        return  listadoClientes;
+    public List<ConceptoUsoPunto> listarConceptosUsoPunto(){
+        Query q=this.em.createQuery( "select c from ConceptoUsoPunto c");
+        List<ConceptoUsoPunto> listadoConceptoUsoPunto = (List<ConceptoUsoPunto>) q.getResultList();
+        return  listadoConceptoUsoPunto;
     }
 
-    public Cliente obtenerClienteById(Integer id) {
-        Cliente c = this.em.find(Cliente.class, id);
+    public ConceptoUsoPunto obtenerConceptoUsoPuntoById(Integer id) {
+        ConceptoUsoPunto c = this.em.find(ConceptoUsoPunto.class, id);
         if (c == null) {
-            throw new EntityNotFoundException("No se puede encontrar al cliente con el ID " + id);
+            throw new EntityNotFoundException("No se encuentra el concepto uso punto con la ID "
+                    + id);
         }
         return c;
     }
@@ -51,25 +50,28 @@ public class ClienteDAO {
            --- Update ---
     */
     // Nose si hice lo correcto en actualizar pero es una idea interesante, simple y sencilla.
-    public void actualizarClienteById(Integer id, Cliente cliente){
+    public void actualizarConceptoUsoPuntoById(Integer id, ConceptoUsoPunto c){
         // Primero vemos si esta en la base de datos para poder actualizar
-        Cliente c = this.em.find(Cliente.class, id);
-        if (  c == null) {
-            throw new EntityNotFoundException("No se puede encontrar al cliente con el ID " + id);
+        ConceptoUsoPunto concepto = this.em.find(ConceptoUsoPunto.class, id);
+        if (  concepto == null) {
+            throw new EntityNotFoundException("No se encuentra el concepto uso punto con la ID " + id);
         }else{
-            c.merge(cliente);
+//            this.em.getTransaction().begin();
+            concepto.merge(c);
+//            this.em.getTransaction().commit();
         }
     }
     /*
            --- Delete ---
     */
     // Por lo visto el delete ya hace que sea transacional y que deje consiste la base de datos y commite los nuevos cambios
-    public void borrarClienteById(Integer id){
-            Cliente c = this.em.find(Cliente.class, id);
+    public void borrarConceptoUsoPuntoById(Integer id){
+            ConceptoUsoPunto c = this.em.find(ConceptoUsoPunto.class, id);
             if (c == null) {
-                throw new EntityNotFoundException("No se puede encontrar al cliente con el ID " + id);
+                throw new EntityNotFoundException("No se encuentra el concepto uso punto con la ID " + id);
             }else{
                 this.em.remove(c);
             }
+
     }
 }

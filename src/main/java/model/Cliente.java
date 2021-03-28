@@ -12,7 +12,7 @@ public class Cliente {
     @Basic(optional = false) // not null
     @GeneratedValue(generator = "clienteSec", strategy = GenerationType.SEQUENCE)
     @SequenceGenerator(name = "clienteSec", sequenceName = "cliente_sec", allocationSize = 0)
-    private Integer id_cliente;
+    private Integer idCliente;
 
     @Column(name = "nombre", length = 50)
     @Basic(optional = false)
@@ -24,11 +24,11 @@ public class Cliente {
 
     @Column(name = "numero_documento", length = 15, unique = true)
     @Basic(optional = false)
-    private String numero_documento;
+    private String numeroDocumento;
 
     @Column(name = "tipo_documento", length = 80)
     @Basic(optional = false)
-    private String tipo_documento;
+    private String tipoDocumento;
 
     @Column(name = "nacionalidad", length = 15)
     @Basic(optional = false)
@@ -45,7 +45,7 @@ public class Cliente {
     @Column(name = "fecha_nacimiento")
     @Basic(optional = false)
     @Temporal(TemporalType.DATE)
-    private Date fecha_nacimiento;
+    private Date fechaNacimiento;
 
 //    // Hay veces que queremos ir de este lado para la otra tabla entonces ponemos esta relación:
 //    @OneToMany(mappedBy = "cliente") // a que atributo de la clase BolsaPunto hace referencia para mapear
@@ -58,12 +58,12 @@ public class Cliente {
 
     }
 
-    public Integer getId_cliente() {
-        return id_cliente;
+    public Integer getIdCliente() {
+        return idCliente;
     }
 
-    public void setId_cliente(Integer id_cliente) {
-        this.id_cliente = id_cliente;
+    public void setIdCliente(Integer idCliente) {
+        this.idCliente = idCliente;
     }
 
     public String getNombre() {
@@ -82,20 +82,20 @@ public class Cliente {
         this.apellido = apellido;
     }
 
-    public String getNumero_documento() {
-        return numero_documento;
+    public String getNumeroDocumento() {
+        return numeroDocumento;
     }
 
-    public void setNumero_documento(String numero_documento) {
-        this.numero_documento = numero_documento;
+    public void setNumeroDocumento(String numeroDocumento) {
+        this.numeroDocumento = numeroDocumento;
     }
 
-    public String getTipo_documento() {
-        return tipo_documento;
+    public String getTipoDocumento() {
+        return tipoDocumento;
     }
 
-    public void setTipo_documento(String tipo_documento) {
-        this.tipo_documento = tipo_documento;
+    public void setTipoDocumento(String tipoDocumento) {
+        this.tipoDocumento = tipoDocumento;
     }
 
     public String getNacionalidad() {
@@ -122,16 +122,15 @@ public class Cliente {
         this.telefono = telefono;
     }
 
-
-    public Date getFecha_nacimiento() {
-        return fecha_nacimiento;
+    public Date getFechaNacimiento() {
+        return fechaNacimiento;
     }
 
-    public void setFecha_nacimiento(Date fecha_nacimiento) {
-        this.fecha_nacimiento = fecha_nacimiento;
+    public void setFechaNacimiento(Date fechaNacimiento) {
+        this.fechaNacimiento = fechaNacimiento;
     }
 
-//    public List<BolsaPunto> getListaBolsa() {
+    //    public List<BolsaPunto> getListaBolsa() {
 //        return listaBolsa;
 //    }
 //
@@ -148,8 +147,8 @@ public class Cliente {
 //    }
 
     public void merge(Cliente c) {
-        setNumero_documento(c.getNumero_documento());
-        setTipo_documento(c.getTipo_documento());
+        setNumeroDocumento(c.getNumeroDocumento());
+        setTipoDocumento(c.getTipoDocumento());
         setNacionalidad(c.getNacionalidad());
         setEmail(c.getEmail());
         setTelefono(c.getTelefono());

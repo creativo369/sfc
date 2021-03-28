@@ -1,10 +1,8 @@
 package rest;
 
 
-import ejb.ClienteDAO;
-import ejb.ReglaPuntoDAO;
-import model.Cliente;
-import model.ReglaPunto;
+import ejb.ReglaAsignacionPuntoDAO;
+import model.ReglaAsignacionPunto;
 
 import javax.inject.Inject;
 import javax.ws.rs.*;
@@ -17,17 +15,17 @@ import java.util.List;
 
 public class ServiciosREST {
     @Inject
-    private ReglaPuntoDAO reglasDAO;
+    private ReglaAsignacionPuntoDAO reglaDAO;
 
 
     @GET
-    @Path("/consultasEquivalente/{monto}")
-    public Response consultaPuntosEquivalente(@PathParam(value="monto") Integer monto){
-        List<ReglaPunto> reglas = reglasDAO.listarReglas();
+    @Path("/EquivalenciaPuntoMonto/{m}")
+    public Response equivalenciaPuntoMonto(@PathParam(value="m") Integer monto){
+        List<ReglaAsignacionPunto> reglas = reglaDAO.listarReglasAsignacionPunto();
         int cantPuntos=0;
-        for (ReglaPunto r : reglas) {
-            if(monto <= r.getLimite_superior()){
-                cantPuntos = (int) Math.ceil( monto / r.getMonto_equivalencia());
+        for (ReglaAsignacionPunto r : reglas) {
+            if(monto <= r.getLimiteSuperior()){
+                cantPuntos = (int) Math.ceil( monto / r.getMontoEquivalencia());
                 break;
             }
         }

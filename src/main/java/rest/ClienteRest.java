@@ -10,7 +10,7 @@ import model.Cliente;
 
 // una api para exponer nuestra entidad
 
-@Path("cliente")
+@Path("clientes")
 @Consumes("application/json")
 @Produces("application/json")
 
@@ -25,7 +25,7 @@ public class ClienteRest {
     */
     @POST
     @Path("/")
-    public Response crearC(Cliente c){
+    public Response crearCliente(Cliente c){
         this.clienteDAO.nuevoCliente(c);
         return Response.ok().build();
     }
@@ -42,9 +42,9 @@ public class ClienteRest {
     // No me cierra todavia si esta funcionando como tenia expectativa si no hay un cliente en la bd
     @GET
     @Path("/{idCliente}")
-    public Response listarCliente(@PathParam(value="idCliente") Integer idCliente) {
+    public Response listarCliente(@PathParam(value="idCliente") Integer id) {
         try {
-            return Response.ok(clienteDAO.obtenerClientebyId(idCliente)).build();
+            return Response.ok(clienteDAO.obtenerClienteById(id)).build();
         }catch (EntityNotFoundException e){
             return Response.serverError().build();
         }
@@ -56,7 +56,7 @@ public class ClienteRest {
     @Path("/{idCliente}")
     public Response actualizarDatosCliente(@PathParam(value="idCliente") Integer id, Cliente c){
         try {
-            clienteDAO.actualizarCliente(id, c);
+            clienteDAO.actualizarClienteById(id, c);
             return Response.ok().build();
         }catch (EntityNotFoundException e){
             return Response.serverError().build();
@@ -67,9 +67,9 @@ public class ClienteRest {
     */
     @DELETE
     @Path("/{idCliente}")
-    public Response borrarCliente(@PathParam(value = "idCliente") Integer idCliente){
+    public Response borrarCliente(@PathParam(value = "idCliente") Integer id){
         try{
-            clienteDAO.borrarClienteById(idCliente);
+            clienteDAO.borrarClienteById(id);
             return Response.ok(null).build();
         }catch (EntityNotFoundException e){
             return Response.serverError().build();
