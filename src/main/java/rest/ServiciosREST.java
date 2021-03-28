@@ -21,13 +21,16 @@ public class ServiciosREST {
     @Inject
     private ReglaAsignacionPuntoDAO reglaDAO;
 
+    @Inject
+    private ClienteDAO clienteDAO;
+
+    @Inject
+    private ParametrizacionVencimientoPuntoDAO paramVencDAO;
 
     @POST
     @Path("/carga-de-puntos/{id_cliente}/{monto}")
     public Response cargaPuntos(@PathParam("id_cliente") int id_cliente,@PathParam("monto") int monto ){
         Response.ResponseBuilder builder = null;
-        ClienteDAO clienteDAO = new ClienteDAO();
-        ParametrizacionVencimientoPuntoDAO paramVencDAO = new ParametrizacionVencimientoPuntoDAO();
         BolsaPunto bolsa = new BolsaPunto();
         Map<String, String> respuesta = new HashMap<>();
         Date hoy = new Date();
