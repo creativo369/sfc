@@ -32,8 +32,8 @@ public class ReglaAsignacionPunto {
    @JoinColumn(name = "id_vencimientoPunto")
    @OneToOne(cascade = CascadeType.ALL)
    @JoinColumn(name = "id_vencimiento", referencedColumnName = "id_vencimientoPunto")
-   private List<VencimientoPunto> listaVencimientoPunto;
-   private VencimientoPunto Vencpunto;*/
+   private List<ParametrizacionVencimientoPunto> listaVencimientoPunto;
+   private ParametrizacionVencimientoPunto Vencpunto;*/
 
 
 

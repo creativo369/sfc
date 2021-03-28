@@ -122,32 +122,28 @@ INSERT INTO reglaAsignacionPunto(id_reglaAsignacionPunto, limite_inferior, limit
 ----------------------------------------------------------------------------------------------------------------------
 
 
-CREATE TABLE vencimientoPunto
+CREATE TABLE parametrizacionVencimientoPunto
 (
-    id_vencimientoPunto INTEGER NOT NULL,
-    fechaInicioValidez  DATE    NOT NULL,
-    fechaFinValidez     DATE    NOT NULL,
-    duracionDiasPuntaje INTEGER NOT NULL,
-    --idReglaPunto,
-    CONSTRAINT pk_vencimientoPunto PRIMARY KEY (id_vencimientoPunto)--,
-    /*CONSTRAINT fk_idReglaPunto 
-        FOREIGN KEY (idReglaPunto) REFERENCES reglaPunto(id_reglaPuntos) MATCH SIMPLE
-        ON UPDATE NO ACTION
-        ON DELETE NO ACTION*/
+    id_parametrizacionVencimientoPunto INTEGER NOT NULL,
+    fecha_inicio_validez  DATE    NOT NULL,
+    fecha_fin_Validez     DATE    NOT NULL,
+    duracion_diasPuntaje INTEGER NOT NULL,
+    CONSTRAINT pk_parametrizacionVencimientoPunto PRIMARY KEY (id_parametrizacionVencimientoPunto) 
 );
-CREATE SEQUENCE vencimientoPunto_sec;
 
-INSERT INTO vencimientoPunto(id_vencimientoPunto, fechaInicioValidez, fechaFinValidez, duracionDiasPuntaje)--, idReglaPunto)
-    VALUES(1,'2021-01-1','2021-06-30',60);--,1);
+CREATE SEQUENCE parametrizacionVencimientoPunto_sec;
 
-INSERT INTO vencimientoPunto(id_vencimientoPunto, fechaInicioValidez, fechaFinValidez, duracionDiasPuntaje)--, idReglaPunto)
-    VALUES(2,'2021-07-1','2021-08-31',15);--,4);
+INSERT INTO parametrizacionVencimientoPunto(id_parametrizacionVencimientoPunto, fecha_inicio_validez, fecha_fin_Validez, duracion_diasPuntaje)
+    VALUES(nextval('parametrizacionVencimientoPunto_sec'),'2021-01-1','2021-06-30',60);
 
-INSERT INTO vencimientoPunto(id_vencimientoPunto, fechaInicioValidez, fechaFinValidez, duracionDiasPuntaje)--, idReglaPunto)
-    VALUES(3,'2021-09-01','2021-10-31',25);--,2);
+INSERT INTO parametrizacionVencimientoPunto(id_parametrizacionVencimientoPunto, fecha_inicio_validez, fecha_fin_Validez, duracion_diasPuntaje)
+    VALUES(nextval('parametrizacionVencimientoPunto_sec'),'2021-07-1','2021-08-31',15);
 
-INSERT INTO vencimientoPunto(id_vencimientoPunto, fechaInicioValidez, fechaFinValidez, duracionDiasPuntaje)--, idReglaPunto)
-    VALUES(4,'2021-11-01','2021-12-31',18);--,3);
+INSERT INTO parametrizacionVencimientoPunto(id_parametrizacionVencimientoPunto, fecha_inicio_validez, fecha_fin_Validez, duracion_diasPuntaje)
+    VALUES(nextval('parametrizacionVencimientoPunto_sec'),'2021-09-01','2021-10-31',25);
+
+INSERT INTO parametrizacionVencimientoPunto(id_parametrizacionVencimientoPunto, fecha_inicio_validez, fecha_fin_Validez, duracion_diasPuntaje)
+    VALUES(nextval('parametrizacionVencimientoPunto_sec'),'2021-11-01','2021-12-31',18);
 
 ----------------------------------------------------------------------------------------------------------------------
 

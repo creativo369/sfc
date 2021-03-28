@@ -1,0 +1,648 @@
+{
+	"info": {
+		"_postman_id": "f5acbfd1-7d60-41a6-a4a2-b00e9c6fd015",
+		"name": "Sistema de fidelización de clientes",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "1. Administración de datos del cliente.",
+			"item": [
+				{
+					"name": "Insertar nuevo cliente a la base de datos",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nombre\":\"qwer\",\r\n    \"apellido\":\"asd\",\r\n    \"numeroDocumento\":\"951\",\r\n    \"tipoDocumento\":\"Cédula de Identidad Civil\",\r\n    \"nacionalidad\":\"Paraguaya\",\r\n    \"email\":\"holaasd2@hotmail.com\",\r\n    \"telefono\":\"95147\",\r\n    \"fechaNacimiento\":\"1992-04-27\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/SFC/clientes",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"SFC",
+								"clientes"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Obtener la lista de clientes de la base de datos",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/SFC/clientes",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"SFC",
+								"clientes"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Obtener un cliente por su ID",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/SFC/clientes/10",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"SFC",
+								"clientes",
+								"10"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Actualiza algun dato de un cliente por su id de la base de datos",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n   \"nombre\": \"Daniel\",\r\n    \"apellido\": \"Garcia\",\r\n    \"numeroDocumento\": \"4235687\",\r\n    \"tipoDocumento\": \"Cedula de Identidad Civil\",\r\n    \"nacionalidad\": \"Paraguaya\",\r\n    \"email\": \"DaniGa@gmail.com\",\r\n    \"telefono\": \"1234567889\",\r\n    \"fechaNacimiento\": \"1994-06-03\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/SFC/clientes/10",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"SFC",
+								"clientes",
+								"10"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Borra un cliente por su id de la base de datos",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/SFC/clientes/10",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"SFC",
+								"clientes",
+								"10"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "2.Administración de conceptos de uso de puntos.",
+			"item": [
+				{
+					"name": "Insertar nuevo concepto uso puntos a la base de datos",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"descripcionConcepto\": \"AQWRSET\",\r\n    \"puntoRequerido\": \"256\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/SFC/conceptoUsoPunto",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"SFC",
+								"conceptoUsoPunto"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Obtener la lista de conceptos de uso de puntos de la base de datos",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/SFC/conceptoUsoPunto",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"SFC",
+								"conceptoUsoPunto"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Obtener un concepto de uso de punto por su ID",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/SFC/conceptoUsoPunto/10",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"SFC",
+								"conceptoUsoPunto",
+								"10"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Actualiza algun dato de un concepto de uso de punto",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"descripcionConcepto\": \"Saldo para Hablar gratis válido por 6hrs.\",\r\n    \"puntoRequerido\": \"420\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/SFC/conceptoUsoPunto/10",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"SFC",
+								"conceptoUsoPunto",
+								"10"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Borra un concepto de uso de punto de la base de datos",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/SFC/conceptoUsoPunto/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"SFC",
+								"conceptoUsoPunto",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "3.Administración de reglas de asignación de puntos.",
+			"item": [
+				{
+					"name": "Insertar nuevas reglas de asignacion de puntos a la base de datos",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"limiteInferior\": \"400000\",\r\n    \"limiteSuperior\": \"800000\",\r\n    \"montoEquivalencia\": \"20000\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/SFC/reglaAsignacionPunto",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"SFC",
+								"reglaAsignacionPunto"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Obtener la lista de reglas de asignacion de puntos de la base de datos",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/SFC/reglaAsignacionPunto",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"SFC",
+								"reglaAsignacionPunto"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Obtener una regla de asignacion de puntos por su ID",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/SFC/reglaAsignacionPunto/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"SFC",
+								"reglaAsignacionPunto",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Actualiza algun dato de una regla de asignacion de puntos",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"limiteInferior\": \"600000\",\r\n    \"limiteSuperior\": \"900000\",\r\n    \"montoEquivalencia\": \"5000\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/SFC/reglaAsignacionPunto/7",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"SFC",
+								"reglaAsignacionPunto",
+								"7"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Borra una regla de asignacion de puntos de la base de datos",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/SFC/reglaAsignacionPunto/3",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"SFC",
+								"reglaAsignacionPunto",
+								"3"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "4.Parametrización de vencimientos de puntos.",
+			"item": [
+				{
+					"name": "Insertar nuevas Parametrización de vencimiento de punto a la base de datos",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"fechaInicioValidez\":\"2022-03-06\",\r\n    \"fechaFinValidez\":\"2023-03-09\",\r\n    \"duracionDiasPuntaje\":\"35\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/SFC/parametrizacionVencimientoPunto",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"SFC",
+								"parametrizacionVencimientoPunto"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Obtener la lista de Parametrización de vencimiento de punto de la base de datos",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/SFC/parametrizacionVencimientoPunto",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"SFC",
+								"parametrizacionVencimientoPunto"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Obtener una Parametrización de vencimiento de punto por su ID",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/SFC/parametrizacionVencimientoPunto/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"SFC",
+								"parametrizacionVencimientoPunto",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Actualiza algun dato de Parametrización de vencimiento de punto",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"fechaInicioValidez\":\"2021-03-06\",\r\n    \"fechaFinValidez\":\"2021-03-15\",\r\n    \"duracionDiasPuntaje\":\"120\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/SFC/parametrizacionVencimientoPunto/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"SFC",
+								"parametrizacionVencimientoPunto",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Borra una Parametrización de vencimiento de punto de la base de datos",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/SFC/parametrizacionVencimientoPunto/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"SFC",
+								"parametrizacionVencimientoPunto",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "ServiciosREST",
+			"item": [
+				{
+					"name": "Equivalencia Puntos de un Monto X",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/SFC/servicios/EquivalenciaPuntoMonto/950000",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"SFC",
+								"servicios",
+								"EquivalenciaPuntoMonto",
+								"950000"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
