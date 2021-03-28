@@ -16,24 +16,24 @@ public class BolsaPunto {
     @SequenceGenerator(name = "bolsaPuntoSec", sequenceName = "bolsaPunto_sec", allocationSize = 0)
     private Integer idBolsaPunto;
 
-//    // Dueño de la relación o owner, por tener la referencia al campo de la relación a la tabla Cliente
-//    @ManyToOne(fetch = FetchType.LAZY)
-//    @JoinColumn(name = "id_cliente", referencedColumnName = "id_cliente" )
-//    /* 2 atributos
-//        name : el atributo que esta en la tabla BolsaPunto que referencia a la tabla cliente.
-//        referencedColumnName : al atributo o columna de la tabla cliente a la cual hace referencia.
-//    * */
-//    private Cliente cliente;
+    // Dueño de la relación o owner, por tener la referencia al campo de la relación a la tabla Cliente
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "id_cliente", referencedColumnName = "id_cliente" )
+    /* 2 atributos
+        name : el atributo que esta en la tabla BolsaPunto que referencia a la tabla cliente.
+        referencedColumnName : al atributo o columna de la tabla cliente a la cual hace referencia.
+    * */
+    private Cliente cliente;
 
     @Column(name = "fecha_asignacion_puntaje")
     @Basic(optional = false)
     @Temporal(TemporalType.DATE)
-    private Date fechaAsignacion;
+    private Date fechaAsignacionPuntaje;
 
     @Column(name = "fecha_caducidad_puntaje")
     @Basic(optional = false)
     @Temporal(TemporalType.DATE)
-    private Date fechaCaducidad;
+    private Date fechaCaducidadPuntaje;
 
     @Column(name = "puntaje_asignado")
     @Basic(optional = false)
@@ -45,18 +45,14 @@ public class BolsaPunto {
 
     @Column(name = "saldo_puntos")
     @Basic(optional = false)
-    private Integer saldo;
+    private Integer saldoPuntos;
 
     @Column(name = "monto_operacion")
     @Basic(optional = false)
-    private Integer monto;
+    private Integer montoOperacion;
 
-//    @OneToMany(mappedBy = "bolsaPunto") // a que atributo de la clase BolsaPunto hace referencia para mapear
-//    private List<DetUsoPunto> listaDetUsoPunto;
-//
-//    @OneToOne(cascade = CascadeType.ALL)
-//    @JoinColumn(name = "puntos", referencedColumnName = "id_reglaPunto")
-//    private ReglaAsignacionPunto puntos;
+    @OneToMany(mappedBy = "bolsaPunto") // a que atributo de la clase BolsaPunto hace referencia para mapear
+    private List<DetUsoPunto> listaDetUsoPunto;
 
     public BolsaPunto() {
     }
@@ -69,32 +65,30 @@ public class BolsaPunto {
         this.idBolsaPunto = idBolsaPunto;
     }
 
-//    public Cliente getCliente() {
-//        return cliente;
-//    }
-//
-//    public void setCliente(Cliente cliente) {
-//        this.cliente = cliente;
-//    }
-
-    public Date getFechaAsignacion() {
-        return fechaAsignacion;
+    public Cliente getCliente() {
+        return cliente;
     }
 
-    public void setFechaAsignacion(Date fechaAsignacion) {
-        this.fechaAsignacion = fechaAsignacion;
+    public void setCliente(Cliente cliente) {
+        this.cliente = cliente;
     }
 
-    public Date getFechaCaducidad() {
-        return fechaCaducidad;
+    public Date getFechaAsignacionPuntaje() {
+        return fechaAsignacionPuntaje;
     }
 
-   /* public void setFechaCaducidad(Date fechaCaducidad) {
-        this.fechaCaducidad = fechaCaducidad;
-    }*/
-//     public void setFechaCaducidad() {
-//            this.fechaCaducidad = this.puntos.getVencpunto().getFechaFinValidez();
-//        }
+    public void setFechaAsignacionPuntaje(Date fechaAsignacionPuntaje) {
+        this.fechaAsignacionPuntaje = fechaAsignacionPuntaje;
+    }
+
+    public Date getFechaCaducidadPuntaje() {
+        return fechaCaducidadPuntaje;
+    }
+
+    public void setFechaCaducidadPuntaje(Date fechaCaducidadPuntaje) {
+        this.fechaCaducidadPuntaje = fechaCaducidadPuntaje;
+    }
+
     public Integer getPuntajeAsignado() {
         return puntajeAsignado;
     }
@@ -111,22 +105,27 @@ public class BolsaPunto {
         this.puntajeUtilizado = puntajeUtilizado;
     }
 
-    public Integer getSaldo() {
-        return saldo;
+    public Integer getSaldoPuntos() {
+        return saldoPuntos;
     }
 
-    public void setSaldo(Integer saldo) {
-        this.saldo = saldo;
+    public void setSaldoPuntos(Integer saldoPuntos) {
+        this.saldoPuntos = saldoPuntos;
     }
 
-    public Integer getMonto() {
-        return monto;
+    public Integer getMontoOperacion() {
+        return montoOperacion;
     }
 
-    public void setMonto(Integer monto) {
-        this.monto = monto;
+    public void setMontoOperacion(Integer montoOperacion) {
+        this.montoOperacion = montoOperacion;
     }
 
-    /*TODO: hacer los calculos respectivos a monto, saldo, puntaje utilizado*/
+    public List<DetUsoPunto> getListaDetUsoPunto() {
+        return listaDetUsoPunto;
+    }
 
+    public void setListaDetUsoPunto(List<DetUsoPunto> listaDetUsoPunto) {
+        this.listaDetUsoPunto = listaDetUsoPunto;
+    }
 }

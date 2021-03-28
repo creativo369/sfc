@@ -151,7 +151,6 @@ CREATE TABLE bolsaPunto
 (
     id_bolsaPunto            INTEGER NOT NULL,
     id_cliente               INTEGER NOT NULL,
-    puntos                   INTEGER NOT NULL,
     fecha_asignacion_puntaje DATE    NOT NULL,
     fecha_caducidad_puntaje  DATE    NOT NULL,
     puntaje_asignado         INTEGER NOT NULL,
@@ -159,10 +158,6 @@ CREATE TABLE bolsaPunto
     saldo_puntos             INTEGER NOT NULL,
     monto_operacion          INTEGER NOT NULL,
     CONSTRAINT pk_idbolsaPunto PRIMARY KEY (id_bolsaPunto),
-    CONSTRAINT fk_puntos       FOREIGN KEY (puntos)
-        REFERENCES reglaPunto (id_reglaPunto) 
-        ON UPDATE CASCADE 
-        ON DELETE CASCADE,
     CONSTRAINT fk_idcliente FOREIGN KEY (id_cliente)
         REFERENCES cliente (id_cliente) MATCH SIMPLE
         ON UPDATE NO ACTION
@@ -176,23 +171,25 @@ CREATE TABLE usoPunto
     id_cliente        INTEGER                NOT NULL,
     puntaje_utilizado INTEGER                NOT NULL,
     fecha_usoPunto    DATE                   NOT NULL,
-    concepto_uso      INTEGER				 NOT NULL,
+    concepto_usoPunto      INTEGER				 NOT NULL,
     CONSTRAINT pk_idUsoPunto PRIMARY KEY (id_usoPunto),
-    CONSTRAINT fk_idcli FOREIGN KEY (id_cliente)
+    CONSTRAINT fk_idcliente FOREIGN KEY (id_cliente)
         REFERENCES cliente (id_cliente)
-        ON DELETE NO ACTION,
-    CONSTRAINT fk_conceptoUso FOREIGN KEY (concepto_uso) 
-    	REFERENCES conceptoPunto (id_conceptoPunto)
-    	ON DELETE NO ACTION
+        ON UPDATE CASCADE
+        ON DELETE CASCADE,
+    CONSTRAINT fk_conceptoUso FOREIGN KEY (concepto_usoPunto) 
+    	REFERENCES conceptoUsoPunto (id_conceptoUsoPunto)
+    	ON UPDATE CASCADE
+        ON DELETE CASCADE
 );
 CREATE SEQUENCE usoPunto_sec;
 
 CREATE TABLE detUsoPunto
 (
     id_detUsoPunto INTEGER NOT NULL,
-    id_usoPunto INTEGER NOT NULL, -- relaci? OneToOne 
-    id_bolsa_puntos INTEGER NOT NULL, -- relaci? OneToOne
+    id_usoPunto INTEGER NOT NULL, 
     puntaje_utilizado INTEGER NOT NULL,
+    id_bolsa_puntos INTEGER NOT NULL, 
     CONSTRAINT pk_detUsoPuntos PRIMARY KEY (id_detUsoPunto),
     CONSTRAINT fk_idusoPunto FOREIGN KEY (id_usoPunto) REFERENCES usoPunto (id_usoPunto) ON DELETE CASCADE,
     CONSTRAINT fk_idbolsaPunto FOREIGN KEY (id_bolsa_puntos) REFERENCES bolsaPunto (id_bolsaPunto) ON DELETE CASCADE

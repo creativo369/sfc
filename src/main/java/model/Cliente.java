@@ -47,12 +47,12 @@ public class Cliente {
     @Temporal(TemporalType.DATE)
     private Date fechaNacimiento;
 
-//    // Hay veces que queremos ir de este lado para la otra tabla entonces ponemos esta relación:
-//    @OneToMany(mappedBy = "cliente") // a que atributo de la clase BolsaPunto hace referencia para mapear
-//    private List<BolsaPunto> listaBolsa;
-//
-//    @OneToMany(mappedBy = "cliente") // a que atributo de la clase BolsaPunto hace referencia para mapear
-//    private List<UsoPunto> listaUsoPunto;
+    // Hay veces que queremos ir de este lado para la otra tabla entonces ponemos esta relación:
+    @OneToMany(mappedBy = "cliente") // a que atributo de la clase BolsaPunto hace referencia para mapear
+    private List<BolsaPunto> listaBolsas;
+
+    @OneToMany(mappedBy = "cliente") // a que atributo de la clase BolsaPunto hace referencia para mapear
+    private List<UsoPunto> listaUsoPuntos;
 
     public Cliente() {
 
@@ -130,21 +130,21 @@ public class Cliente {
         this.fechaNacimiento = fechaNacimiento;
     }
 
-    //    public List<BolsaPunto> getListaBolsa() {
-//        return listaBolsa;
-//    }
-//
-//    public void setListaBolsa(List<BolsaPunto> listaBolsa) {
-//        this.listaBolsa = listaBolsa;
-//    }
-//
-//    public List<UsoPunto> getListaUsoPunto() {
-//        return listaUsoPunto;
-//    }
-//
-//    public void setListaUsoPunto(List<UsoPunto> listaUsoPunto) {
-//        this.listaUsoPunto = listaUsoPunto;
-//    }
+    public List<BolsaPunto> getListaBolsas() {
+        return listaBolsas;
+    }
+
+    public void setListaBolsas(List<BolsaPunto> listaBolsas) {
+        this.listaBolsas = listaBolsas;
+    }
+
+    public List<UsoPunto> getListaUsoPuntos() {
+        return listaUsoPuntos;
+    }
+
+    public void setListaUsoPuntos(List<UsoPunto> listaUsoPuntos) {
+        this.listaUsoPuntos = listaUsoPuntos;
+    }
 
     public void merge(Cliente c) {
         setNumeroDocumento(c.getNumeroDocumento());
@@ -153,6 +153,4 @@ public class Cliente {
         setEmail(c.getEmail());
         setTelefono(c.getTelefono());
     }
-
-
 }

@@ -12,7 +12,7 @@ public class UsoPunto {
     @Basic(optional = false)
     @GeneratedValue(generator = "usoPuntoSec", strategy = GenerationType.SEQUENCE)
     @SequenceGenerator(name = "usoPuntoSec", sequenceName = "usoPunto_sec", allocationSize = 0)
-    private Integer idusoPunto;
+    private Integer idUsoPunto;
 
     // Dueño de la relación o owner, por tener la referencia al campo de la relación a la tabla Cliente
     @ManyToOne(fetch = FetchType.LAZY)
@@ -30,28 +30,24 @@ public class UsoPunto {
     @Column(name = "fecha_usoPunto")
     @Basic(optional = false)
     @Temporal(TemporalType.DATE)
-    private Date fecha;
+    private Date fechaUsoPunto;
 
-    /*@Column(name = "concepto_uso",length = 200)
-    @Basic(optional = false)
-    private String concepto_uso;
-*/
-//    @OneToOne(cascade= CascadeType.ALL)
-//    @JoinColumn(name = "concepto_uso", referencedColumnName = "id_conceptoPunto" )
-//    private ConceptoUsoPunto conceptoUso;
-//
-//    @OneToOne(mappedBy ="usoPunto")
-//    private DetUsoPunto detUsoPunto;
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name="concepto_usoPunto", referencedColumnName = "id_conceptoUsoPunto")
+    private ConceptoUsoPunto conceptoUsoPunto;
+
+    @OneToOne(mappedBy = "usoPunto")
+    private DetUsoPunto detUsoPunto;
 
     public UsoPunto() {
     }
 
-    public Integer getIdusoPunto() {
-        return idusoPunto;
+    public Integer getIdUsoPunto() {
+        return idUsoPunto;
     }
 
-    public void setIdusoPunto(Integer idusoPunto) {
-        this.idusoPunto = idusoPunto;
+    public void setIdUsoPunto(Integer idUsoPunto) {
+        this.idUsoPunto = idUsoPunto;
     }
 
     public Cliente getCliente() {
@@ -70,19 +66,28 @@ public class UsoPunto {
         this.puntajeUtilizado = puntajeUtilizado;
     }
 
-    public Date getFecha() {
-        return fecha;
+    public Date getFechaUsoPunto() {
+        return fechaUsoPunto;
     }
 
-    public void setFecha(Date fecha) {
-        this.fecha = fecha;
+    public void setFechaUsoPunto(Date fechaUsoPunto) {
+        this.fechaUsoPunto = fechaUsoPunto;
     }
 
-//    public ConceptoUsoPunto getConceptoUso() {
-//        return conceptoUso;
-//    }
-//
-//    public void setConceptoUso(ConceptoUsoPunto conceptoUso) {
-//        this.conceptoUso = conceptoUso;
-//    }
+    public ConceptoUsoPunto getConceptoUsoPunto() {
+        return conceptoUsoPunto;
+    }
+
+    public void setConceptoUsoPunto(ConceptoUsoPunto conceptoUsoPunto) {
+        this.conceptoUsoPunto = conceptoUsoPunto;
+    }
+
+    public DetUsoPunto getDetUsoPunto() {
+        return detUsoPunto;
+    }
+
+    public void setDetUsoPunto(DetUsoPunto detUsoPunto) {
+        this.detUsoPunto = detUsoPunto;
+    }
+
 }

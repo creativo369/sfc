@@ -26,17 +26,6 @@ public class ReglaAsignacionPunto {
     @Basic(optional = false)
     private Integer montoEquivalencia;
 
-
-   // Unidirectional @OneToMany with @JoinColumn
-   /*@OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
-   @JoinColumn(name = "id_vencimientoPunto")
-   @OneToOne(cascade = CascadeType.ALL)
-   @JoinColumn(name = "id_vencimiento", referencedColumnName = "id_vencimientoPunto")
-   private List<ParametrizacionVencimientoPunto> listaVencimientoPunto;
-   private ParametrizacionVencimientoPunto Vencpunto;*/
-
-
-
     public ReglaAsignacionPunto() {
     }
 

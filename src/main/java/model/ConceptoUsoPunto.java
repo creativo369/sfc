@@ -20,8 +20,8 @@ public class ConceptoUsoPunto {
     @Basic(optional = false)
     private Integer puntoRequerido;
 
-//    @OneToOne(mappedBy = "conceptoUso") // a que atributo de la clase BolsaPunto hace referencia para mapear
-//    private UsoPunto UsoPunto;
+    @OneToOne(mappedBy = "conceptoUsoPunto") // a que atributo de la clase BolsaPunto hace referencia para mapear
+    private UsoPunto UsoPunto;
 
     public ConceptoUsoPunto() {
     }
@@ -48,6 +48,14 @@ public class ConceptoUsoPunto {
 
     public void setPuntoRequerido(Integer puntoRequerido) {
         this.puntoRequerido = puntoRequerido;
+    }
+
+    public model.UsoPunto getUsoPunto() {
+        return UsoPunto;
+    }
+
+    public void setUsoPunto(model.UsoPunto usoPunto) {
+        UsoPunto = usoPunto;
     }
 
     public void merge (ConceptoUsoPunto c){
