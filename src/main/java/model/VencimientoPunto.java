@@ -31,12 +31,6 @@ public class VencimientoPunto {
     private Integer duracionDiasPuntaje;
 
 //    @OneToOne(mappedBy = "Vencpunto")   // a que atributo de la clase ReglaPunto hace referencia para mapear
-////    @ManyToOne(fetch = FetchType.LAZY)
-////    @JoinColumn(name = "idReglaPunto", referencedColumnName = "id_reglaPunto" )
-////    /* 2 atributos
-////        name : el atributo que esta en la tabla VencimientoPunto que referencia a la tabla ReglaPunto.
-////        referencedColumnName : al atributo o columna de la tabla ReglaPunto a la cual hace referencia.
-////    * */
 //    private ReglaPunto reglaPunto;
 
     public VencimientoPunto() {
@@ -74,15 +68,13 @@ public class VencimientoPunto {
         this.duracionDiasPuntaje = duracionDiasPuntaje;
     }
 
-/*
-    public ReglaPunto getReglaPunto() {
-        return reglaPunto;
-    }
-
-    public void setReglaPunto(ReglaPunto reglaPunto) {
-        this.reglaPunto = reglaPunto;
-    }
-*/
+//    public ReglaPunto getReglaPunto() {
+//        return reglaPunto;
+//    }
+//
+//    public void setReglaPunto(ReglaPunto reglaPunto) {
+//        this.reglaPunto = reglaPunto;
+//    }
 
     public void merge (VencimientoPunto v){
         setFechaInicioValidez(v.getFechaInicioValidez());

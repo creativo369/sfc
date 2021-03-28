@@ -105,25 +105,25 @@ CREATE TABLE reglaPunto
     limite_inferior    INTEGER NOT NULL,
     limite_superior    INTEGER NOT NULL,
     monto_equivalencia INTEGER NOT NULL,
-    id_vencimiento     INTEGER NOT NULL,
-    CONSTRAINT pk_reglaPunto PRIMARY KEY (id_reglaPunto),
-    CONSTRAINT fk_id_vencimiento
-        FOREIGN KEY (id_vencimiento) REFERENCES vencimientoPunto(id_vencimientoPunto) ON DELETE CASCADE
+    --id_vencimiento     INTEGER NOT NULL,
+    CONSTRAINT pk_reglaPunto PRIMARY KEY (id_reglaPunto)--,
+    --CONSTRAINT fk_id_vencimiento
+      --  FOREIGN KEY (id_vencimiento) REFERENCES vencimientoPunto(id_vencimientoPunto) ON DELETE CASCADE
     
 );
 CREATE SEQUENCE reglaPunto_sec;
 
+INSERT INTO reglaPunto(id_reglaPunto, limite_inferior, limite_superior, monto_equivalencia)--,id_vencimiento)
+    VALUES(1,0,50000,5000);--,1);
+/*
 INSERT INTO reglaPunto(id_reglaPunto, limite_inferior, limite_superior, monto_equivalencia,id_vencimiento)
-    VALUES(1,0,50000,5000,1);
+    VALUES(2,0,50000,5000,2);*/
 
-INSERT INTO reglaPunto(id_reglaPunto, limite_inferior, limite_superior, monto_equivalencia,id_vencimiento)
-    VALUES(2,0,50000,5000,2);
+INSERT INTO reglaPunto(id_reglaPunto, limite_inferior, limite_superior, monto_equivalencia)--,id_vencimiento)
+	VALUES(2,50001,100000,3000);--,3);
 
-INSERT INTO reglaPunto(id_reglaPunto, limite_inferior, limite_superior, monto_equivalencia,id_vencimiento)
-	VALUES(3,50001,100000,3000,3);
-
-INSERT INTO reglaPunto(id_reglaPunto, limite_inferior, limite_superior, monto_equivalencia,id_vencimiento)
-    VALUES(4,100001,200000,1000,4);
+INSERT INTO reglaPunto(id_reglaPunto, limite_inferior, limite_superior, monto_equivalencia)--,id_vencimiento)
+    VALUES(3,100001,200000,1000);--,4);
 
 
 ----------------------------------------------------------------------------------------------------------------------
@@ -145,16 +145,16 @@ CREATE TABLE vencimientoPunto
 CREATE SEQUENCE vencimientoPunto_sec;
 
 INSERT INTO vencimientoPunto(id_vencimientoPunto, fechaInicioValidez, fechaFinValidez, duracionDiasPuntaje)--, idReglaPunto)
-    VALUES(1,'2021-03-17','2021-03-26',10);--,1);
+    VALUES(1,'2021-01-1','2021-06-30',60);--,1);
 
 INSERT INTO vencimientoPunto(id_vencimientoPunto, fechaInicioValidez, fechaFinValidez, duracionDiasPuntaje)--, idReglaPunto)
-    VALUES(2,'2021-03-26','2021-03-29',4);--,4);
+    VALUES(2,'2021-07-1','2021-08-31',15);--,4);
 
 INSERT INTO vencimientoPunto(id_vencimientoPunto, fechaInicioValidez, fechaFinValidez, duracionDiasPuntaje)--, idReglaPunto)
-    VALUES(3,'2021-03-18','2021-03-21',4);--,2);
+    VALUES(3,'2021-09-01','2021-10-31',25);--,2);
 
 INSERT INTO vencimientoPunto(id_vencimientoPunto, fechaInicioValidez, fechaFinValidez, duracionDiasPuntaje)--, idReglaPunto)
-    VALUES(4,'2021-03-03','2021-03-07',5);--,3);
+    VALUES(4,'2021-11-01','2021-12-31',18);--,3);
 
 ----------------------------------------------------------------------------------------------------------------------
 

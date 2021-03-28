@@ -24,13 +24,13 @@ public class ReglaPuntoDAO {
     /*
            --- Create ---
     */
-    @Inject
-    VencimientoPuntoDAO vpDao; // variable de la clase VencimientoPuntoDAO
-    public void nuevaRegla(ReglaPunto regla){
-        //The persist operation can only be called within a transaction
-        this.em.persist(regla);
-        vpDao.nuevoVencimiento(regla.getVencpunto());
-    }
+//    @Inject
+//    VencimientoPuntoDAO vpDao; // variable de la clase VencimientoPuntoDAO
+//    public void nuevaRegla(ReglaPunto regla){
+//        //The persist operation can only be called within a transaction
+//        this.em.persist(regla);
+//        vpDao.nuevoVencimiento(regla.getVencpunto());
+//    }
     /*
           --- Read ---
    */

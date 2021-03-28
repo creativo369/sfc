@@ -36,9 +36,12 @@ public class UsoPunto {
     @Basic(optional = false)
     private String concepto_uso;
 */
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "concepto_uso", referencedColumnName = "id_conceptoPunto" )
-    private ConceptoPunto conceptoUso;
+//    @OneToOne(cascade= CascadeType.ALL)
+//    @JoinColumn(name = "concepto_uso", referencedColumnName = "id_conceptoPunto" )
+//    private ConceptoPunto conceptoUso;
+//
+//    @OneToOne(mappedBy ="usoPunto")
+//    private DetUsoPunto detUsoPunto;
 
     public UsoPunto() {
     }
@@ -75,11 +78,11 @@ public class UsoPunto {
         this.fecha = fecha;
     }
 
-    public ConceptoPunto getConceptoUso() {
-        return conceptoUso;
-    }
-
-    public void setConceptoUso(ConceptoPunto conceptoUso) {
-        this.conceptoUso = conceptoUso;
-    }
+//    public ConceptoPunto getConceptoUso() {
+//        return conceptoUso;
+//    }
+//
+//    public void setConceptoUso(ConceptoPunto conceptoUso) {
+//        this.conceptoUso = conceptoUso;
+//    }
 }

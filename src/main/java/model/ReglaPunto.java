@@ -28,13 +28,13 @@ public class ReglaPunto {
     private Integer monto_equivalencia;
 
 
-    // Unidirectional @OneToMany with @JoinColumn
-    /*@OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
-    @JoinColumn(name = "id_vencimientoPunto")*/
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "id_vencimiento", referencedColumnName = "id_vencimientoPunto")
-//    private List<VencimientoPunto> listaVencimientoPunto;
-    private VencimientoPunto Vencpunto;
+//    // Unidirectional @OneToMany with @JoinColumn
+//    /*@OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+//    @JoinColumn(name = "id_vencimientoPunto")*/
+//    @OneToOne(cascade = CascadeType.ALL)
+//    @JoinColumn(name = "id_vencimiento", referencedColumnName = "id_vencimientoPunto")
+////    private List<VencimientoPunto> listaVencimientoPunto;
+//    private VencimientoPunto Vencpunto;
 
 
 
@@ -73,23 +73,23 @@ public class ReglaPunto {
         this.monto_equivalencia = monto_equivalencia;
     }
 
-    public VencimientoPunto getVencpunto() {
-        return Vencpunto;
-    }
-
-    public void setVencpunto(VencimientoPunto vencpunto) {
-        Vencpunto = vencpunto;
-    }
+//    public VencimientoPunto getVencpunto() {
+//        return Vencpunto;
+//    }
+//
+//    public void setVencpunto(VencimientoPunto vencpunto) {
+//        Vencpunto = vencpunto;
+//    }
 
     public void merge (ReglaPunto r){
         setLimite_inferior(r.getLimite_inferior());
         setLimite_superior(r.getLimite_superior());
         setMonto_equivalencia(r.getMonto_equivalencia());
-        VencimientoPunto v = r.getVencpunto(); // Obtengo la nueva fechas para actualizar
-        VencimientoPunto v2 = getVencpunto(); // las fechas antiguas por el cual cambiar
-        v2.setFechaInicioValidez(v.getFechaInicioValidez());
-        v2.setFechaFinValidez(v.getFechaFinValidez());
-        v2.setDuracionDiasPuntaje(v.getDuracionDiasPuntaje());
+//        VencimientoPunto v = r.getVencpunto(); // Obtengo la nueva fechas para actualizar
+//        VencimientoPunto v2 = getVencpunto(); // las fechas antiguas por el cual cambiar
+//        v2.setFechaInicioValidez(v.getFechaInicioValidez());
+//        v2.setFechaFinValidez(v.getFechaFinValidez());
+//        v2.setDuracionDiasPuntaje(v.getDuracionDiasPuntaje());
         //setVencpunto(r.getVencpunto());
     }
 
