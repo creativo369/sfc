@@ -18,34 +18,34 @@ CREATE TABLE cliente
 CREATE SEQUENCE cliente_sec;
 
 INSERT INTO cliente(id_cliente, nombre, apellido, numero_documento, tipo_documento, nacionalidad, email, telefono, fecha_nacimiento)
-    VALUES(1,'Victor','Gonzalez','5528793','Cedula de Identidad Civil','Paraguaya','geekpy@hotmail.com','0976175870','1994-06-03');
+    VALUES(nextval('cliente_sec'),'Victor','Gonzalez','5528793','Cedula de Identidad Civil','Paraguaya','geekpy@hotmail.com','0976175870','1994-06-03');
 
 INSERT INTO cliente(id_cliente, nombre, apellido, numero_documento, tipo_documento, nacionalidad, email, telefono, fecha_nacimiento)
-    VALUES(2,'Juan','Gonzalez','4321258','Cédula de Identidad Civil','Paraguaya','juancito8@hotmail.com','0983253941','1970-05-24');
+    VALUES(nextval('cliente_sec'),'Juan','Gonzalez','4321258','Cédula de Identidad Civil','Paraguaya','juancito8@hotmail.com','0983253941','1970-05-24');
 
 INSERT INTO cliente(id_cliente, nombre, apellido, numero_documento, tipo_documento, nacionalidad, email, telefono, fecha_nacimiento)
-    VALUES(3,'Maria','Fleitas','1354789','Cedula de Identidad Civil','Paraguaya','marifle@hotmail.com','0976456955','1990-08-12');
+    VALUES(nextval('cliente_sec'),'Maria','Fleitas','1354789','Cedula de Identidad Civil','Paraguaya','marifle@hotmail.com','0976456955','1990-08-12');
 
 INSERT INTO cliente(id_cliente, nombre, apellido, numero_documento, tipo_documento, nacionalidad, email, telefono, fecha_nacimiento)
-    VALUES(4,'Jose','Martinez','36821455','Cedula de Identidad Civil','Paraguaya','jM@gmail.com','0985653214','1992-03-22');
+    VALUES(nextval('cliente_sec'),'Jose','Martinez','36821455','Cedula de Identidad Civil','Paraguaya','jM@gmail.com','0985653214','1992-03-22');
 
 INSERT INTO cliente(id_cliente, nombre, apellido, numero_documento, tipo_documento, nacionalidad, email, telefono, fecha_nacimiento)
-    VALUES(5,'Marcelo','Britez','6357846','Cedula de Identidad Civil','Paraguaya','marcelitob@hotmail.com','0961425368','1990-09-23');
+    VALUES(nextval('cliente_sec'),'Marcelo','Britez','6357846','Cedula de Identidad Civil','Paraguaya','marcelitob@hotmail.com','0961425368','1990-09-23');
 
 INSERT INTO cliente(id_cliente, nombre, apellido, numero_documento, tipo_documento, nacionalidad, email, telefono, fecha_nacimiento)
-    VALUES(6,'Jorge','Ferrari','3658987','Cedula de Identidad Civil','Paraguaya','jorge1234@hotmail.com','0986582324','1992-07-24');
+    VALUES(nextval('cliente_sec'),'Jorge','Ferrari','3658987','Cedula de Identidad Civil','Paraguaya','jorge1234@hotmail.com','0986582324','1992-07-24');
 
 INSERT INTO cliente(id_cliente, nombre, apellido, numero_documento, tipo_documento, nacionalidad, email, telefono, fecha_nacimiento)
-    VALUES(7,'Fatima','Lopez','4326538','Cedula de Identidad Civil','Paraguaya','falope@hotmail.com','0986741852','1997-04-25');
+    VALUES(nextval('cliente_sec'),'Fatima','Lopez','4326538','Cedula de Identidad Civil','Paraguaya','falope@hotmail.com','0986741852','1997-04-25');
 
 INSERT INTO cliente(id_cliente, nombre, apellido, numero_documento, tipo_documento, nacionalidad, email, telefono, fecha_nacimiento)
-    VALUES(8,'Pablo','Villamayor','4567892','Cedula de Identidad Civil','Paraguaya','pabloV@hotmail.com','0961532478','1996-07-07');
+    VALUES(nextval('cliente_sec'),'Pablo','Villamayor','4567892','Cedula de Identidad Civil','Paraguaya','pabloV@hotmail.com','0961532478','1996-07-07');
 
 INSERT INTO cliente(id_cliente, nombre, apellido, numero_documento, tipo_documento, nacionalidad, email, telefono, fecha_nacimiento)
-    VALUES(9,'Karina','Britos','3265412','Cedula de Identidad Civil','Paraguaya','karinaBr@hotmail.com','0986785412','1998-10-24');
+    VALUES(nextval('cliente_sec'),'Karina','Britos','3265412','Cedula de Identidad Civil','Paraguaya','karinaBr@hotmail.com','0986785412','1998-10-24');
 
 INSERT INTO cliente(id_cliente, nombre, apellido, numero_documento, tipo_documento, nacionalidad, email, telefono, fecha_nacimiento)
-    VALUES(10,'Daniel','Garcia','4235687','Cedula de Identidad Civil','Paraguaya','DaniGa@hotmail.com','0974321951','1999-12-03');
+    VALUES(nextval('cliente_sec'),'Daniel','Garcia','4235687','Cedula de Identidad Civil','Paraguaya','DaniGa@hotmail.com','0974321951','1999-12-03');
 
 
 ----------------------------------------------------------------------------------------------------------------------
@@ -61,34 +61,34 @@ CREATE TABLE conceptoUsoPunto
 CREATE SEQUENCE conceptoUsoPunto_sec;
 
 INSERT INTO conceptoUsoPunto(id_conceptoUsoPunto, descripcion_concepto, punto_requerido)
-    VALUES(1,'Saldo para Hablar',200);
+    VALUES(nextval('conceptoUsoPunto_sec'),'Saldo para Hablar',200);
 
 INSERT INTO conceptoUsoPunto(id_conceptoUsoPunto, descripcion_concepto, punto_requerido)
-    VALUES(2,'SMS gratis por 12 horas',80);
+    VALUES(nextval('conceptoUsoPunto_sec'),'SMS gratis por 12 horas',80);
 
 INSERT INTO conceptoUsoPunto(id_conceptoUsoPunto, descripcion_concepto, punto_requerido)
-    VALUES(3,'Alquila 1 pelicula por 48 hrs.',100);
+    VALUES(nextval('conceptoUsoPunto_sec'),'Alquila 1 pelicula por 48 hrs.',100);
 
 INSERT INTO conceptoUsoPunto(id_conceptoUsoPunto, descripcion_concepto, punto_requerido)
-    VALUES(4,'Pack de internet',15);
+    VALUES(nextval('conceptoUsoPunto_sec'),'Pack de internet',15);
 
 INSERT INTO conceptoUsoPunto(id_conceptoUsoPunto, descripcion_concepto, punto_requerido)
-    VALUES(5,'Descuentos en Abonos de TV cable',300);
+    VALUES(nextval('conceptoUsoPunto_sec'),'Descuentos en Abonos de TV cable',300);
 
 INSERT INTO conceptoUsoPunto(id_conceptoUsoPunto, descripcion_concepto, punto_requerido)
-    VALUES(6,'Descuento en Servicio Técnico',900);
+    VALUES(nextval('conceptoUsoPunto_sec'),'Descuento en Servicio Técnico',900);
 
 INSERT INTO conceptoUsoPunto(id_conceptoUsoPunto, descripcion_concepto, punto_requerido)
-    VALUES(7,'Pack de internet',15);
+    VALUES(nextval('conceptoUsoPunto_sec'),'Pack de internet',15);
 
 INSERT INTO conceptoUsoPunto(id_conceptoUsoPunto, descripcion_concepto, punto_requerido)
-    VALUES(8,'Descuento en Equipos',1500);
+    VALUES(nextval('conceptoUsoPunto_sec'),'Descuento en Equipos',1500);
 
 INSERT INTO conceptoUsoPunto(id_conceptoUsoPunto, descripcion_concepto, punto_requerido)
-    VALUES(9,'Vale de premio',30);
+    VALUES(nextval('conceptoUsoPunto_sec'),'Vale de premio',30);
 
 INSERT INTO conceptoUsoPunto(id_conceptoUsoPunto, descripcion_concepto, punto_requerido)
-    VALUES(10,'Pack de redes sociales gratis por 1 semana',500);
+    VALUES(nextval('conceptoUsoPunto_sec'),'Pack de redes sociales gratis por 1 semana',500);
 
 
 ----------------------------------------------------------------------------------------------------------------------
@@ -110,13 +110,13 @@ CREATE TABLE reglaAsignacionPunto
 CREATE SEQUENCE reglaAsignacionPunto_sec;
 
 INSERT INTO reglaAsignacionPunto(id_reglaAsignacionPunto, limite_inferior, limite_superior, monto_equivalencia)
-    VALUES(1,0,50000,5000);
+    VALUES(nextval('reglaAsignacionPunto_sec'),0,50000,5000);
 
 INSERT INTO reglaAsignacionPunto(id_reglaAsignacionPunto, limite_inferior, limite_superior, monto_equivalencia)
-	VALUES(2,50001,100000,3000);
+	VALUES(nextval('reglaAsignacionPunto_sec'),50001,100000,3000);
 
 INSERT INTO reglaAsignacionPunto(id_reglaAsignacionPunto, limite_inferior, limite_superior, monto_equivalencia)
-    VALUES(3,100001,200000,1000);
+    VALUES(nextval('reglaAsignacionPunto_sec'),100001,200000,1000);
 
 
 ----------------------------------------------------------------------------------------------------------------------
