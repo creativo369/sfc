@@ -128,4 +128,9 @@ public class BolsaPunto {
     public void setListaDetUsoPunto(List<DetUsoPunto> listaDetUsoPunto) {
         this.listaDetUsoPunto = listaDetUsoPunto;
     }
+
+    public void merge(BolsaPunto b) {
+        setPuntajeUtilizado(b.getPuntajeUtilizado());
+        setSaldoPuntos(b.getSaldoPuntos());
+    }
 }

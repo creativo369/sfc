@@ -27,7 +27,7 @@ public class BolsaPuntoDAO {
     }
 
     public List<BolsaPunto> listarBolsas(int id_cliente){
-        Cliente cliente = clienteDAO.obtenerClienteById(id_cliente);
+        Cliente cliente = this.em.find(Cliente.class, id_cliente);
         Query query = this.em.createQuery( "select b from BolsaPunto b");
         List<BolsaPunto> listaBolsas = (List<BolsaPunto>) query.getResultList();
         List<BolsaPunto> newLista = new ArrayList<>();
@@ -39,10 +39,14 @@ public class BolsaPuntoDAO {
         return newLista;
     }
 
-    public List<BolsaPunto> listarTodoBP(){
-        Query query = this.em.createQuery( "select b from BolsaPunto b");
-        List<BolsaPunto> listaBolsas = (List<BolsaPunto>) query.getResultList();
-        return listaBolsas;
+    public void actualizarBolsa(BolsaPunto b){
+        // Primero vemos si esta en la base de datos para poder actualizar
+        BolsaPunto bolsa = this.em.find(BolsaPunto.class, b.getIdBolsaPunto());
+        if (  bolsa == null) {
+            throw new EntityNotFoundException("No existe la bolsa");
+        }else{
+            bolsa.merge(b);
+        }
     }
 
     public void eliminarBolsa(Integer id){
@@ -54,7 +58,9 @@ public class BolsaPuntoDAO {
         }
     }
 
-//    public void actualizarBolsa(BolsaPunto bolsa){
-//        this.merge(bolsa);
-//    }
+    public List<BolsaPunto> listarTodoBP(){
+        Query query = this.em.createQuery( "select b from BolsaPunto b");
+        List<BolsaPunto> listaBolsas = (List<BolsaPunto>) query.getResultList();
+        return listaBolsas;
+    }
 }
