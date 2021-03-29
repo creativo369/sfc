@@ -26,6 +26,7 @@ public class ProcesoProgramadoDAO {
         for (BolsaPunto bolsa: listaBolsas) {
             if (bolsa.getFechaCaducidadPuntaje().equals(hoy)){
                 bolsa.setSaldoPuntos(0);
+                bolsaPuntoDAO.actualizarBolsa(bolsa);
             }
         }
     }
