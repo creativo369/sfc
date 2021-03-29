@@ -59,4 +59,5 @@ public class DetUsoPunto {
     public void setBolsaPunto(BolsaPunto bolsaPunto) {
         this.bolsaPunto = bolsaPunto;
     }
+
 }
