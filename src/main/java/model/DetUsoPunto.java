@@ -21,7 +21,7 @@ public class DetUsoPunto {
     @Basic(optional = false)
     private Integer puntajeUtilizado;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "id_bolsa_puntos", referencedColumnName = "id_bolsaPunto")
     private BolsaPunto bolsaPunto;
 

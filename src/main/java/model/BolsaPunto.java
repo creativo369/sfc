@@ -51,8 +51,8 @@ public class BolsaPunto {
     @Basic(optional = false)
     private Integer montoOperacion;
 
-    @OneToMany(mappedBy = "bolsaPunto") // a que atributo de la clase BolsaPunto hace referencia para mapear
-    private List<DetUsoPunto> listaDetUsoPunto;
+//    @OneToMany(mappedBy = "bolsaPunto") // a que atributo de la clase BolsaPunto hace referencia para mapear
+//    private List<DetUsoPunto> listaDetUsoPunto;
 
     public BolsaPunto() {
     }
@@ -121,13 +121,13 @@ public class BolsaPunto {
         this.montoOperacion = montoOperacion;
     }
 
-    public List<DetUsoPunto> getListaDetUsoPunto() {
-        return listaDetUsoPunto;
-    }
+//    public List<DetUsoPunto> getListaDetUsoPunto() {
+//        return listaDetUsoPunto;
+//    }
 
-    public void setListaDetUsoPunto(List<DetUsoPunto> listaDetUsoPunto) {
-        this.listaDetUsoPunto = listaDetUsoPunto;
-    }
+//    public void setListaDetUsoPunto(List<DetUsoPunto> listaDetUsoPunto) {
+//        this.listaDetUsoPunto = listaDetUsoPunto;
+//    }
 
     public void merge(BolsaPunto b) {
         setPuntajeUtilizado(b.getPuntajeUtilizado());
