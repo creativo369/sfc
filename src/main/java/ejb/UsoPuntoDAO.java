@@ -18,7 +18,6 @@ public class UsoPuntoDAO {
     // The EntityManager.persist() operation is used to insert a new object into the database.
     private EntityManager em;  // Un objeto que nos permite administrar y manipular nuestras entidades y realiza el mapeo correspondiente en la base de datos
 
-    @TransactionAttribute(TransactionAttributeType.REQUIRED)
     public void crear(UsoPunto u) {
         //The persist operation can only be called within a transaction
         this.em.persist(u);
