@@ -1,13 +1,8 @@
 package rest;
 
 
-import ejb.BolsaPuntoDAO;
-import ejb.ClienteDAO;
-import ejb.ParametrizacionVencimientoPuntoDAO;
-import ejb.ReglaAsignacionPuntoDAO;
-import model.BolsaPunto;
-import model.ParametrizacionVencimientoPunto;
-import model.ReglaAsignacionPunto;
+import ejb.*;
+import model.*;
 
 import javax.inject.Inject;
 import javax.ws.rs.*;
@@ -30,6 +25,9 @@ public class ServiciosREST {
 
     @Inject
     private BolsaPuntoDAO bolsaDAO;
+
+    @Inject
+    private ConceptoUsoPuntoDAO conceptoUsoDao;
 
     @POST
     @Path("/carga-de-puntos/{id_cliente}/{monto}")
@@ -71,6 +69,59 @@ public class ServiciosREST {
         return builder.build();
     }
 
+
+    @POST
+    @Path("/utilizacion-puntos/{id_cliente}/{id_concepto_uso}")
+    public Response utilizacionPuntos(@PathParam(value="id_cliente") Integer id_cliente, @PathParam(value="id_concepto_uso")Integer id_concepto_uso){
+        Map<String, String> respuesta = new HashMap<>();
+        Response.ResponseBuilder builder = null;
+
+        UsoPunto usoPunto = new UsoPunto();
+        DetUsoPunto detUsoPunto = new DetUsoPunto();
+        ConceptoUsoPunto concepto = this.conceptoUsoDao.obtenerConceptoUsoPuntoById(id_concepto_uso);
+        Cliente cliente = clienteDAO.obtenerClienteById(id_cliente);
+        List<BolsaPunto> listaBolsa = bolsaDAO.listarBolsas(id_cliente);
+
+        int puntos_requeridos = concepto.getPuntoRequerido();
+        int total_puntos_cliente = 0;
+
+        for (BolsaPunto bolsa: listaBolsa) {
+            total_puntos_cliente += bolsa.getPuntajeAsignado();
+        }
+
+        if (total_puntos_cliente - puntos_requeridos >= 0) {
+            //CABECERA
+            usoPunto.setConceptoUsoPunto(concepto);
+            usoPunto.setCliente(cliente);
+            usoPunto.setPuntajeUtilizado(concepto.getPuntoRequerido());
+            usoPunto.setFechaUsoPunto(new Date());
+            //DETALLE
+            detUsoPunto.setUsoPunto(usoPunto);
+            detUsoPunto.setPuntajeUtilizado(concepto.getPuntoRequerido());
+
+            for (BolsaPunto bolsa: listaBolsa) {
+                if (puntos_requeridos - bolsa.getSaldoPuntos()>= 0){
+                    puntos_requeridos -= bolsa.getSaldoPuntos();
+                    bolsa.setPuntajeUtilizado(bolsa.getPuntajeUtilizado() + puntos_requeridos);
+                    bolsa.setSaldoPuntos(bolsa.getSaldoPuntos() - puntos_requeridos);
+                    detUsoPunto.setBolsaPunto(bolsa);
+                }else {
+                    detUsoPunto.setBolsaPunto(bolsa);
+                    bolsa.setPuntajeUtilizado(bolsa.getPuntajeUtilizado() + puntos_requeridos);
+                    bolsa.setSaldoPuntos(bolsa.getSaldoPuntos() - puntos_requeridos);
+                    break;
+                }
+            }
+
+            respuesta.put("exito", "Se activo " + concepto.getDescripcionConcepto() + " por " + puntos_requeridos + " puntos");
+            builder = Response.status(Response.Status.OK).entity(respuesta);
+        }else{
+            respuesta.put("error", "No posee los suficientes puntos para canjear");
+            builder = Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(respuesta);
+        }
+
+        return builder.build();
+    }
 
     @GET
     @Path("/EquivalenciaPuntoMonto/{m}")
