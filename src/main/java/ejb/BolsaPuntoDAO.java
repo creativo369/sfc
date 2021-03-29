@@ -39,6 +39,12 @@ public class BolsaPuntoDAO {
         return newLista;
     }
 
+    public List<BolsaPunto> listarTodoBP(){
+        Query query = this.em.createQuery( "select b from BolsaPunto b");
+        List<BolsaPunto> listaBolsas = (List<BolsaPunto>) query.getResultList();
+        return listaBolsas;
+    }
+
     public void eliminarBolsa(Integer id){
         BolsaPunto bolsa = this.em.find(BolsaPunto.class, id);
         if (bolsa == null) {
