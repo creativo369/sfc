@@ -90,30 +90,33 @@ public class ServiciosREST {
         }
 
         if (total_puntos_cliente - puntos_requeridos >= 0) {
-            //CABECERA
+            //CABECERA ( Hay que persistir )
             usoPunto.setConceptoUsoPunto(concepto);
             usoPunto.setCliente(cliente);
             usoPunto.setPuntajeUtilizado(concepto.getPuntoRequerido());
             usoPunto.setFechaUsoPunto(new Date());
-            //DETALLE
+            //DETALLE ( Hay que persistir )
             detUsoPunto.setUsoPunto(usoPunto);
             detUsoPunto.setPuntajeUtilizado(concepto.getPuntoRequerido());
             for (BolsaPunto bolsa: listaBolsa) {
                 if (puntos_requeridos - bolsa.getSaldoPuntos()>= 0){
                     bolsa.setPuntajeUtilizado(bolsa.getPuntajeAsignado());
+                    puntos_requeridos = puntos_requeridos - bolsa.getSaldoPuntos();
                     bolsa.setSaldoPuntos(0);
                      // puntos requeridos = puntos requeridos - bolsa_saldo
                     detUsoPunto.setBolsaPunto(bolsa);
                     this.bolsaDAO.actualizarBolsa(bolsa);
-                }else {
-                    System.out.println(puntos_requeridos);
+                    if (puntos_requeridos == 0){
+                        break;
+                    }
+                }else { // aca se entra si necesitamos puntos restantes de otras bolsas
                     bolsa.setPuntajeUtilizado(bolsa.getPuntajeUtilizado() + puntos_requeridos);
                     bolsa.setSaldoPuntos(bolsa.getSaldoPuntos() - puntos_requeridos);
                     detUsoPunto.setBolsaPunto(bolsa);
+                    puntos_requeridos = puntos_requeridos - bolsa.getSaldoPuntos();
                     this.bolsaDAO.actualizarBolsa(bolsa);
                     break;
                 }
-                puntos_requeridos = puntos_requeridos - bolsa.getSaldoPuntos();
             }
             respuesta.put("exito", "Se activo " + concepto.getDescripcionConcepto() + " por " + concepto.getPuntoRequerido() + " puntos");
             builder = Response.status(Response.Status.OK).entity(respuesta);
