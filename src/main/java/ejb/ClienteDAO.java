@@ -2,6 +2,7 @@
 // ClienteDAO ( DAO: Data access Object )
 package ejb;
 
+import model.BolsaPunto;
 import model.Cliente;
 
 import javax.ejb.Stateless;
@@ -11,7 +12,11 @@ import javax.persistence.EntityNotFoundException;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 import javax.ws.rs.DELETE;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 @Stateless // No tiene estado, vamos a usar el ejb sin estado, es lo que se acostumbra.
 public class ClienteDAO {
@@ -21,6 +26,11 @@ public class ClienteDAO {
 
 //    @Inject
     // Por defecto el contenedor hace que esto sea transaccional: que si existiese un error no se comitee a la base de datos y se revierta la escritura
+
+    @Inject
+    private BolsaPuntoDAO bolsaPuntoDAO;
+
+
 
     /*
            --- Create ---
@@ -92,5 +102,22 @@ public class ClienteDAO {
         }
         clientes = (List<Cliente>) q.getResultList();
         return clientes;
+    }
+
+    public List<Cliente> clientesPuntosAVencer(Integer dias) {
+        List<Cliente> listaClientes = new ArrayList<>();
+        List<BolsaPunto> listaBolsas = bolsaPuntoDAO.listarTodoBP();
+        Date hoy = new Date();
+        for (BolsaPunto bolsa: listaBolsas) {
+            if (getDifferenceDays(bolsa.getFechaCaducidadPuntaje(), hoy) <= dias){
+                listaClientes.add(bolsa.getCliente());
+            }
+        }
+        return listaClientes;
+    }
+
+    public static long getDifferenceDays(Date d1, Date d2) {
+        long diff = d2.getTime() - d1.getTime();
+        return TimeUnit.DAYS.convert(diff, TimeUnit.MILLISECONDS);
     }
 }
