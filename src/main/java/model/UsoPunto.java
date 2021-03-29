@@ -15,7 +15,7 @@ public class UsoPunto {
     private Integer idUsoPunto;
 
     // Dueño de la relación o owner, por tener la referencia al campo de la relación a la tabla Cliente
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "id_cliente", referencedColumnName = "id_cliente" )
     /* 2 atributos
         name : el atributo que esta en la tabla UsoPunto que referencia a la tabla cliente.

@@ -17,7 +17,7 @@ public class BolsaPunto {
     private Integer idBolsaPunto;
 
     // Dueño de la relación o owner, por tener la referencia al campo de la relación a la tabla Cliente
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "id_cliente", referencedColumnName = "id_cliente" )
     /* 2 atributos
         name : el atributo que esta en la tabla BolsaPunto que referencia a la tabla cliente.

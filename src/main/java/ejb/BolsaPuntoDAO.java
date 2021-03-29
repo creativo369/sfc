@@ -63,4 +63,16 @@ public class BolsaPuntoDAO {
         List<BolsaPunto> listaBolsas = (List<BolsaPunto>) query.getResultList();
         return listaBolsas;
     }
+
+    public List<BolsaPunto> listarPorRango(Integer a, Integer b){
+        Query query = this.em.createQuery("SELECT b FROM BolsaPunto b");
+        List<BolsaPunto> listaBolsas = (List<BolsaPunto>) query.getResultList();
+        List<BolsaPunto> newLista = new ArrayList<>();
+        for (BolsaPunto bolsa : listaBolsas) {
+            if (bolsa.getPuntajeAsignado() >= a && bolsa.getPuntajeAsignado() <= b){
+                newLista.add(bolsa);
+            }
+        }
+        return newLista;
+    }
 }
