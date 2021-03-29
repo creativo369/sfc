@@ -98,22 +98,24 @@ public class ServiciosREST {
             //DETALLE
             detUsoPunto.setUsoPunto(usoPunto);
             detUsoPunto.setPuntajeUtilizado(concepto.getPuntoRequerido());
-
             for (BolsaPunto bolsa: listaBolsa) {
                 if (puntos_requeridos - bolsa.getSaldoPuntos()>= 0){
-                    puntos_requeridos -= bolsa.getSaldoPuntos();
-                    bolsa.setPuntajeUtilizado(bolsa.getPuntajeUtilizado() + puntos_requeridos);
-                    bolsa.setSaldoPuntos(bolsa.getSaldoPuntos() - puntos_requeridos);
+                    bolsa.setPuntajeUtilizado(bolsa.getPuntajeAsignado());
+                    bolsa.setSaldoPuntos(0);
+                     // puntos requeridos = puntos requeridos - bolsa_saldo
                     detUsoPunto.setBolsaPunto(bolsa);
+                    this.bolsaDAO.actualizarBolsa(bolsa);
                 }else {
-                    detUsoPunto.setBolsaPunto(bolsa);
+                    System.out.println(puntos_requeridos);
                     bolsa.setPuntajeUtilizado(bolsa.getPuntajeUtilizado() + puntos_requeridos);
                     bolsa.setSaldoPuntos(bolsa.getSaldoPuntos() - puntos_requeridos);
+                    detUsoPunto.setBolsaPunto(bolsa);
+                    this.bolsaDAO.actualizarBolsa(bolsa);
                     break;
                 }
+                puntos_requeridos = puntos_requeridos - bolsa.getSaldoPuntos();
             }
-
-            respuesta.put("exito", "Se activo " + concepto.getDescripcionConcepto() + " por " + puntos_requeridos + " puntos");
+            respuesta.put("exito", "Se activo " + concepto.getDescripcionConcepto() + " por " + concepto.getPuntoRequerido() + " puntos");
             builder = Response.status(Response.Status.OK).entity(respuesta);
         }else{
             respuesta.put("error", "No posee los suficientes puntos para canjear");

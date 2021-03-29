@@ -51,8 +51,8 @@ public class Cliente {
 //    @OneToMany(mappedBy = "cliente") // a que atributo de la clase BolsaPunto hace referencia para mapear
 //    private List<BolsaPunto> listaBolsas;
 
-    @OneToMany(mappedBy = "cliente") // a que atributo de la clase BolsaPunto hace referencia para mapear
-    private List<UsoPunto> listaUsoPuntos;
+//    @OneToMany(mappedBy = "cliente") // a que atributo de la clase BolsaPunto hace referencia para mapear
+//    private List<UsoPunto> listaUsoPuntos;
 
     public Cliente() {
 
@@ -138,13 +138,13 @@ public class Cliente {
 //        this.listaBolsas = listaBolsas;
 //    }
 
-    public List<UsoPunto> getListaUsoPuntos() {
-        return listaUsoPuntos;
-    }
-
-    public void setListaUsoPuntos(List<UsoPunto> listaUsoPuntos) {
-        this.listaUsoPuntos = listaUsoPuntos;
-    }
+//    public List<UsoPunto> getListaUsoPuntos() {
+//        return listaUsoPuntos;
+//    }
+//
+//    public void setListaUsoPuntos(List<UsoPunto> listaUsoPuntos) {
+//        this.listaUsoPuntos = listaUsoPuntos;
+//    }
 
     public void merge(Cliente c) {
         setNumeroDocumento(c.getNumeroDocumento());
