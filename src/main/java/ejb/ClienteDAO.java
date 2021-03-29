@@ -110,7 +110,9 @@ public class ClienteDAO {
         Date hoy = new Date();
         for (BolsaPunto bolsa: listaBolsas) {
             if (getDifferenceDays(bolsa.getFechaCaducidadPuntaje(), hoy) <= dias){
-                listaClientes.add(bolsa.getCliente());
+                if (!listaClientes.contains(bolsa.getCliente())) {
+                    listaClientes.add(bolsa.getCliente());
+                }
             }
         }
         return listaClientes;
