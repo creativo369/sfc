@@ -2,15 +2,16 @@ package rest;
 
 import ejb.BolsaPuntoDAO;
 import ejb.ClienteDAO;
+import model.Cliente;
 
 import javax.inject.Inject;
 import javax.ws.rs.*;
 import javax.ws.rs.core.Response;
+import java.util.List;
 
 @Path("consultas")
 @Consumes("application/json")
 @Produces("application/json")
-
 public class ConsultasREST {
 
     @Inject
@@ -38,4 +39,11 @@ public class ConsultasREST {
         return Response.ok(bolsaPuntoDAO.listarPorRango(a, b)).build();
     }
 
+//    @GET
+//    @Path("uso-de-puntos-por-concepto/{id_concepto}")
+//    public Response listarUsoDePuntosPorConcepto(@PathParam(value="id_concepto")Integer id_concepto) {
+//
+//
+//        return Response.ok().build();
+//    }
 }

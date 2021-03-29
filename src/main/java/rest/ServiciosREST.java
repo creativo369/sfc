@@ -29,6 +29,12 @@ public class ServiciosREST {
     @Inject
     private ConceptoUsoPuntoDAO conceptoUsoDao;
 
+    @Inject
+    private UsoPuntoDAO usoPuntoDAO;
+
+    @Inject
+    private DetUsoPuntoDAO detUsoPuntoDAO;
+
     @POST
     @Path("/carga-de-puntos/{id_cliente}/{monto}")
     public Response cargaPuntos(@PathParam("id_cliente") int id_cliente,@PathParam("monto") int monto ){
@@ -90,21 +96,23 @@ public class ServiciosREST {
         }
 
         if (total_puntos_cliente - puntos_requeridos >= 0) {
-            //CABECERA ( Hay que persistir )
-            usoPunto.setConceptoUsoPunto(concepto);
-            usoPunto.setCliente(cliente);
-            usoPunto.setPuntajeUtilizado(concepto.getPuntoRequerido());
-            usoPunto.setFechaUsoPunto(new Date());
-            //DETALLE ( Hay que persistir )
-            detUsoPunto.setUsoPunto(usoPunto);
-            detUsoPunto.setPuntajeUtilizado(concepto.getPuntoRequerido());
+
             for (BolsaPunto bolsa: listaBolsa) {
                 if (puntos_requeridos - bolsa.getSaldoPuntos()>= 0){
                     bolsa.setPuntajeUtilizado(bolsa.getPuntajeAsignado());
                     puntos_requeridos = puntos_requeridos - bolsa.getSaldoPuntos();
                     bolsa.setSaldoPuntos(0);
-                     // puntos requeridos = puntos requeridos - bolsa_saldo
+                    //CABECERA
+                    usoPunto.setConceptoUsoPunto(concepto);
+                    usoPunto.setCliente(cliente);
+                    usoPunto.setPuntajeUtilizado(concepto.getPuntoRequerido());
+                    usoPunto.setFechaUsoPunto(new Date());
+                    //DETALLE
+                    detUsoPunto.setUsoPunto(usoPunto);
+                    detUsoPunto.setPuntajeUtilizado(concepto.getPuntoRequerido());
                     detUsoPunto.setBolsaPunto(bolsa);
+                    this.detUsoPuntoDAO.crear(detUsoPunto);
+                    this.usoPuntoDAO.crear(usoPunto);
                     this.bolsaDAO.actualizarBolsa(bolsa);
                     if (puntos_requeridos == 0){
                         break;
@@ -112,8 +120,18 @@ public class ServiciosREST {
                 }else { // aca se entra si necesitamos puntos restantes de otras bolsas
                     bolsa.setPuntajeUtilizado(bolsa.getPuntajeUtilizado() + puntos_requeridos);
                     bolsa.setSaldoPuntos(bolsa.getSaldoPuntos() - puntos_requeridos);
+                    //CABECERA
+                    usoPunto.setConceptoUsoPunto(concepto);
+                    usoPunto.setCliente(cliente);
+                    usoPunto.setPuntajeUtilizado(concepto.getPuntoRequerido());
+                    usoPunto.setFechaUsoPunto(new Date());
+                    //DETALLE
+                    detUsoPunto.setUsoPunto(usoPunto);
+                    detUsoPunto.setPuntajeUtilizado(concepto.getPuntoRequerido());
                     detUsoPunto.setBolsaPunto(bolsa);
                     puntos_requeridos = puntos_requeridos - bolsa.getSaldoPuntos();
+                    this.detUsoPuntoDAO.crear(detUsoPunto);
+                    this.usoPuntoDAO.crear(usoPunto);
                     this.bolsaDAO.actualizarBolsa(bolsa);
                     break;
                 }
