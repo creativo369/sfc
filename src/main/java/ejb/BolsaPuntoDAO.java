@@ -58,7 +58,9 @@ public class BolsaPuntoDAO {
         }
     }
 
-//    public void actualizarBolsa(BolsaPunto bolsa){
-//        this.merge(bolsa);
-//    }
+    public List<BolsaPunto> listarTodoBP(){
+        Query query = this.em.createQuery( "select b from BolsaPunto b");
+        List<BolsaPunto> listaBolsas = (List<BolsaPunto>) query.getResultList();
+        return listaBolsas;
+    }
 }
