@@ -1,6 +1,7 @@
 package ejb;
 import model.BolsaPunto;
 import model.Cliente;
+import model.ConceptoUsoPunto;
 
 import javax.ejb.Stateless;
 import javax.inject.Inject;
@@ -20,6 +21,15 @@ public class BolsaPuntoDAO {
 
     private ClienteDAO clienteDAO;
 
+    @Inject
+    private ConceptoUsoPuntoDAO conceptoDAO;
+
+    @Inject
+    private BolsaPuntoDAO bolsaDAO;
+
+
+    @Inject
+    private UsoPuntoDAO usoPuntoDAO;
 
     public void crearBolsa(BolsaPunto bolsa){
         //The persist operation can only be called within a transaction
@@ -49,6 +59,16 @@ public class BolsaPuntoDAO {
         }
     }
 
+    public void mergeBolsaTemp(BolsaPunto b, BolsaPunto temp){
+        // Primero vemos si esta en la base de datos para poder actualizar
+        BolsaPunto bolsa = this.em.find(BolsaPunto.class, b.getIdBolsaPunto());
+        if (  bolsa == null) {
+            throw new EntityNotFoundException("No existe la bolsa");
+        }else{
+            bolsa.merge(temp);
+        }
+    }
+
     public void eliminarBolsa(Integer id){
         BolsaPunto bolsa = this.em.find(BolsaPunto.class, id);
         if (bolsa == null) {
@@ -74,5 +94,39 @@ public class BolsaPuntoDAO {
             }
         }
         return newLista;
+    }
+
+    public String utilizacionPuntos(Integer id_cliente, Integer id_concepto){
+        ConceptoUsoPunto concepto = conceptoDAO.obtenerConceptoUsoPuntoById(id_concepto);
+        List<BolsaPunto> listaBolsas = bolsaDAO.listarBolsas(id_cliente);
+        Integer puntosRequeridos = concepto.getPuntoRequerido();
+        Integer puntosFaltantes = puntosRequeridos;
+        String respuesta = null;
+        int totalPuntos = 0;
+        for (BolsaPunto bolsa: listaBolsas) {
+            totalPuntos += bolsa.getSaldoPuntos();
+        }
+
+        if (puntosRequeridos > totalPuntos)
+            return "-1";
+
+        for (BolsaPunto bolsa: listaBolsas) {
+            if (bolsa.getSaldoPuntos().equals(puntosFaltantes)){
+                bolsaDAO.mergeBolsaTemp(bolsa, new BolsaPunto(puntosFaltantes, 0));
+                usoPuntoDAO.Cabecera(id_cliente, id_concepto, puntosFaltantes, bolsa);
+                respuesta = "Se activo " + concepto.getDescripcionConcepto();
+                break;
+            }else if (bolsa.getSaldoPuntos().compareTo(puntosFaltantes) > 0 ){
+                bolsaDAO.mergeBolsaTemp(bolsa, new BolsaPunto(puntosFaltantes, bolsa.getSaldoPuntos() - puntosFaltantes));
+                usoPuntoDAO.Cabecera(id_cliente, id_concepto, puntosFaltantes, bolsa);
+                respuesta = "Se activo " + concepto.getDescripcionConcepto();
+                break;
+            }else{
+                puntosFaltantes -= bolsa.getSaldoPuntos();
+                usoPuntoDAO.Cabecera(id_cliente, id_concepto, bolsa.getSaldoPuntos(), bolsa);
+                bolsaDAO.mergeBolsaTemp(bolsa, new BolsaPunto(bolsa.getSaldoPuntos(), 0));
+            }
+        }
+        return respuesta;
     }
 }

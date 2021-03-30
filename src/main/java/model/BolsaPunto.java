@@ -57,6 +57,11 @@ public class BolsaPunto {
     public BolsaPunto() {
     }
 
+    public BolsaPunto(Integer puntajeUtilizado, Integer saldoPuntos){
+        this.setPuntajeUtilizado(puntajeUtilizado);
+        this.setSaldoPuntos(saldoPuntos);
+    }
+
     public Integer getIdBolsaPunto() {
         return idBolsaPunto;
     }
@@ -130,7 +135,7 @@ public class BolsaPunto {
 //    }
 
     public void merge(BolsaPunto b) {
-        setPuntajeUtilizado(b.getPuntajeUtilizado());
+        setPuntajeUtilizado(this.getPuntajeUtilizado() + b.getPuntajeUtilizado());
         setSaldoPuntos(b.getSaldoPuntos());
     }
 }
