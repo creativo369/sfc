@@ -3,6 +3,9 @@ package rest;
 
 import ejb.*;
 import model.*;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.cfg.Configuration;
 
 import javax.inject.Inject;
 import javax.ws.rs.*;
@@ -81,6 +84,8 @@ public class ServiciosREST {
     public Response utilizacionPuntos(@PathParam(value="id_cliente") Integer id_cliente, @PathParam(value="id_concepto_uso")Integer id_concepto_uso){
         Map<String, String> respuesta = new HashMap<>();
         Response.ResponseBuilder builder = null;
+        SessionFactory sessionFactory = new Configuration().configure().buildSessionFactory();
+        Session session = sessionFactory.openSession();
 
         UsoPunto usoPunto = new UsoPunto();
         DetUsoPunto detUsoPunto = new DetUsoPunto();
@@ -103,6 +108,9 @@ public class ServiciosREST {
                     puntos_requeridos = puntos_requeridos - bolsa.getSaldoPuntos();
                     bolsa.setSaldoPuntos(0);
                     //CABECERA
+                    session.beginTransaction();
+
+
                     usoPunto.setConceptoUsoPunto(concepto);
                     usoPunto.setCliente(cliente);
                     usoPunto.setPuntajeUtilizado(concepto.getPuntoRequerido());
@@ -111,6 +119,8 @@ public class ServiciosREST {
                     detUsoPunto.setUsoPunto(usoPunto);
                     detUsoPunto.setPuntajeUtilizado(concepto.getPuntoRequerido());
                     detUsoPunto.setBolsaPunto(bolsa);
+                    session.getTransaction().commit();
+                    session.close();
                     this.detUsoPuntoDAO.crear(detUsoPunto);
                     this.usoPuntoDAO.crear(usoPunto);
                     this.bolsaDAO.actualizarBolsa(bolsa);
@@ -121,6 +131,7 @@ public class ServiciosREST {
                     bolsa.setPuntajeUtilizado(bolsa.getPuntajeUtilizado() + puntos_requeridos);
                     bolsa.setSaldoPuntos(bolsa.getSaldoPuntos() - puntos_requeridos);
                     //CABECERA
+                    session.beginTransaction();
                     usoPunto.setConceptoUsoPunto(concepto);
                     usoPunto.setCliente(cliente);
                     usoPunto.setPuntajeUtilizado(concepto.getPuntoRequerido());
@@ -132,6 +143,8 @@ public class ServiciosREST {
                     puntos_requeridos = puntos_requeridos - bolsa.getSaldoPuntos();
                     this.detUsoPuntoDAO.crear(detUsoPunto);
                     this.usoPuntoDAO.crear(usoPunto);
+                    session.getTransaction().commit();
+                    session.close();
                     this.bolsaDAO.actualizarBolsa(bolsa);
                     break;
                 }
