@@ -111,6 +111,9 @@ public class BolsaPuntoDAO {
             return "-1";
 
         for (BolsaPunto bolsa: listaBolsas) {
+            if (bolsa.getSaldoPuntos() == 0){
+                continue;git
+            }
             if (bolsa.getSaldoPuntos().equals(puntosFaltantes)){
                 bolsaDAO.mergeBolsaTemp(bolsa, new BolsaPunto(puntosFaltantes, 0));
                 usoPuntoDAO.Cabecera(id_cliente, id_concepto, puntosFaltantes, bolsa);
