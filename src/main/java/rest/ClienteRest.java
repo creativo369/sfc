@@ -8,6 +8,9 @@ import javax.ws.rs.core.Response;
 import ejb.ClienteDAO;
 import model.Cliente;
 
+import java.util.HashMap;
+import java.util.Map;
+
 // una api para exponer nuestra entidad
 
 @Path("clientes")
@@ -43,11 +46,16 @@ public class ClienteRest {
     @GET
     @Path("/{idCliente}")
     public Response listarCliente(@PathParam(value="idCliente") Integer id) {
-        try {
-            return Response.ok(clienteDAO.obtenerClienteById(id)).build();
-        }catch (EntityNotFoundException e){
-            return Response.serverError().build();
+        Response.ResponseBuilder builder = null;
+        Map<String, String> respuesta = new HashMap<>();
+        Cliente ans = clienteDAO.obtenerClienteById(id);
+        if (ans == null){
+            respuesta.put("error", "No se existe el cliente con el id "+id);
+            builder = Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(respuesta);
+        } else {
+            builder = Response.status(Response.Status.OK).entity(ans);
         }
+        return builder.build();
     }
      /*
            --- Update ---
@@ -55,12 +63,20 @@ public class ClienteRest {
     @PUT
     @Path("/{idCliente}")
     public Response actualizarDatosCliente(@PathParam(value="idCliente") Integer id, Cliente c){
-        try {
-            clienteDAO.actualizarClienteById(id, c);
-            return Response.ok().build();
-        }catch (EntityNotFoundException e){
-            return Response.serverError().build();
+        Response.ResponseBuilder builder = null;
+        Map<String, String> respuesta = new HashMap<>();
+        String ans = clienteDAO.actualizarClienteById(id, c);
+        if (ans.equals("-1")){
+            respuesta.put("error", "No se existe el cliente con el id "+id);
+            builder = Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(respuesta);
+        } else {
+            respuesta.put("Actualización exitosa", "Se han actualizados los datos del cliente con id "+id+" " +
+                    "Nombre:" +clienteDAO.obtenerClienteById(id).getNombre()+
+                    " Apellido:"+clienteDAO.obtenerClienteById(id).getApellido()+
+                    " CI:"+clienteDAO.obtenerClienteById(id).getNumeroDocumento());
+            builder = Response.status(Response.Status.OK).entity(respuesta);
         }
+        return builder.build();
     }
     /*
            --- Delete ---
@@ -68,12 +84,17 @@ public class ClienteRest {
     @DELETE
     @Path("/{idCliente}")
     public Response borrarCliente(@PathParam(value = "idCliente") Integer id){
-        try{
-            clienteDAO.borrarClienteById(id);
-            return Response.ok(null).build();
-        }catch (EntityNotFoundException e){
-            return Response.serverError().build();
+        Response.ResponseBuilder builder = null;
+        Map<String, String> respuesta = new HashMap<>();
+        String ans = clienteDAO.borrarClienteById(id);
+        if (ans.equals("-1")){
+            respuesta.put("error", "No se existe el cliente con el id "+id);
+            builder = Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(respuesta);
+        } else {
+            respuesta.put("Borrado exitoso", "Se borrado al cliente de la base de datos con id "+id);
+            builder = Response.status(Response.Status.OK).entity(respuesta);
         }
+        return builder.build();
     }
 
     /* 7) Consultas (GET) :

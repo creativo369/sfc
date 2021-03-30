@@ -52,7 +52,7 @@ public class ClienteDAO {
     public Cliente obtenerClienteById(Integer id) {
         Cliente c = this.em.find(Cliente.class, id);
         if (c == null) {
-            throw new EntityNotFoundException("No se puede encontrar al cliente con el ID " + id);
+            return null;
         }
         return c;
     }
@@ -61,26 +61,28 @@ public class ClienteDAO {
            --- Update ---
     */
     // Nose si hice lo correcto en actualizar pero es una idea interesante, simple y sencilla.
-    public void actualizarClienteById(Integer id, Cliente cliente){
+    public String actualizarClienteById(Integer id, Cliente cliente){
         // Primero vemos si esta en la base de datos para poder actualizar
         Cliente c = this.em.find(Cliente.class, id);
         if (  c == null) {
-            throw new EntityNotFoundException("No se puede encontrar al cliente con el ID " + id);
+            return "-1";
         }else{
             c.merge(cliente);
         }
+        return "1";
     }
     /*
            --- Delete ---
     */
     // Por lo visto el delete ya hace que sea transacional y que deje consiste la base de datos y commite los nuevos cambios
-    public void borrarClienteById(Integer id){
+    public String borrarClienteById(Integer id){
             Cliente c = this.em.find(Cliente.class, id);
             if (c == null) {
-                throw new EntityNotFoundException("No se puede encontrar al cliente con el ID " + id);
+                return "-1";
             }else{
                 this.em.remove(c);
             }
+        return "1";
     }
 
     /* Consulta de Clientes por parametro */
