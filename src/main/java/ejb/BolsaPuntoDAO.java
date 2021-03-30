@@ -113,22 +113,21 @@ public class BolsaPuntoDAO {
             return "-1";
 
         for (BolsaPunto bolsa: listaBolsas) {
-            if (bolsa.getSaldoPuntos() == 0){
-                continue;
-            }
+
+            if (bolsa.getSaldoPuntos() == 0) continue;
             if (bolsa.getSaldoPuntos().equals(puntosFaltantes)){
                 bolsaDAO.mergeBolsaTemp(bolsa, new BolsaPunto(puntosFaltantes, 0));
-                usoPuntoDAO.Cabecera(id_cliente, id_concepto, puntosFaltantes, bolsa);
+                usoPuntoDAO.Cabecera(id_cliente, concepto, puntosFaltantes, bolsa);
                 respuesta = "Se activo " + concepto.getDescripcionConcepto();
                 break;
             }else if (bolsa.getSaldoPuntos().compareTo(puntosFaltantes) > 0 ){
                 bolsaDAO.mergeBolsaTemp(bolsa, new BolsaPunto(puntosFaltantes, bolsa.getSaldoPuntos() - puntosFaltantes));
-                usoPuntoDAO.Cabecera(id_cliente, id_concepto, puntosFaltantes, bolsa);
+                usoPuntoDAO.Cabecera(id_cliente, concepto, puntosFaltantes, bolsa);
                 respuesta = "Se activo " + concepto.getDescripcionConcepto();
                 break;
             }else{
                 puntosFaltantes -= bolsa.getSaldoPuntos();
-                usoPuntoDAO.Cabecera(id_cliente, id_concepto, bolsa.getSaldoPuntos(), bolsa);
+                usoPuntoDAO.Cabecera(id_cliente, concepto, bolsa.getSaldoPuntos(), bolsa);
                 bolsaDAO.mergeBolsaTemp(bolsa, new BolsaPunto(bolsa.getSaldoPuntos(), 0));
             }
         }
