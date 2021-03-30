@@ -112,7 +112,7 @@ public class BolsaPuntoDAO {
 
         for (BolsaPunto bolsa: listaBolsas) {
             if (bolsa.getSaldoPuntos() == 0){
-                continue;s
+                continue;
             }
             if (bolsa.getSaldoPuntos().equals(puntosFaltantes)){
                 bolsaDAO.mergeBolsaTemp(bolsa, new BolsaPunto(puntosFaltantes, 0));
