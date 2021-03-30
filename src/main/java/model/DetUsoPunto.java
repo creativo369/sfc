@@ -13,7 +13,7 @@ public class DetUsoPunto {
     @SequenceGenerator(name = "detUsopuntoSec", sequenceName = "detUsopunto_sec", allocationSize = 0)
     private Integer idDetUsoPunto;
 
-    @OneToOne(cascade = CascadeType.PERSIST)
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "id_usoPunto", referencedColumnName = "id_usoPunto")
     private UsoPunto usoPunto;
 

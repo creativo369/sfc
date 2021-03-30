@@ -97,7 +97,9 @@ public class BolsaPuntoDAO {
     }
 
     public String utilizacionPuntos(Integer id_cliente, Integer id_concepto){
+        //System.out.println("Antes de obtener el concepto");
         ConceptoUsoPunto concepto = conceptoDAO.obtenerConceptoUsoPuntoById(id_concepto);
+        //System.out.println("Despues de obtener el concepto");
         List<BolsaPunto> listaBolsas = bolsaDAO.listarBolsas(id_cliente);
         Integer puntosRequeridos = concepto.getPuntoRequerido();
         Integer puntosFaltantes = puntosRequeridos;

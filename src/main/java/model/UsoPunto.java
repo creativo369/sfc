@@ -32,7 +32,7 @@ public class UsoPunto {
     @Temporal(TemporalType.DATE)
     private Date fechaUsoPunto;
 
-    @OneToOne(cascade = CascadeType.PERSIST)
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name="concepto_usoPunto", referencedColumnName = "id_conceptoUsoPunto")
     private ConceptoUsoPunto conceptoUsoPunto;
 

@@ -36,13 +36,17 @@ public class ConceptoUsoPuntoDAO {
         List<ConceptoUsoPunto> listadoConceptoUsoPunto = (List<ConceptoUsoPunto>) q.getResultList();
         return  listadoConceptoUsoPunto;
     }
-
+    static int contador=0;
     public ConceptoUsoPunto obtenerConceptoUsoPuntoById(Integer id) {
+
+        System.out.println(++contador);
         ConceptoUsoPunto c = this.em.find(ConceptoUsoPunto.class, id);
         if (c == null) {
             throw new EntityNotFoundException("No se encuentra el concepto uso punto con la ID "
                     + id);
         }
+        System.out.println(c);
+        System.out.println(++contador);
         return c;
     }
 
