@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "35874358-59d3-4e23-adb9-7f2de57f52e8",
+		"_postman_id": "d142bf42-f9a6-4fe0-a4b8-1fdd4d0a6a6e",
 		"name": "Sistema de fidelización de clientes",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -645,11 +645,126 @@
 				{
 					"name": "Carga de puntos",
 					"request": {
-						"method": "GET",
+						"method": "POST",
 						"header": [],
-						"url": null
+						"url": {
+							"raw": "http://localhost:8080/SFC/servicios/carga-de-puntos/1/50000",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"SFC",
+								"servicios",
+								"carga-de-puntos",
+								"1",
+								"50000"
+							]
+						}
 					},
 					"response": []
+				},
+				{
+					"name": "Utilizacion de puntos",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/SFC/servicios/utilizacion-puntos/1/4",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"SFC",
+								"servicios",
+								"utilizacion-puntos",
+								"1",
+								"4"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "ConsultasREST",
+			"item": [
+				{
+					"name": "Uso de puntos",
+					"item": [
+						{
+							"name": "por concepto",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/SFC/consultas/uso-de-puntos-por-concepto/4",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"SFC",
+										"consultas",
+										"uso-de-puntos-por-concepto",
+										"4"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "por fecha",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/SFC/consultas/uso-de-puntos-por-fecha/30/03/2021",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"SFC",
+										"consultas",
+										"uso-de-puntos-por-fecha",
+										"30",
+										"03",
+										"2021"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "por cliente",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/SFC/consultas/uso-de-puntos-por-cliente/1",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"SFC",
+										"consultas",
+										"uso-de-puntos-por-cliente",
+										"1"
+									]
+								}
+							},
+							"response": []
+						}
+					]
 				}
 			]
 		}

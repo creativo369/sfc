@@ -36,8 +36,8 @@ public class UsoPunto {
     @JoinColumn(name="concepto_usoPunto", referencedColumnName = "id_conceptoUsoPunto")
     private ConceptoUsoPunto conceptoUsoPunto;
 
-    @OneToOne(mappedBy = "usoPunto")
-    private DetUsoPunto detUsoPunto;
+//    @OneToOne(mappedBy = "usoPunto")
+//    private DetUsoPunto detUsoPunto;
 
     public UsoPunto() {
     }
@@ -82,12 +82,12 @@ public class UsoPunto {
         this.conceptoUsoPunto = conceptoUsoPunto;
     }
 
-    public DetUsoPunto getDetUsoPunto() {
-        return detUsoPunto;
-    }
-
-    public void setDetUsoPunto(DetUsoPunto detUsoPunto) {
-        this.detUsoPunto = detUsoPunto;
-    }
+//    public DetUsoPunto getDetUsoPunto() {
+//        return detUsoPunto;
+//    }
+//
+//    public void setDetUsoPunto(DetUsoPunto detUsoPunto) {
+//        this.detUsoPunto = detUsoPunto;
+//    }
 
 }

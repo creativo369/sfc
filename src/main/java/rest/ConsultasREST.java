@@ -2,11 +2,15 @@ package rest;
 
 import ejb.BolsaPuntoDAO;
 import ejb.ClienteDAO;
+import ejb.UsoPuntoDAO;
 import model.Cliente;
 
 import javax.inject.Inject;
 import javax.ws.rs.*;
 import javax.ws.rs.core.Response;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 @Path("consultas")
@@ -19,6 +23,9 @@ public class ConsultasREST {
 
     @Inject
     private BolsaPuntoDAO bolsaPuntoDAO;
+
+    @Inject
+    private UsoPuntoDAO usoPuntoDAO;
 
     @GET
     @Path("/clientes-puntos-a-vencer/{dias}")
@@ -39,11 +46,26 @@ public class ConsultasREST {
         return Response.ok(bolsaPuntoDAO.listarPorRango(a, b)).build();
     }
 
-//    @GET
-//    @Path("uso-de-puntos-por-concepto/{id_concepto}")
-//    public Response listarUsoDePuntosPorConcepto(@PathParam(value="id_concepto")Integer id_concepto) {
-//
-//
-//        return Response.ok().build();
-//    }
+    @GET
+    @Path("uso-de-puntos-por-concepto/{id_concepto}")
+    public Response listarUsoDePuntosPorConcepto(@PathParam(value="id_concepto")Integer id_concepto) {
+        return Response.ok(usoPuntoDAO.obtenerPorConcepto(id_concepto)).build();
+    }
+
+    @GET
+    @Path("uso-de-puntos-por-fecha/{dia}/{mes}/{anho}")
+    public Response obtenerPorFechaUso(@PathParam(value = "dia")Integer dia,
+                                       @PathParam(value = "mes")Integer mes,
+                                       @PathParam(value = "anho")Integer anho) throws ParseException {
+        System.out.println(dia);
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+        return Response.ok(usoPuntoDAO.obtenerPorFechaUso(sdf.parse(dia + "/" + mes + "/" + anho))).build();
+    }
+
+    @GET
+    @Path("uso-de-puntos-por-cliente/{id_cliente}")
+    public Response obtenerPorCliente(@PathParam(value="id_cliente")Integer id_cliente) {
+        return Response.ok(usoPuntoDAO.obtenerPorCliente(id_cliente)).build();
+    }
+
 }
