@@ -2,6 +2,7 @@ package ejb;
 import model.BolsaPunto;
 import model.Cliente;
 import model.ConceptoUsoPunto;
+import utils.Email;
 
 import javax.ejb.Stateless;
 import javax.inject.Inject;
@@ -10,7 +11,9 @@ import javax.persistence.EntityNotFoundException;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 import javax.ws.rs.DELETE;
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Stateless // No tiene estado, vamos a usar el ejb sin estado, es lo que se acostumbra.
@@ -19,6 +22,7 @@ public class BolsaPuntoDAO {
     // The EntityManager.persist() operation is used to insert a new object into the database.
     private EntityManager em;  // Un objeto que nos permite administrar y manipular nuestras entidades y realiza el mapeo correspondiente en la base de datos
 
+    @Inject
     private ClienteDAO clienteDAO;
 
     @Inject
@@ -30,6 +34,8 @@ public class BolsaPuntoDAO {
 
     @Inject
     private UsoPuntoDAO usoPuntoDAO;
+
+    private final Email envioMail = new Email();
 
     public void crearBolsa(BolsaPunto bolsa){
         //The persist operation can only be called within a transaction
@@ -119,11 +125,23 @@ public class BolsaPuntoDAO {
                 bolsaDAO.mergeBolsaTemp(bolsa, new BolsaPunto(puntosFaltantes, 0));
                 usoPuntoDAO.Cabecera(id_cliente, concepto, puntosFaltantes, bolsa);
                 respuesta = "Se activo " + concepto.getDescripcionConcepto();
+                try {
+                    envioMail.enviarCorreoConfirmacion(clienteDAO.obtenerClienteById(id_cliente), bolsa.getPuntajeUtilizado(),
+                            concepto.getDescripcionConcepto(), new Date());
+                } catch (IOException ioException) {
+                    ioException.printStackTrace();
+                }
                 break;
             }else if (bolsa.getSaldoPuntos().compareTo(puntosFaltantes) > 0 ){
                 bolsaDAO.mergeBolsaTemp(bolsa, new BolsaPunto(puntosFaltantes, bolsa.getSaldoPuntos() - puntosFaltantes));
                 usoPuntoDAO.Cabecera(id_cliente, concepto, puntosFaltantes, bolsa);
                 respuesta = "Se activo " + concepto.getDescripcionConcepto();
+                try {
+                    envioMail.enviarCorreoConfirmacion(clienteDAO.obtenerClienteById(id_cliente), bolsa.getPuntajeUtilizado(),
+                            concepto.getDescripcionConcepto(), new Date());
+                } catch (IOException ioException) {
+                    ioException.printStackTrace();
+                }
                 break;
             }else{
                 puntosFaltantes -= bolsa.getSaldoPuntos();

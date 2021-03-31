@@ -18,7 +18,7 @@ CREATE TABLE cliente
 CREATE SEQUENCE cliente_sec;
 
 INSERT INTO cliente(id_cliente, nombre, apellido, numero_documento, tipo_documento, nacionalidad, email, telefono, fecha_nacimiento)
-    VALUES(nextval('cliente_sec'),'Victor','Gonzalez','5528793','Cedula de Identidad Civil','Paraguaya','geekpy@hotmail.com','0976175870','1994-06-03');
+    VALUES(nextval('cliente_sec'),'Victor','Gonzalez','5528793','Cedula de Identidad Civil','Paraguaya','frikipy94@gmail.com','0976175870','1994-06-03');
 
 VALUES(nextval('cliente_sec'),'Juan','Gonzalez','4321258','Cédula de Identidad Civil','Paraguaya','juancito8@hotmail.com','0983253941','1970-05-24');
 
