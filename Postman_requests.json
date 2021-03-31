@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "bfef6f22-fc24-48ae-8a5b-5d1c73066122",
+		"_postman_id": "bbe653b0-86a4-4bae-b408-f88cbedeafea",
 		"name": "Sistema de fidelización de clientes",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -148,53 +148,6 @@
 								"SFC",
 								"clientes",
 								"10"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Consulta nombre (aproximación), apellido (aproximación), cumpleaños",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
-					"request": {
-						"method": "GET",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "http://localhost:8080/SFC/clientes/consulta?nombre=M&apellido=G&fechaNacimiento=1994-06-03",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"SFC",
-								"clientes",
-								"consulta"
-							],
-							"query": [
-								{
-									"key": "nombre",
-									"value": "M"
-								},
-								{
-									"key": "apellido",
-									"value": "G"
-								},
-								{
-									"key": "fechaNacimiento",
-									"value": "1994-06-03"
-								}
 							]
 						}
 					},
@@ -653,6 +606,203 @@
 			]
 		},
 		{
+			"name": "ConsultasREST",
+			"item": [
+				{
+					"name": "Uso de puntos",
+					"item": [
+						{
+							"name": "por concepto",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/SFC/consultas/uso-de-puntos-por-concepto/4",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"SFC",
+										"consultas",
+										"uso-de-puntos-por-concepto",
+										"4"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "por fecha",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/SFC/consultas/uso-de-puntos-por-fecha/30/03/2021",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"SFC",
+										"consultas",
+										"uso-de-puntos-por-fecha",
+										"30",
+										"03",
+										"2021"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "por cliente",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/SFC/consultas/uso-de-puntos-por-cliente/1",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"SFC",
+										"consultas",
+										"uso-de-puntos-por-cliente",
+										"1"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Bolsa punto",
+					"item": [
+						{
+							"name": "Bolsas en total que tiene un cliente",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/SFC/consultas/bolsas-de-puntos-por-cliente/1",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"SFC",
+										"consultas",
+										"bolsas-de-puntos-por-cliente",
+										"1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Ver todas las bolsas por rango de puntos",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/SFC/consultas/listar-bolsas-por-rango/5/30",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"SFC",
+										"consultas",
+										"listar-bolsas-por-rango",
+										"5",
+										"30"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Clientes con puntos a vencer en x días",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/SFC/consultas/clientes-puntos-a-vencer/32",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"SFC",
+								"consultas",
+								"clientes-puntos-a-vencer",
+								"32"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Consulta nombre (aproximación), apellido (aproximación), cumpleaños",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/SFC/clientes/consulta?nombre=M&apellido=G&fechaNacimiento=1994-06-03",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"SFC",
+								"clientes",
+								"consulta"
+							],
+							"query": [
+								{
+									"key": "nombre",
+									"value": "M"
+								},
+								{
+									"key": "apellido",
+									"value": "G"
+								},
+								{
+									"key": "fechaNacimiento",
+									"value": "1994-06-03"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
 			"name": "ServiciosREST",
 			"item": [
 				{
@@ -734,156 +884,6 @@
 						}
 					},
 					"response": []
-				}
-			]
-		},
-		{
-			"name": "ConsultasREST",
-			"item": [
-				{
-					"name": "Uso de puntos",
-					"item": [
-						{
-							"name": "por concepto",
-							"request": {
-								"method": "GET",
-								"header": [],
-								"url": {
-									"raw": "http://localhost:8080/SFC/consultas/uso-de-puntos-por-concepto/4",
-									"protocol": "http",
-									"host": [
-										"localhost"
-									],
-									"port": "8080",
-									"path": [
-										"SFC",
-										"consultas",
-										"uso-de-puntos-por-concepto",
-										"4"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "por fecha",
-							"request": {
-								"method": "GET",
-								"header": [],
-								"url": {
-									"raw": "http://localhost:8080/SFC/consultas/uso-de-puntos-por-fecha/30/03/2021",
-									"protocol": "http",
-									"host": [
-										"localhost"
-									],
-									"port": "8080",
-									"path": [
-										"SFC",
-										"consultas",
-										"uso-de-puntos-por-fecha",
-										"30",
-										"03",
-										"2021"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "por cliente",
-							"request": {
-								"method": "GET",
-								"header": [],
-								"url": {
-									"raw": "http://localhost:8080/SFC/consultas/uso-de-puntos-por-cliente/1",
-									"protocol": "http",
-									"host": [
-										"localhost"
-									],
-									"port": "8080",
-									"path": [
-										"SFC",
-										"consultas",
-										"uso-de-puntos-por-cliente",
-										"1"
-									]
-								}
-							},
-							"response": []
-						}
-					]
-				},
-				{
-					"name": "New Folder",
-					"item": [
-						{
-							"name": "Clientes con puntos a vencer en x días",
-							"request": {
-								"method": "GET",
-								"header": [],
-								"url": {
-									"raw": "http://localhost:8080/SFC/consultas/clientes-puntos-a-vencer/32",
-									"protocol": "http",
-									"host": [
-										"localhost"
-									],
-									"port": "8080",
-									"path": [
-										"SFC",
-										"consultas",
-										"clientes-puntos-a-vencer",
-										"32"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "Ver todas las bolsas por rango de puntos",
-							"request": {
-								"method": "GET",
-								"header": [],
-								"url": {
-									"raw": "http://localhost:8080/SFC/consultas/listar-bolsas-por-rango/5/30",
-									"protocol": "http",
-									"host": [
-										"localhost"
-									],
-									"port": "8080",
-									"path": [
-										"SFC",
-										"consultas",
-										"listar-bolsas-por-rango",
-										"5",
-										"30"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "Bolsas en total que tiene un cliente",
-							"request": {
-								"method": "GET",
-								"header": [],
-								"url": {
-									"raw": "http://localhost:8080/SFC/consultas/bolsas-de-puntos-por-cliente/1",
-									"protocol": "http",
-									"host": [
-										"localhost"
-									],
-									"port": "8080",
-									"path": [
-										"SFC",
-										"consultas",
-										"bolsas-de-puntos-por-cliente",
-										"1"
-									]
-								}
-							},
-							"response": []
-						}
-					]
 				}
 			]
 		}
