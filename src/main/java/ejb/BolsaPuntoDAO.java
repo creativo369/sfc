@@ -2,7 +2,7 @@ package ejb;
 import model.BolsaPunto;
 import model.Cliente;
 import model.ConceptoUsoPunto;
-import utils.Email;
+import utils.EmailSFC;
 
 import javax.ejb.Stateless;
 import javax.inject.Inject;
@@ -35,7 +35,7 @@ public class BolsaPuntoDAO {
     @Inject
     private UsoPuntoDAO usoPuntoDAO;
 
-    private final Email envioMail = new Email();
+    private final EmailSFC envioMail = new EmailSFC();
 
     public void crearBolsa(BolsaPunto bolsa){
         //The persist operation can only be called within a transaction
@@ -126,7 +126,7 @@ public class BolsaPuntoDAO {
                 usoPuntoDAO.Cabecera(id_cliente, concepto, puntosFaltantes, bolsa);
                 respuesta = "Se activo " + concepto.getDescripcionConcepto();
                 try {
-                    envioMail.enviarCorreoConfirmacion(clienteDAO.obtenerClienteById(id_cliente), bolsa.getPuntajeUtilizado(),
+                    envioMail.enviarCorreoConfirmacion(clienteDAO.obtenerClienteById(id_cliente), concepto.getPuntoRequerido(),
                             concepto.getDescripcionConcepto(), new Date());
                 } catch (IOException ioException) {
                     ioException.printStackTrace();
@@ -137,7 +137,7 @@ public class BolsaPuntoDAO {
                 usoPuntoDAO.Cabecera(id_cliente, concepto, puntosFaltantes, bolsa);
                 respuesta = "Se activo " + concepto.getDescripcionConcepto();
                 try {
-                    envioMail.enviarCorreoConfirmacion(clienteDAO.obtenerClienteById(id_cliente), bolsa.getPuntajeUtilizado(),
+                    envioMail.enviarCorreoConfirmacion(clienteDAO.obtenerClienteById(id_cliente), concepto.getPuntoRequerido(),
                             concepto.getDescripcionConcepto(), new Date());
                 } catch (IOException ioException) {
                     ioException.printStackTrace();

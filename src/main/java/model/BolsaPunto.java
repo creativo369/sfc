@@ -1,5 +1,7 @@
 package model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import javax.persistence.*;
 import java.util.Date;
 import java.util.List;
@@ -28,11 +30,13 @@ public class BolsaPunto {
     @Column(name = "fecha_asignacion_puntaje")
     @Basic(optional = false)
     @Temporal(TemporalType.DATE)
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm")
     private Date fechaAsignacionPuntaje;
 
     @Column(name = "fecha_caducidad_puntaje")
     @Basic(optional = false)
     @Temporal(TemporalType.DATE)
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm")
     private Date fechaCaducidadPuntaje;
 
     @Column(name = "puntaje_asignado")

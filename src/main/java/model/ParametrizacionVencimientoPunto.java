@@ -1,6 +1,8 @@
 package model;
 
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import javax.persistence.*;
 import java.util.Date;
 
@@ -19,11 +21,13 @@ public class ParametrizacionVencimientoPunto {
     @Column(name = "fecha_inicio_validez")
     @Basic(optional = false)
     @Temporal(TemporalType.DATE)
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm")
     private Date fechaInicioValidez;
 
     @Column(name = "fecha_fin_Validez")
     @Basic(optional = false)
     @Temporal(TemporalType.DATE)
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm")
     private Date fechaFinValidez;
 
     @Column(name = "duracion_diasPuntaje")

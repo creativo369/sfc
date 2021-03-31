@@ -13,16 +13,16 @@ import java.io.InputStream;
 import java.util.Date;
 import java.util.Properties;
 
-public class Email{
+public class EmailSFC{
 
     public void enviarCorreoConfirmacion(Cliente cliente, Integer puntosCanjeados,
-                                           String concepto, Date fechaCanje) throws IOException {
+                                         String concepto, Date fechaCanje) throws IOException {
 
         System.out.println("Construyendo mail de confirmación de Uso de puntos");
         // Add recipient
         String to = cliente.getEmail();
         // Add sender
-        String from = "backendeveloper123@gmail.com";
+        String from = "backendeveloper123";
 
         String host = "smtp.gmail.com";
 
@@ -30,7 +30,7 @@ public class Email{
         props.put("mail.smtp.auth", "true");
         props.put("mail.smtp.starttls.enable", "true");
         props.put("mail.smtp.host", host);
-        props.put("mail.smtp.user", "backendeveloper123@gmail.com");
+        props.put("mail.smtp.user", from);
         props.put("mail.smtp.password", "developersadmin");
         props.put("mail.smtp.port", "587");
 

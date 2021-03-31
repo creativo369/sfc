@@ -1,5 +1,7 @@
 package model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import javax.persistence.*;
 import java.util.Date;
 import java.util.List;
@@ -30,6 +32,7 @@ public class UsoPunto {
     @Column(name = "fecha_usoPunto")
     @Basic(optional = false)
     @Temporal(TemporalType.DATE)
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm")
     private Date fechaUsoPunto;
 
     @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)

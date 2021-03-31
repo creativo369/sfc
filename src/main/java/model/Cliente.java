@@ -1,5 +1,7 @@
 package model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
@@ -46,6 +48,7 @@ public class Cliente {
     @Column(name = "fecha_nacimiento")
     @Basic(optional = false)
     @Temporal(TemporalType.DATE)
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
     private Date fechaNacimiento;
 
 //     Hay veces que queremos ir de este lado para la otra tabla entonces ponemos esta relación:
