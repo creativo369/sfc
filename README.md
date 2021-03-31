@@ -1,9 +1,7 @@
 # Sistema de Fidelización de Clientes
 #### Descripción
 
-Back-end desarrollador en Java que implementa la fidelización de clientes para hacer seguimientos de los puntos otorgados por operaciones de pago. 
-
-Proyecto correspondiente al primer exámen parcial de la asignatura de Programación Web Back-end. 
+Back-end desarrollado en Java que implementa la fidelización de clientes para hacer seguimientos de los puntos otorgados por operaciones de pago. 
 
 #### Herramientas utilizadas
 
