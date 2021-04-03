@@ -49,7 +49,7 @@ public class UsoPuntoDAO {
         }
         return usoPunto;
     }
-
+    @SuppressWarnings("unchecked")
     public void Cabecera(Integer id_cliente, ConceptoUsoPunto concepto, Integer puntajeUtilizado, BolsaPunto bolsa){
         UsoPunto usoPunto = new UsoPunto();
         usoPunto.setCliente(clienteDAO.obtenerClienteById(id_cliente));
@@ -59,7 +59,7 @@ public class UsoPuntoDAO {
         this.em.persist(usoPunto);
         detalleUsoPuntoDAO.Detalle(usoPunto, puntajeUtilizado, bolsa);
     }
-
+    @SuppressWarnings("unchecked")
     public List<UsoPunto> listarUsoPunto(){
         Query query = this.em.createQuery("SELECT p FROM UsoPunto p");
         return (List<UsoPunto>) query.getResultList();

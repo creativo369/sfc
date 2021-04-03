@@ -41,7 +41,7 @@ public class BolsaPuntoDAO {
         //The persist operation can only be called within a transaction
         this.em.persist(bolsa);
     }
-
+    @SuppressWarnings("unchecked")
     public List<BolsaPunto> listarBolsas(int id_cliente){
         Cliente cliente = this.em.find(Cliente.class, id_cliente);
         Query query = this.em.createQuery( "select b from BolsaPunto b");
@@ -74,7 +74,7 @@ public class BolsaPuntoDAO {
             bolsa.merge(temp);
         }
     }
-
+    @SuppressWarnings("unchecked")
     public void eliminarBolsa(Integer id){
         BolsaPunto bolsa = this.em.find(BolsaPunto.class, id);
         if (bolsa == null) {
@@ -83,13 +83,13 @@ public class BolsaPuntoDAO {
             this.em.remove(bolsa);
         }
     }
-
+    @SuppressWarnings("unchecked")
     public List<BolsaPunto> listarTodoBP(){
         Query query = this.em.createQuery( "select b from BolsaPunto b");
         List<BolsaPunto> listaBolsas = (List<BolsaPunto>) query.getResultList();
         return listaBolsas;
     }
-
+    @SuppressWarnings("unchecked")
     public List<BolsaPunto> listarPorRango(Integer a, Integer b){
         Query query = this.em.createQuery("SELECT b FROM BolsaPunto b");
         List<BolsaPunto> listaBolsas = (List<BolsaPunto>) query.getResultList();

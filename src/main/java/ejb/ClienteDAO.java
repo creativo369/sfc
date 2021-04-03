@@ -48,7 +48,7 @@ public class ClienteDAO {
         List<Cliente> listadoClientes = (List<Cliente>) q.getResultList();
         return  listadoClientes;
     }
-
+    @SuppressWarnings("unchecked")
     public Cliente obtenerClienteById(Integer id) {
         Cliente c = this.em.find(Cliente.class, id);
         if (c == null) {
@@ -86,7 +86,7 @@ public class ClienteDAO {
     }
 
     /* Consulta de Clientes por parametro */
-
+    @SuppressWarnings("unchecked")
     public Object obtenerClientesPorParametro(String nombre, String apellido, String fechaNacimiento) {
         List<Cliente> clientes = null;
         Query q = null;

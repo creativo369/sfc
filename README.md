@@ -11,7 +11,7 @@ Back-end desarrollado en Java que implementa la fidelización de clientes para h
 
 **Gestor de Proyecto:** Maven 3.x
 
-**Servidor de Aplicaciones:** Wildfly version-23.0.0. Final
+**Servidor de Aplicaciones:** WildFly version-23.0.0. Final
 
 **SGBD:** PostgreSQL version-13 y PgAdmin 4 
 
@@ -50,9 +50,9 @@ Cuando el proyecto se ejecuta por primera vez es conveniente asegurarse de que l
 
 Luego, para construir el proyecto solo se necesita ejecutar `mvn clean package`
 
-**Servidor de Aplicaciones Wildfly**
+**Servidor de Aplicaciones WildFly**
 
-1. Para el despliegue de la aplicación en un contenedor bajar el Servidor Wildfly https://www.wildfly.org/downloads/
+1. Para el despliegue de la aplicación en un contenedor bajar el Servidor WildFly https://www.wildfly.org/downloads/
 
 2. Ir hasta el directorio `~/wildfly-23.0.0.Final/bin` y desde la línea de comandos  crearse un usuario administrador `add-user` y luego iniciar el servidor `standalone`.
 
@@ -62,6 +62,6 @@ Luego, para construir el proyecto solo se necesita ejecutar `mvn clean package`
 
 5. Copiar el war generado por el package realizado en el paso anterior al directorio `standalone/deployments` .
 
-6. Ejecutar el script de inicio del wildfly `sh standalone.sh`
+6. Ejecutar el script de inicio del WildFly `sh standalone.sh`
 
    La aplicación se levantará en http://localhost:8080/SFC
