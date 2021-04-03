@@ -32,7 +32,7 @@ public class UsoPunto {
     @Column(name = "fecha_usoPunto")
     @Basic(optional = false)
     @Temporal(TemporalType.DATE)
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm")
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
     private Date fechaUsoPunto;
 
     @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)

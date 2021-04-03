@@ -30,13 +30,13 @@ public class BolsaPunto {
     @Column(name = "fecha_asignacion_puntaje")
     @Basic(optional = false)
     @Temporal(TemporalType.DATE)
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm")
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
     private Date fechaAsignacionPuntaje;
 
     @Column(name = "fecha_caducidad_puntaje")
     @Basic(optional = false)
     @Temporal(TemporalType.DATE)
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm")
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
     private Date fechaCaducidadPuntaje;
 
     @Column(name = "puntaje_asignado")

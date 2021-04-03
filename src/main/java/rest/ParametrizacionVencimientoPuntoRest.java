@@ -7,6 +7,8 @@ import javax.inject.Inject;
 import javax.persistence.EntityNotFoundException;
 import javax.ws.rs.*;
 import javax.ws.rs.core.Response;
+import java.util.HashMap;
+import java.util.Map;
 
 // una api para exponer nuestra entidad
 
@@ -43,11 +45,17 @@ public class ParametrizacionVencimientoPuntoRest {
     @GET
     @Path("/{idParametrizacionVencimientoPunto}")
     public Response listarCaducidad(@PathParam(value="idParametrizacionVencimientoPunto") Integer id) {
-        try {
-            return Response.ok(vencimientoDAO.obtenerParametrizacionVencimientoPuntoById(id)).build();
-        }catch (EntityNotFoundException e){
-            return Response.serverError().build();
+        Response.ResponseBuilder builder = null;
+        Map<String, String> respuesta = new HashMap<>();
+        ParametrizacionVencimientoPunto ans = vencimientoDAO.obtenerParametrizacionVencimientoPuntoById(id);
+
+        if (ans == null){
+            respuesta.put("error", "No se existe el Parametro de Vencimiento con el id "+id);
+            builder = Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(respuesta);
+        } else {
+            builder = Response.status(Response.Status.OK).entity(ans);
         }
+        return builder.build();
     }
      /*
            --- Update ---
@@ -55,12 +63,21 @@ public class ParametrizacionVencimientoPuntoRest {
     @PUT
     @Path("/{idParametrizacionVencimientoPunto}")
     public Response actualizarDatosVencimiento(@PathParam(value="idParametrizacionVencimientoPunto") Integer id, ParametrizacionVencimientoPunto v){
-        try {
-            vencimientoDAO.actualizarParametrizacionVencimientoPuntoById(id, v);
-            return Response.ok().build();
-        }catch (EntityNotFoundException e){
-            return Response.serverError().build();
+        Response.ResponseBuilder builder = null;
+        Map<String, String> respuesta = new HashMap<>();
+        String ans = vencimientoDAO.actualizarParametrizacionVencimientoPuntoById(id, v);
+        if (ans.equals("-1")){
+            respuesta.put("error", "No se existe la Parametrizacion de Vencimiento con el id "+id);
+            builder = Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(respuesta);
+        } else {
+            respuesta.put("Actualización exitosa", "Se han actualizados los datos del parametro" +
+                    "ID:" +vencimientoDAO.obtenerParametrizacionVencimientoPuntoById(id).getIdparametrizacionVencimientoPunto()+
+                    " Fecha Inicio Validez:"+vencimientoDAO.obtenerParametrizacionVencimientoPuntoById(id).getFechaInicioValidez()+
+                    " Fecha Fin Validez:"+vencimientoDAO.obtenerParametrizacionVencimientoPuntoById(id).getFechaFinValidez()+
+                    " Días de duración:"+vencimientoDAO.obtenerParametrizacionVencimientoPuntoById(id).getDuracionDiasPuntaje());
+            builder = Response.status(Response.Status.OK).entity(respuesta);
         }
+        return builder.build();
     }
     /*
            --- Delete ---
@@ -68,12 +85,17 @@ public class ParametrizacionVencimientoPuntoRest {
     @DELETE
     @Path("/{idParametrizacionVencimientoPunto}")
     public Response borrarParametrizacionVencimientoPunto(@PathParam(value = "idParametrizacionVencimientoPunto") Integer id){
-        try{
-            vencimientoDAO.borrarParametrizacionVencimientoPuntoById(id);
-            return Response.ok(null).build();
-        }catch (EntityNotFoundException e){
-            return Response.serverError().build();
+        Response.ResponseBuilder builder = null;
+        Map<String, String> respuesta = new HashMap<>();
+        String ans = vencimientoDAO.borrarParametrizacionVencimientoPuntoById(id);
+        if (ans.equals("-1")){
+            respuesta.put("error", "No se existe la Parametrizaciòn de Vencimiento con el id "+id);
+            builder = Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(respuesta);
+        } else {
+            respuesta.put("Borrado exitoso", "Se borrado el Parametro de Vencimiento de la base de datos con id "+id);
+            builder = Response.status(Response.Status.OK).entity(respuesta);
         }
+        return builder.build();
     }
 
 }

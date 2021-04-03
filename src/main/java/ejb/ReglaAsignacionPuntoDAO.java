@@ -41,8 +41,8 @@ public class ReglaAsignacionPuntoDAO {
     public ReglaAsignacionPunto obtenerReglaAsignacionPuntoById(Integer id) {
         ReglaAsignacionPunto r = this.em.find(ReglaAsignacionPunto.class, id);
         if (r == null) {
-            throw new EntityNotFoundException("No se encuentra la regla de asignacion de punto con el ID "
-                    + id);
+            System.out.print("No se encuentra la regla de asignacion de punto con el ID " + id);
+            return null;
         }
         return r;
     }
@@ -51,27 +51,31 @@ public class ReglaAsignacionPuntoDAO {
            --- Update ---
     */
     // Nose si hice lo correcto en actualizar pero es una idea interesante, simple y sencilla.
-    public void actualizarReglaAsignacionPunto(Integer id, ReglaAsignacionPunto r){
+    public String actualizarReglaAsignacionPunto(Integer id, ReglaAsignacionPunto r){
         // Primero vemos si esta en la base de datos para poder actualizar
         ReglaAsignacionPunto regla = this.em.find(ReglaAsignacionPunto.class, id);
         if (  regla == null) {
-            throw new EntityNotFoundException("No se encuentra la regla de asignacion de punto con el ID " + id);
+            System.out.println("No se encuentra la regla de asignacion de punto con el ID " + id);
+            return "-1";
         }else{
             regla.merge(r); // Actualizamos la "regla" existente con nuevos parametros de una regla "r" viniendo de json
         }
+        return "1";
     }
 
     /*
            --- Delete ---
     */
     // Por lo visto el delete ya hace que sea transacional y que deje consiste la base de datos y commite los nuevos cambios
-    public void borrarReglaAsignacionPuntoById(Integer id){
+    public String borrarReglaAsignacionPuntoById(Integer id){
             ReglaAsignacionPunto regla = this.em.find(ReglaAsignacionPunto.class, id);
             if (regla == null) {
-                throw new EntityNotFoundException("No se encuentra la regla de asignacion de punto con el ID " + id);
+                System.out.println("No se encuentra la regla de asignacion de punto con el ID " + id);
+                return "-1";
             }else{
                 this.em.remove(regla);
             }
+        return "1";
     }
     @SuppressWarnings("unchecked")
     public int obtenerLimiteInferiorMenor(){

@@ -44,8 +44,8 @@ public class ParametrizacionVencimientoPuntoDAO {
     public ParametrizacionVencimientoPunto obtenerParametrizacionVencimientoPuntoById(Integer id) {
         ParametrizacionVencimientoPunto vencimiento = this.em.find(ParametrizacionVencimientoPunto.class, id);
         if (vencimiento == null) {
-            throw new EntityNotFoundException("No se encuentra la Parametrizacion de Vencimiento punto con el ID "
-                    + id);
+            System.out.println("No se encuentra la Parametrizacion de Vencimiento punto con el ID " + id);
+            return null;
         }
         return vencimiento;
     }
@@ -54,26 +54,30 @@ public class ParametrizacionVencimientoPuntoDAO {
            --- Update ---
     */
     // Nose si hice lo correcto en actualizar pero es una idea interesante, simple y sencilla.
-    public void actualizarParametrizacionVencimientoPuntoById(Integer id, ParametrizacionVencimientoPunto v){
+    public String actualizarParametrizacionVencimientoPuntoById(Integer id, ParametrizacionVencimientoPunto v){
         // Primero vemos si esta en la base de datos para poder actualizar
         ParametrizacionVencimientoPunto vencimiento = this.em.find(ParametrizacionVencimientoPunto.class, id);
         if (  vencimiento == null) {
-            throw new EntityNotFoundException("No se encuentra la Parametrizacion de Vencimiento punto con el ID " + id);
+            System.out.println("No se encuentra la Parametrizacion de Vencimiento punto con el ID " + id);
+            return "-1";
         }else{
             vencimiento.merge(v);
         }
+        return "1";
     }
     /*
            --- Delete ---
     */
     // Por lo visto el delete ya hace que sea transacional y que deje consiste la base de datos y commite los nuevos cambios
-    public void borrarParametrizacionVencimientoPuntoById(Integer id){
-            ParametrizacionVencimientoPunto vencimiento = this.em.find(ParametrizacionVencimientoPunto.class, id);
-            if (vencimiento == null) {
-                throw new EntityNotFoundException("No se encuentra la Parametrizacion de Vencimiento punto con el ID " + id);
-            }else{
-                this.em.remove(vencimiento);
-            }
+    public String borrarParametrizacionVencimientoPuntoById(Integer id){
+        ParametrizacionVencimientoPunto vencimiento = this.em.find(ParametrizacionVencimientoPunto.class, id);
 
+        if (vencimiento == null) {
+            System.out.println("No se encuentra la Parametrizacion de Vencimiento punto con el ID " + id);
+            return "-1";
+        } else {
+            this.em.remove(vencimiento);
+        }
+        return "1";
     }
 }

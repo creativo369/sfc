@@ -36,17 +36,14 @@ public class ConceptoUsoPuntoDAO {
         List<ConceptoUsoPunto> listadoConceptoUsoPunto = (List<ConceptoUsoPunto>) q.getResultList();
         return  listadoConceptoUsoPunto;
     }
-    static int contador=0;
-    public ConceptoUsoPunto obtenerConceptoUsoPuntoById(Integer id) {
 
-        System.out.println(++contador);
+    public ConceptoUsoPunto obtenerConceptoUsoPuntoById(Integer id) {
         ConceptoUsoPunto c = this.em.find(ConceptoUsoPunto.class, id);
         if (c == null) {
-            throw new EntityNotFoundException("No se encuentra el concepto uso punto con la ID "
+            System.out.println("No se encuentra el concepto uso punto con la ID "
                     + id);
+            return null;
         }
-        System.out.println(c);
-        System.out.println(++contador);
         return c;
     }
 
@@ -54,27 +51,31 @@ public class ConceptoUsoPuntoDAO {
            --- Update ---
     */
     // Nose si hice lo correcto en actualizar pero es una idea interesante, simple y sencilla.
-    public void actualizarConceptoUsoPuntoById(Integer id, ConceptoUsoPunto c){
+    public String actualizarConceptoUsoPuntoById(Integer id, ConceptoUsoPunto c){
         // Primero vemos si esta en la base de datos para poder actualizar
         ConceptoUsoPunto concepto = this.em.find(ConceptoUsoPunto.class, id);
         if (  concepto == null) {
-            throw new EntityNotFoundException("No se encuentra el concepto uso punto con la ID " + id);
+            System.out.println("No se encuentra el concepto uso punto con la ID " + id);
+            return "-1";
         }else{
 //            this.em.getTransaction().begin();
             concepto.merge(c);
 //            this.em.getTransaction().commit();
         }
+        return "1";
     }
     /*
            --- Delete ---
     */
     // Por lo visto el delete ya hace que sea transacional y que deje consiste la base de datos y commite los nuevos cambios
-    public void borrarConceptoUsoPuntoById(Integer id){
+    public String borrarConceptoUsoPuntoById(Integer id){
             ConceptoUsoPunto c = this.em.find(ConceptoUsoPunto.class, id);
             if (c == null) {
-                throw new EntityNotFoundException("No se encuentra el concepto uso punto con la ID " + id);
+                System.out.println("No se encuentra el concepto uso punto con la ID " + id);
+                return "-1";
             }else{
                 this.em.remove(c);
             }
+        return "1";
     }
 }

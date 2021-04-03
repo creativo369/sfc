@@ -7,6 +7,8 @@ import javax.inject.Inject;
 import javax.persistence.EntityNotFoundException;
 import javax.ws.rs.*;
 import javax.ws.rs.core.Response;
+import java.util.HashMap;
+import java.util.Map;
 
 // una api para exponer nuestra entidad
 
@@ -43,11 +45,16 @@ public class ConceptoUsoPuntoRest {
     @GET
     @Path("/{idConceptoUsoPunto}")
     public Response listarConceptoById(@PathParam(value="idConceptoUsoPunto") Integer id) {
-        try {
-            return Response.ok(conceptoUsoPuntoDAO.obtenerConceptoUsoPuntoById(id)).build();
-        }catch (EntityNotFoundException e){
-            return Response.serverError().build();
+        Response.ResponseBuilder builder = null;
+        Map<String, String> respuesta = new HashMap<>();
+        ConceptoUsoPunto ans = conceptoUsoPuntoDAO.obtenerConceptoUsoPuntoById(id);
+        if (ans == null){
+            respuesta.put("error", "No se existe el concepto de uso punto con el id "+id);
+            builder = Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(respuesta);
+        } else {
+            builder = Response.status(Response.Status.OK).entity(ans);
         }
+        return builder.build();
     }
      /*
            --- Update ---
@@ -55,12 +62,19 @@ public class ConceptoUsoPuntoRest {
     @PUT
     @Path("/{idConceptoUsoPunto}")
     public Response actualizarDatosConceptoUsoPuntoById(@PathParam(value="idConceptoUsoPunto") Integer id, ConceptoUsoPunto c){
-        try {
-            conceptoUsoPuntoDAO.actualizarConceptoUsoPuntoById(id, c);
-            return Response.ok().build();
-        }catch (EntityNotFoundException e){
-            return Response.serverError().build();
+        Response.ResponseBuilder builder = null;
+        Map<String, String> respuesta = new HashMap<>();
+        String ans = conceptoUsoPuntoDAO.actualizarConceptoUsoPuntoById(id, c);
+        if (ans.equals("-1")){
+            respuesta.put("error", "No se existe el cliente con el id "+id);
+            builder = Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(respuesta);
+        } else {
+            respuesta.put("Actualización exitosa", "Se han actualizados los datos del concepto uso de punto con id "+id+
+                    " Descripciòn:" +conceptoUsoPuntoDAO.obtenerConceptoUsoPuntoById(id).getDescripcionConcepto()+
+                    " Puntos requeridos:"+conceptoUsoPuntoDAO.obtenerConceptoUsoPuntoById(id).getPuntoRequerido());
+            builder = Response.status(Response.Status.OK).entity(respuesta);
         }
+        return builder.build();
     }
     /*
            --- Delete ---
@@ -68,12 +82,17 @@ public class ConceptoUsoPuntoRest {
     @DELETE
     @Path("/{idConceptoUsoPunto}")
     public Response borrarConceptoById(@PathParam(value = "idConceptoUsoPunto") Integer id){
-        try{
-            conceptoUsoPuntoDAO.borrarConceptoUsoPuntoById(id);
-            return Response.ok(null).build();
-        }catch (EntityNotFoundException e){
-            return Response.serverError().build();
+        Response.ResponseBuilder builder = null;
+        Map<String, String> respuesta = new HashMap<>();
+        String ans = conceptoUsoPuntoDAO.borrarConceptoUsoPuntoById(id);
+        if (ans.equals("-1")){
+            respuesta.put("error", "No se existe el concepto de uso punto con el id "+id);
+            builder = Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(respuesta);
+        } else {
+            respuesta.put("Borrado exitoso", "Se borrado el concepto de uso punto de la base de datos con id "+id);
+            builder = Response.status(Response.Status.OK).entity(respuesta);
         }
+        return builder.build();
     }
 
 }
