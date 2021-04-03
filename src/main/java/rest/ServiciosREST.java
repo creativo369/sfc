@@ -43,39 +43,43 @@ public class ServiciosREST {
     @Path("/carga-de-puntos/{id_cliente}/{monto}")
     public Response cargaPuntos(@PathParam("id_cliente") int id_cliente,@PathParam("monto") int monto ){
         Response.ResponseBuilder builder = null;
-        BolsaPunto bolsa = new BolsaPunto();
         Map<String, String> respuesta = new HashMap<>();
-        Date hoy = new Date();
-        int puntos = this.equivalenciaPunto(monto);
 
-        if (puntos != -1){
-            bolsa.setCliente(clienteDAO.obtenerClienteById(id_cliente));
-            bolsa.setFechaAsignacionPuntaje(hoy);
-            bolsa.setPuntajeUtilizado(0);
-            bolsa.setMontoOperacion(monto);
-            bolsa.setPuntajeAsignado(puntos);
-            bolsa.setSaldoPuntos(puntos);
+        if(clienteDAO.obtenerClienteById(id_cliente)!=null) {
+            Date hoy = new Date();
+            int puntos = this.equivalenciaPunto(monto);
+            BolsaPunto bolsa = new BolsaPunto();
+            if (puntos != -1) {
+                bolsa.setCliente(clienteDAO.obtenerClienteById(id_cliente));
+                bolsa.setFechaAsignacionPuntaje(hoy);
+                bolsa.setPuntajeUtilizado(0);
+                bolsa.setMontoOperacion(monto);
+                bolsa.setPuntajeAsignado(puntos);
+                bolsa.setSaldoPuntos(puntos);
 
-            List<ParametrizacionVencimientoPunto> paramVencList = paramVencDAO.listarParametrizacionVencimientoPunto();
+                List<ParametrizacionVencimientoPunto> paramVencList = paramVencDAO.listarParametrizacionVencimientoPunto();
 
-            for (ParametrizacionVencimientoPunto param: paramVencList) {
-                if (hoy.compareTo(param.getFechaInicioValidez()) >= 0 && hoy.compareTo(param.getFechaFinValidez()) <= 0){
-                    Calendar c = Calendar.getInstance();
-                    c.setTime(hoy);
-                    c.add(Calendar.DATE,  param.getDuracionDiasPuntaje());
-                    bolsa.setFechaCaducidadPuntaje(c.getTime());
+                for (ParametrizacionVencimientoPunto param : paramVencList) {
+                    if (hoy.compareTo(param.getFechaInicioValidez()) >= 0 && hoy.compareTo(param.getFechaFinValidez()) <= 0) {
+                        Calendar c = Calendar.getInstance();
+                        c.setTime(hoy);
+                        c.add(Calendar.DATE, param.getDuracionDiasPuntaje());
+                        bolsa.setFechaCaducidadPuntaje(c.getTime());
+                    }
                 }
+
+                this.bolsaDAO.crearBolsa(bolsa);
+
+                respuesta.put("exito", "+" + puntos + " puntos cargados exitosamente");
+                builder = Response.status(Response.Status.OK).entity(respuesta);
+            } else {
+                respuesta.put("error", "No existe regla de asignacion de punto para este monto");
+                builder = Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(respuesta);
             }
-
-            this.bolsaDAO.crearBolsa(bolsa);
-
-            respuesta.put("exito", "+" + puntos + " puntos cargados exitosamente");
-            builder = Response.status(Response.Status.OK).entity(respuesta);
-        }else {
-            respuesta.put("error", "No existe regla de asignacion de punto para este monto");
+        }else{
+            respuesta.put("error", "No existe el cliente en la base de datos");
             builder = Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(respuesta);
         }
-
         return builder.build();
     }
 
@@ -85,16 +89,21 @@ public class ServiciosREST {
                                       @PathParam("id_concepto_uso")Integer id_concepto_uso){
         Response.ResponseBuilder builder = null;
         Map<String, String> respuesta = new HashMap<>();
-
-        String ans = bolsaDAO.utilizacionPuntos(id_cliente, id_concepto_uso);
-        if (ans.equals("-1")){
-            respuesta.put("error", "No posee los suficientes puntos");
+        ConceptoUsoPunto concepto = conceptoUsoDao.obtenerConceptoUsoPuntoById(id_concepto_uso);
+        Cliente cliente = clienteDAO.obtenerClienteById(id_cliente);
+        if (concepto == null || cliente == null ) {
+            respuesta.put("error", "No existe el concepto y/o el cliente");
             builder = Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(respuesta);
-        } else {
-            respuesta.put("exito", ans);
-            builder = Response.status(Response.Status.OK).entity(respuesta);
+        } else{
+            String ans = bolsaDAO.utilizacionPuntos(id_cliente, id_concepto_uso);
+            if (ans.equals("-1")) {
+                respuesta.put("error", "No posee los suficientes puntos");
+                builder = Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(respuesta);
+            } else {
+                respuesta.put("exito", ans);
+                builder = Response.status(Response.Status.OK).entity(respuesta);
+            }
         }
-
         return builder.build();
     }
 

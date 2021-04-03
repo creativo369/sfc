@@ -87,7 +87,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8080/SFC/clientes/10",
+							"raw": "http://localhost:8080/SFC/clientes/11",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -96,7 +96,7 @@
 							"path": [
 								"SFC",
 								"clientes",
-								"10"
+								"11"
 							]
 						}
 					},
@@ -617,7 +617,7 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "http://localhost:8080/SFC/consultas/uso-de-puntos-por-concepto/4",
+									"raw": "http://localhost:8080/SFC/consultas/uso-de-puntos-por-concepto/15",
 									"protocol": "http",
 									"host": [
 										"localhost"
@@ -627,7 +627,7 @@
 										"SFC",
 										"consultas",
 										"uso-de-puntos-por-concepto",
-										"4"
+										"15"
 									]
 								}
 							},
@@ -663,7 +663,7 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "http://localhost:8080/SFC/consultas/uso-de-puntos-por-cliente/1",
+									"raw": "http://localhost:8080/SFC/consultas/uso-de-puntos-por-cliente/11",
 									"protocol": "http",
 									"host": [
 										"localhost"
@@ -673,7 +673,7 @@
 										"SFC",
 										"consultas",
 										"uso-de-puntos-por-cliente",
-										"1"
+										"11"
 									]
 								}
 							},
@@ -733,9 +733,21 @@
 				},
 				{
 					"name": "Clientes con puntos a vencer en x días",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
 					"request": {
 						"method": "GET",
 						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
 						"url": {
 							"raw": "http://localhost:8080/SFC/consultas/clientes-puntos-a-vencer/32",
 							"protocol": "http",
@@ -868,7 +880,7 @@
 						"method": "POST",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/SFC/servicios/utilizacion-puntos/1/4",
+							"raw": "http://localhost:8080/SFC/servicios/utilizacion-puntos/1/11",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -879,7 +891,7 @@
 								"servicios",
 								"utilizacion-puntos",
 								"1",
-								"4"
+								"11"
 							]
 						}
 					},

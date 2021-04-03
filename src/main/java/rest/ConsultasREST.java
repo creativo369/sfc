@@ -11,7 +11,9 @@ import javax.ws.rs.core.Response;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Path("consultas")
 @Consumes("application/json")
@@ -27,6 +29,7 @@ public class ConsultasREST {
     @Inject
     private UsoPuntoDAO usoPuntoDAO;
 
+
     @GET
     @Path("/clientes-puntos-a-vencer/{dias}")
     public Response clientesPuntosAVencer(@PathParam(value="dias")Integer dias){
@@ -36,7 +39,17 @@ public class ConsultasREST {
     @GET
     @Path("bolsas-de-puntos-por-cliente/{id_cliente}")
     public Response bolsasDePuntosPorCliente(@PathParam(value="id_cliente") Integer id_cliente){
-        return Response.ok(bolsaPuntoDAO.listarBolsas(id_cliente)).build();
+        Response.ResponseBuilder builder = null;
+        Map<String, String> respuesta = new HashMap<>();
+
+        if(clienteDAO.obtenerClienteById(id_cliente) == null) {
+            respuesta.put("Error", "No existe el cliente en la base de datos");
+            builder = Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(respuesta);
+        } else{
+            //builder = Response.status(Response.Status.OK).entity(respuesta);
+            return Response.ok(bolsaPuntoDAO.listarBolsas(id_cliente)).build();
+        }
+        return builder.build();
     }
 
     @GET
@@ -65,7 +78,17 @@ public class ConsultasREST {
     @GET
     @Path("uso-de-puntos-por-cliente/{id_cliente}")
     public Response obtenerPorCliente(@PathParam(value="id_cliente")Integer id_cliente) {
-        return Response.ok(usoPuntoDAO.obtenerPorCliente(id_cliente)).build();
+        Response.ResponseBuilder builder = null;
+        Map<String, String> respuesta = new HashMap<>();
+
+        if(clienteDAO.obtenerClienteById(id_cliente) == null) {
+            respuesta.put("Error", "No existe el cliente en la base de datos");
+            builder = Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(respuesta);
+        } else{
+            //builder = Response.status(Response.Status.OK).entity(respuesta);
+            return Response.ok(usoPuntoDAO.obtenerPorCliente(id_cliente)).build();
+        }
+        return builder.build();
     }
 
 }
