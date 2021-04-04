@@ -95,8 +95,8 @@ public class ReglaAsignacionPuntoDAO {
         List<ReglaAsignacionPunto> listadoReglasAsignacion = (List<ReglaAsignacionPunto>) query.getResultList();
         int mayor = 0;
         for (ReglaAsignacionPunto r : listadoReglasAsignacion) {
-            if (r.getLimiteInferior() > mayor){
-                mayor = r.getLimiteInferior();
+            if (r.getLimiteSuperior() > mayor){
+                mayor = r.getLimiteSuperior();
             }
         }
         return mayor;
