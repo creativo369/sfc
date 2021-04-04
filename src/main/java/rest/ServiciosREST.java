@@ -56,14 +56,14 @@ public class ServiciosREST {
                 bolsa.setMontoOperacion(monto);
                 bolsa.setPuntajeAsignado(puntos);
                 bolsa.setSaldoPuntos(puntos);
-
+                // Aqui traemos en una lista todos los Parametros de vencimiento para comprobar en que rango cayo nuestra fecha actual.
                 List<ParametrizacionVencimientoPunto> paramVencList = paramVencDAO.listarParametrizacionVencimientoPunto();
 
                 for (ParametrizacionVencimientoPunto param : paramVencList) {
                     if (hoy.compareTo(param.getFechaInicioValidez()) >= 0 && hoy.compareTo(param.getFechaFinValidez()) <= 0) {
                         Calendar c = Calendar.getInstance();
                         c.setTime(hoy);
-                        c.add(Calendar.DATE, param.getDuracionDiasPuntaje());
+                        c.add(Calendar.DATE, param.getDuracionDiasPuntaje()); // Suma de parametrización ( duración de dias a la fecha de hoy )
                         bolsa.setFechaCaducidadPuntaje(c.getTime());
                     }
                 }

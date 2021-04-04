@@ -101,7 +101,7 @@ public class BolsaPuntoDAO {
         }
         return newLista;
     }
-
+    // Implementación del fifo - usar las bolsas mas antiguas
     public String utilizacionPuntos(Integer id_cliente, Integer id_concepto){
         //System.out.println("Antes de obtener el concepto");
         ConceptoUsoPunto concepto = conceptoDAO.obtenerConceptoUsoPuntoById(id_concepto);
